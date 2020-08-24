@@ -26,6 +26,16 @@ class AuthenticationOnBoardingVC: UIViewController {
     
     var firstButton = SRDefaultButton(title: "Login", titleColor: .black, bgColor: .white)
     var secondButton = SRDefaultButton(title: "Sign up", titleColor: .black, bgColor: .white)
+    var backButton = SRDefaultButton(title: "Back", titleColor: .white, bgColor: .clear)
+    var backButtonAlpa: CGFloat = 0.0 {
+        didSet {
+            backButton.isEnabled = backButtonAlpa == 0
+            UIView.animate(withDuration: 0.4) {
+                self.backButton.alpha = self.backButtonAlpa
+            }
+        }
+    }
+    
     let pageControl = UIPageControl()
     let pageViewController = AuthPageVC()
     
@@ -41,7 +51,8 @@ class AuthenticationOnBoardingVC: UIViewController {
         configurePageDots()
         configureBottomContainer()
         setupPageVC()
-        manageFirstView()
+        configureBackButton()
+        checkCurrentViewController()
     }
     
 }
@@ -49,18 +60,6 @@ class AuthenticationOnBoardingVC: UIViewController {
 ///Onboarding
 extension AuthenticationOnBoardingVC {
     
-    func manageFirstView() {
-        if let _ = currentViewController as? AuthStartVC {
-            firstButton.setupUI(title: "Login")
-            secondButton.setupUI(title: "Sign up")
-            firstButton.addAction {
-                self.navigate(.forward, state: .login)
-            }
-            secondButton.addAction {
-                self.navigate(.forward, state: .signUp)
-            }
-        }
-    }
     
     func navigate(to page: AuthPageVC.ViewControllers, direction: UIPageViewController.NavigationDirection, animated: Bool = true) {
         if (direction == .forward && self.pageViewController.currentPageIndex == self.pageViewController.viewControllerList.count - 1) { return }
@@ -76,7 +75,6 @@ extension AuthenticationOnBoardingVC {
     func navigate(_ direction: UIPageViewController.NavigationDirection, state: Authstate? = nil) {
         if (direction == .forward && self.pageViewController.currentPageIndex == self.pageViewController.viewControllerList.count - 1) { return }
         
-        removeTargetActions()
         Vibration.medium.vibrate()
         pageViewController.navigate(direction)
         pageControl.currentPage = pageViewController.currentPageIndex
@@ -86,20 +84,23 @@ extension AuthenticationOnBoardingVC {
     }
     
     func checkCurrentViewController(state: Authstate? = nil) {
+        removeTargetActions()
+
+        backButtonAlpa = pageViewController.currentPageIndex >= 2 ? 1 : 0
         if currentViewController is AuthStartVC, let _ = currentViewController as? AuthStartVC {
             firstButton.setupUI(title: "Login")
             secondButton.setupUI(title: "Sign up")
-            firstButton.addTarget(self, action: #selector(navigateForward), for: .touchUpInside)
-            firstButton.addTarget(self, action: #selector(navigateForward), for: .touchUpInside)
+            firstButton.addAction { self.navigate(.forward, state: .login) }
+            secondButton.addAction { self.navigate(.forward, state: .signUp) }
         } else if currentViewController is SignInAndUpVC, let vc = currentViewController as? SignInAndUpVC {
+            backButton.isHidden = false
             if let state = state {
                 vc.state = state
                 vc.delegate = self
                 switch state {
                 case .login:
                     firstButton.setupUI(title: "Login")
-                    print("fisk")
-                    firstButton.addTarget(self, action: #selector(LoginWithFirebase), for: .touchUpInside)
+                    firstButton.addAction { self.LoginWithFirebase() }
                 case .signUp:
                     firstButton.setupUI(title: "Sign Up")
                     firstButton.addTarget(self, action: #selector(SignUpWithFirebase), for: .touchUpInside)
@@ -159,10 +160,10 @@ extension AuthenticationOnBoardingVC {
             DB.auth.createUser(with: email, and: password) { (result) in
                 switch result {
                 case .success():
-                    ProgressHudService.shared.dismiss()
                     DB.auth.switchAuthState {
                         self.navigate(to: .pageCreateUserDetailsInfoVC, direction: .forward, animated: true)
                     }
+                    ProgressHudService.shared.dismiss()
                 case .failure(let error):
                     ProgressHudService.shared.error(error.localizedDescription)
                     print(error.localizedDescription)
@@ -227,6 +228,17 @@ extension AuthenticationOnBoardingVC {
             pageViewController.view.rightAnchor.constraint(equalTo: view.rightAnchor),
         ])
         pageViewController.didMove(toParent: self)
+    }
+    
+    func configureBackButton() {
+        backButtonAlpa = 0
+        view.addSubview(backButton)
+        NSLayoutConstraint.activate([
+            backButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
+            backButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16),
+            backButton.widthAnchor.constraint(equalToConstant: 60),
+            backButton.heightAnchor.constraint(equalToConstant: 48),
+        ])
     }
     
 }
