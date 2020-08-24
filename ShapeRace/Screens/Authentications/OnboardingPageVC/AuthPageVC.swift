@@ -9,9 +9,15 @@
 import UIKit
 
 class AuthPageVC: UIPageViewController {
+    enum ViewControllers: Int {
+        case authStartVC = 0
+        case signInAndUpVC = 1
+        case pageCreateUserDetailsInfoVC = 2
+    }
     let viewControllerList: [UIViewController] = [
         AuthStartVC(),
-        SignInAndUpVC()
+        SignInAndUpVC(),
+        PageCreateUserDetailsInfoVC()
     ]
     var currentPageIndex: Int = 0
     
@@ -42,6 +48,12 @@ class AuthPageVC: UIPageViewController {
     func navigate(_ direction: NavigationDirection, animated: Bool = true) {
         currentPageIndex = direction == .forward ? currentPageIndex + 1 : currentPageIndex - 1
         setViewControllers([viewControllerList[currentPageIndex]], direction: direction, animated: animated, completion: nil)
+    }
+    
+    func navigate(to page: ViewControllers, direction: NavigationDirection, animated: Bool = true) {
+        currentPageIndex = page.rawValue
+        setViewControllers([viewControllerList[page.rawValue]], direction: .forward, animated: animated, completion: nil)
+
     }
 }
 

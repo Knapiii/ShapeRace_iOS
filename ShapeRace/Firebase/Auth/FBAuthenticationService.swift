@@ -8,9 +8,15 @@
 
 import Foundation
 import Firebase
+import FirebaseAuth
+import FirebaseFirestore
 
 class FBAuthenticationService {
     static let shared = FBAuthenticationService()
+    
+    func switchAuthState(_ continueToOnboarding: (() -> ())? = nil) {
+        (UIApplication.shared.delegate as! AppDelegate).configureInitialVC(continueToOnboarding)
+    }
     
     func signOut(completion: VoidCompletion) {
         do {

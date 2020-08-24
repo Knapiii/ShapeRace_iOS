@@ -8,6 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		682B26255E7DB268D94D0469 /* Pods_ShapeRace.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 348B76E9B1CBB25D0AC45786 /* Pods_ShapeRace.framework */; };
+		D229E57F24F45217009AB681 /* WorkoutNavigationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D229E57E24F45217009AB681 /* WorkoutNavigationVC.swift */; };
+		D229E58124F45246009AB681 /* WorkoutVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D229E58024F45246009AB681 /* WorkoutVC.swift */; };
+		D229E58324F4533E009AB681 /* SRTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D229E58224F4533E009AB681 /* SRTabBarController.swift */; };
+		D229E58524F45817009AB681 /* ProgressHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = D229E58424F45817009AB681 /* ProgressHUD.swift */; };
+		D229E59324F4644A009AB681 /* FeedNavigationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D229E58F24F46101009AB681 /* FeedNavigationVC.swift */; };
+		D229E59424F4644C009AB681 /* FeedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D229E58E24F46101009AB681 /* FeedVC.swift */; };
+		D229E59524F46451009AB681 /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D229E59124F46103009AB681 /* ProfileVC.swift */; };
+		D229E59624F46453009AB681 /* ProfileNavigationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D229E59024F46103009AB681 /* ProfileNavigationVC.swift */; };
 		D22C0D1824F26C34005776C3 /* AuthenticationOnBoardingVC+Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22C0D1724F26C34005776C3 /* AuthenticationOnBoardingVC+Delegate.swift */; };
 		D22C0D1A24F26E0E005776C3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D22C0D1924F26E0E005776C3 /* GoogleService-Info.plist */; };
 		D22C0D5324F26FBD005776C3 /* Completions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22C0D5224F26FBD005776C3 /* Completions.swift */; };
@@ -35,6 +43,9 @@
 		D2CE46C424F080D500376C81 /* AuthenticationNavigationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CE46C324F080D500376C81 /* AuthenticationNavigationVC.swift */; };
 		D2CE46C924F0816000376C81 /* SRNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CE46C824F0816000376C81 /* SRNavigationController.swift */; };
 		D2CE46CE24F082BF00376C81 /* SRDefaultButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CE46CD24F082BF00376C81 /* SRDefaultButton.swift */; };
+		D2D732BA24F2F213000B30A6 /* DB.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D732B924F2F213000B30A6 /* DB.swift */; };
+		D2D732BC24F2F226000B30A6 /* CurrentUserDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D732BB24F2F226000B30A6 /* CurrentUserDatabase.swift */; };
+		D2D732C324F2F7BE000B30A6 /* PageCreateUserDetailsInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D732C224F2F7BE000B30A6 /* PageCreateUserDetailsInfoVC.swift */; };
 		D2F0CC1B24F2C7B30053E8BD /* FirestoreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F0CC1A24F2C7B30053E8BD /* FirestoreService.swift */; };
 		D2F0CC1E24F2CA490053E8BD /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F0CC1D24F2CA490053E8BD /* UserModel.swift */; };
 /* End PBXBuildFile section */
@@ -42,6 +53,14 @@
 /* Begin PBXFileReference section */
 		348B76E9B1CBB25D0AC45786 /* Pods_ShapeRace.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ShapeRace.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F803DFBD33D58B311BCAA0E /* Pods-ShapeRace.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShapeRace.release.xcconfig"; path = "Target Support Files/Pods-ShapeRace/Pods-ShapeRace.release.xcconfig"; sourceTree = "<group>"; };
+		D229E57E24F45217009AB681 /* WorkoutNavigationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutNavigationVC.swift; sourceTree = "<group>"; };
+		D229E58024F45246009AB681 /* WorkoutVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutVC.swift; sourceTree = "<group>"; };
+		D229E58224F4533E009AB681 /* SRTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SRTabBarController.swift; sourceTree = "<group>"; };
+		D229E58424F45817009AB681 /* ProgressHUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressHUD.swift; sourceTree = "<group>"; };
+		D229E58E24F46101009AB681 /* FeedVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedVC.swift; sourceTree = "<group>"; };
+		D229E58F24F46101009AB681 /* FeedNavigationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedNavigationVC.swift; sourceTree = "<group>"; };
+		D229E59024F46103009AB681 /* ProfileNavigationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileNavigationVC.swift; sourceTree = "<group>"; };
+		D229E59124F46103009AB681 /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
 		D22C0D1724F26C34005776C3 /* AuthenticationOnBoardingVC+Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AuthenticationOnBoardingVC+Delegate.swift"; sourceTree = "<group>"; };
 		D22C0D1924F26E0E005776C3 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D22C0D5224F26FBD005776C3 /* Completions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Completions.swift; sourceTree = "<group>"; };
@@ -61,7 +80,7 @@
 		D286F06724F1309E007D887F /* AuthStartVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthStartVC.swift; sourceTree = "<group>"; };
 		D286F06A24F13264007D887F /* Vibration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vibration.swift; sourceTree = "<group>"; };
 		D286F06C24F1385F007D887F /* SignInAndUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInAndUpVC.swift; sourceTree = "<group>"; };
-		D2CE46A424F06ED400376C81 /* ShapeRace.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShapeRace.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D2CE46A424F06ED400376C81 /* Shape Race.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Shape Race.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2CE46A724F06ED400376C81 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D2CE46AB24F06ED400376C81 /* AuthenticationOnBoardingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationOnBoardingVC.swift; sourceTree = "<group>"; };
 		D2CE46B024F06ED700376C81 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -71,6 +90,9 @@
 		D2CE46C324F080D500376C81 /* AuthenticationNavigationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationNavigationVC.swift; sourceTree = "<group>"; };
 		D2CE46C824F0816000376C81 /* SRNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SRNavigationController.swift; sourceTree = "<group>"; };
 		D2CE46CD24F082BF00376C81 /* SRDefaultButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SRDefaultButton.swift; sourceTree = "<group>"; };
+		D2D732B924F2F213000B30A6 /* DB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DB.swift; sourceTree = "<group>"; };
+		D2D732BB24F2F226000B30A6 /* CurrentUserDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentUserDatabase.swift; sourceTree = "<group>"; };
+		D2D732C224F2F7BE000B30A6 /* PageCreateUserDetailsInfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageCreateUserDetailsInfoVC.swift; sourceTree = "<group>"; };
 		D2F0CC1A24F2C7B30053E8BD /* FirestoreService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreService.swift; sourceTree = "<group>"; };
 		D2F0CC1D24F2CA490053E8BD /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		D4F576B643C7D49A616DAE4D /* Pods-Shape Race.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shape Race.release.xcconfig"; path = "Target Support Files/Pods-Shape Race/Pods-Shape Race.release.xcconfig"; sourceTree = "<group>"; };
@@ -109,6 +131,105 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		D229E57A24F451DB009AB681 /* Workout (Tab 2) */ = {
+			isa = PBXGroup;
+			children = (
+				D229E57C24F45202009AB681 /* Model */,
+				D229E57D24F45202009AB681 /* View */,
+				D229E57B24F45202009AB681 /* Controller */,
+			);
+			path = "Workout (Tab 2)";
+			sourceTree = "<group>";
+		};
+		D229E57B24F45202009AB681 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				D229E58024F45246009AB681 /* WorkoutVC.swift */,
+				D229E57E24F45217009AB681 /* WorkoutNavigationVC.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		D229E57C24F45202009AB681 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		D229E57D24F45202009AB681 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		D229E58624F460C2009AB681 /* Profile (Tab 3) */ = {
+			isa = PBXGroup;
+			children = (
+				D229E58924F460EF009AB681 /* Model */,
+				D229E58A24F460EF009AB681 /* View */,
+				D229E58824F460EF009AB681 /* Controller */,
+			);
+			path = "Profile (Tab 3)";
+			sourceTree = "<group>";
+		};
+		D229E58724F460D8009AB681 /* Feed (Tab 1) */ = {
+			isa = PBXGroup;
+			children = (
+				D229E58D24F460F1009AB681 /* Model */,
+				D229E58B24F460F1009AB681 /* View */,
+				D229E58C24F460F1009AB681 /* Controller */,
+			);
+			path = "Feed (Tab 1)";
+			sourceTree = "<group>";
+		};
+		D229E58824F460EF009AB681 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				D229E59124F46103009AB681 /* ProfileVC.swift */,
+				D229E59024F46103009AB681 /* ProfileNavigationVC.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		D229E58924F460EF009AB681 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		D229E58A24F460EF009AB681 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		D229E58B24F460F1009AB681 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		D229E58C24F460F1009AB681 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				D229E58E24F46101009AB681 /* FeedVC.swift */,
+				D229E58F24F46101009AB681 /* FeedNavigationVC.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		D229E58D24F460F1009AB681 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		D22C0D1B24F26F15005776C3 /* Firebase */ = {
 			isa = PBXGroup;
 			children = (
@@ -124,6 +245,8 @@
 		D22C0D1C24F26F29005776C3 /* Firestore */ = {
 			isa = PBXGroup;
 			children = (
+				D2D732B924F2F213000B30A6 /* DB.swift */,
+				D2D732BB24F2F226000B30A6 /* CurrentUserDatabase.swift */,
 			);
 			path = Firestore;
 			sourceTree = "<group>";
@@ -246,6 +369,7 @@
 			isa = PBXGroup;
 			children = (
 				D286F04F24F09245007D887F /* SRColors.swift */,
+				D229E58424F45817009AB681 /* ProgressHUD.swift */,
 			);
 			path = Style;
 			sourceTree = "<group>";
@@ -260,42 +384,11 @@
 			path = Home;
 			sourceTree = "<group>";
 		};
-		D286F05524F12661007D887F /* SignInAndUp */ = {
-			isa = PBXGroup;
-			children = (
-				D286F05B24F1267F007D887F /* Model */,
-				D286F05A24F1267F007D887F /* View */,
-				D286F05C24F1267F007D887F /* Controller */,
-			);
-			path = SignInAndUp;
-			sourceTree = "<group>";
-		};
-		D286F05A24F1267F007D887F /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		D286F05B24F1267F007D887F /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		D286F05C24F1267F007D887F /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				D286F06C24F1385F007D887F /* SignInAndUpVC.swift */,
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
 		D286F06624F129D0007D887F /* OnboardingPageVC */ = {
 			isa = PBXGroup;
 			children = (
 				D286F06424F129C0007D887F /* AuthPageVC.swift */,
+				D2D732BD24F2F75E000B30A6 /* Pages */,
 			);
 			path = OnboardingPageVC;
 			sourceTree = "<group>";
@@ -321,7 +414,7 @@
 		D2CE46A524F06ED400376C81 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D2CE46A424F06ED400376C81 /* ShapeRace.app */,
+				D2CE46A424F06ED400376C81 /* Shape Race.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -355,6 +448,9 @@
 			isa = PBXGroup;
 			children = (
 				D2CE46BF24F07F2400376C81 /* Authentications */,
+				D229E58724F460D8009AB681 /* Feed (Tab 1) */,
+				D229E57A24F451DB009AB681 /* Workout (Tab 2) */,
+				D229E58624F460C2009AB681 /* Profile (Tab 3) */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -363,7 +459,6 @@
 			isa = PBXGroup;
 			children = (
 				D286F06624F129D0007D887F /* OnboardingPageVC */,
-				D286F05524F12661007D887F /* SignInAndUp */,
 				D286F05324F12657007D887F /* Home */,
 			);
 			path = Authentications;
@@ -375,7 +470,6 @@
 				D2CE46AB24F06ED400376C81 /* AuthenticationOnBoardingVC.swift */,
 				D22C0D1724F26C34005776C3 /* AuthenticationOnBoardingVC+Delegate.swift */,
 				D2CE46C324F080D500376C81 /* AuthenticationNavigationVC.swift */,
-				D286F06724F1309E007D887F /* AuthStartVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -415,6 +509,7 @@
 		D2CE46C724F0814800376C81 /* SRTabController */ = {
 			isa = PBXGroup;
 			children = (
+				D229E58224F4533E009AB681 /* SRTabBarController.swift */,
 			);
 			path = SRTabController;
 			sourceTree = "<group>";
@@ -426,6 +521,16 @@
 				D286F04824F091EA007D887F /* Buttons */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		D2D732BD24F2F75E000B30A6 /* Pages */ = {
+			isa = PBXGroup;
+			children = (
+				D286F06C24F1385F007D887F /* SignInAndUpVC.swift */,
+				D286F06724F1309E007D887F /* AuthStartVC.swift */,
+				D2D732C224F2F7BE000B30A6 /* PageCreateUserDetailsInfoVC.swift */,
+			);
+			path = Pages;
 			sourceTree = "<group>";
 		};
 		D2F0CC1C24F2CA3C0053E8BD /* Model */ = {
@@ -455,7 +560,7 @@
 			);
 			name = ShapeRace;
 			productName = "Shape Race";
-			productReference = D2CE46A424F06ED400376C81 /* ShapeRace.app */;
+			productReference = D2CE46A424F06ED400376C81 /* Shape Race.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -555,28 +660,39 @@
 				D2F0CC1B24F2C7B30053E8BD /* FirestoreService.swift in Sources */,
 				D286F05024F09245007D887F /* SRColors.swift in Sources */,
 				D22C0D5524F26FFD005776C3 /* FBAuthenticationService.swift in Sources */,
+				D229E57F24F45217009AB681 /* WorkoutNavigationVC.swift in Sources */,
+				D229E58524F45817009AB681 /* ProgressHUD.swift in Sources */,
 				D286F05224F125F5007D887F /* AddAction.swift in Sources */,
 				D286F03A24F088F3007D887F /* FloatingPanelSetup.swift in Sources */,
 				D286F06D24F1385F007D887F /* SignInAndUpVC.swift in Sources */,
 				D2CE46C424F080D500376C81 /* AuthenticationNavigationVC.swift in Sources */,
 				D22C0D5724F27052005776C3 /* SRError.swift in Sources */,
+				D229E59624F46453009AB681 /* ProfileNavigationVC.swift in Sources */,
 				D2CE46AC24F06ED400376C81 /* AuthenticationOnBoardingVC.swift in Sources */,
+				D229E59524F46451009AB681 /* ProfileVC.swift in Sources */,
+				D229E59324F4644A009AB681 /* FeedNavigationVC.swift in Sources */,
 				D286F04D24F09228007D887F /* UIView+Jigger.swift in Sources */,
 				D286F03C24F08992007D887F /* LoginFloatingPanelVC.swift in Sources */,
 				D286F03E24F089A1007D887F /* SignUpFloatingPanelVC.swift in Sources */,
+				D229E58324F4533E009AB681 /* SRTabBarController.swift in Sources */,
 				D2CE46CE24F082BF00376C81 /* SRDefaultButton.swift in Sources */,
 				D286F04424F08B51007D887F /* FloatingPanelService.swift in Sources */,
 				D286F04724F08E5C007D887F /* UIView+RoundedCorners.swift in Sources */,
 				D22C0D5324F26FBD005776C3 /* Completions.swift in Sources */,
+				D2D732C324F2F7BE000B30A6 /* PageCreateUserDetailsInfoVC.swift in Sources */,
+				D229E59424F4644C009AB681 /* FeedVC.swift in Sources */,
 				D286F04024F089C4007D887F /* DefaultFloatingPanelLayout.swift in Sources */,
 				D2F0CC1E24F2CA490053E8BD /* UserModel.swift in Sources */,
 				D286F06B24F13264007D887F /* Vibration.swift in Sources */,
+				D2D732BA24F2F213000B30A6 /* DB.swift in Sources */,
 				D286F06524F129C0007D887F /* AuthPageVC.swift in Sources */,
 				D286F06824F1309E007D887F /* AuthStartVC.swift in Sources */,
 				D2CE46A824F06ED400376C81 /* AppDelegate.swift in Sources */,
 				D2CE46C924F0816000376C81 /* SRNavigationController.swift in Sources */,
 				D2CE46BC24F0708D00376C81 /* SceneDelegate.swift in Sources */,
 				D286F04B24F0920C007D887F /* SRTextFieldWithFloat.swift in Sources */,
+				D229E58124F45246009AB681 /* WorkoutVC.swift in Sources */,
+				D2D732BC24F2F226000B30A6 /* CurrentUserDatabase.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -715,13 +831,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8427K5Y5BA;
-				INFOPLIST_FILE = "Shape Race/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/ShapeRace/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "K.Knape.Shape-Race";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = Knape.ShapeRace;
+				PRODUCT_NAME = "Shape Race";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -734,13 +850,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8427K5Y5BA;
-				INFOPLIST_FILE = "Shape Race/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/ShapeRace/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "K.Knape.Shape-Race";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = Knape.ShapeRace;
+				PRODUCT_NAME = "Shape Race";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

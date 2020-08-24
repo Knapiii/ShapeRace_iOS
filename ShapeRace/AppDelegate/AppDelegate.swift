@@ -8,6 +8,8 @@
 
 import UIKit
 import Firebase
+import FirebaseAuth
+import FirebaseCore
 
 
 @UIApplicationMain
@@ -22,15 +24,52 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         FirebaseConfiguration.shared.setLoggerLevel(.min)
         FirebaseApp.configure()
-
-        rootViewController = HomeNavigationViewController()
-        navigate(to: rootViewController!)
+        
+        configureInitialVC()
+//        rootViewController = HomeNavigationViewController()
+//        navigate(to: rootViewController!)
         return true
     }
     
-    func navigate(to rootView: UIViewController) {
-        self.window?.rootViewController = rootView
+    func navigate(to rootView: UIViewController?) {
+        if let rootView = rootView {
+            self.window?.rootViewController = rootView
+        } else {
+            self.window?.rootViewController = HomeNavigationViewController()
+        }
         self.window?.makeKeyAndVisible()
+    }
+    
+    func configureInitialVC(_ continueToOnboarding: (() -> ())? = nil) {
+        if Auth.auth().currentUser == nil {
+            rootViewController = HomeNavigationViewController()
+            self.navigate(to: self.rootViewController)
+        } else if Auth.auth().currentUser != nil {
+            DB.currentUser.getCurrentUserData { (result) in
+                switch result {
+                case .success(let user):
+                    switch user.hasFinishedWalkthrough {
+                    case true:
+                        self.rootViewController = SRTabBarController()
+                        self.navigate(to: self.rootViewController)
+                    case false:
+                        //navigate to Auth window, onboarding to create User
+                        if let completion = continueToOnboarding {
+                            completion()
+                        } else {
+                            self.rootViewController = HomeNavigationViewController()
+                            self.navigate(to: self.rootViewController)
+                        }
+                       
+                    }
+                case .failure(let error):
+                    print(error.localizedDescription)
+                    FBAuthenticationService.shared.signOut { (_) in
+                        self.configureInitialVC()
+                    }
+                }
+            }
+        }
     }
 }
 

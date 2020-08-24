@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "D2CE46A324F06ED400376C81"
-               BuildableName = "ShapeRace.app"
+               BuildableName = "Shape Race.app"
                BlueprintName = "ShapeRace"
                ReferencedContainer = "container:ShapeRace.xcodeproj">
             </BuildableReference>
@@ -45,7 +45,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "D2CE46A324F06ED400376C81"
-            BuildableName = "ShapeRace.app"
+            BuildableName = "Shape Race.app"
             BlueprintName = "ShapeRace"
             ReferencedContainer = "container:ShapeRace.xcodeproj">
          </BuildableReference>
@@ -62,7 +62,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "D2CE46A324F06ED400376C81"
-            BuildableName = "ShapeRace.app"
+            BuildableName = "Shape Race.app"
             BlueprintName = "ShapeRace"
             ReferencedContainer = "container:ShapeRace.xcodeproj">
          </BuildableReference>

@@ -46,12 +46,11 @@ class AuthenticationOnBoardingVC: UIViewController {
     
 }
 
-
 ///Onboarding
 extension AuthenticationOnBoardingVC {
     
     func manageFirstView() {
-        if let currentVC = currentViewController as? AuthStartVC {
+        if let _ = currentViewController as? AuthStartVC {
             firstButton.setupUI(title: "Login")
             secondButton.setupUI(title: "Sign up")
             firstButton.addAction {
@@ -63,10 +62,19 @@ extension AuthenticationOnBoardingVC {
         }
     }
     
+    func navigate(to page: AuthPageVC.ViewControllers, direction: UIPageViewController.NavigationDirection, animated: Bool = true) {
+        if (direction == .forward && self.pageViewController.currentPageIndex == self.pageViewController.viewControllerList.count - 1) { return }
+        removeTargetActions()
+        Vibration.medium.vibrate()
+        pageViewController.navigate(to: page, direction: direction, animated: animated)
+        pageControl.currentPage = pageViewController.currentPageIndex
+        currentViewController = self.pageViewController.viewControllerList[self.pageViewController.currentPageIndex]
+        
+        checkCurrentViewController()
+    }
+    
     func navigate(_ direction: UIPageViewController.NavigationDirection, state: Authstate? = nil) {
-        if (direction == .forward && self.pageViewController.currentPageIndex == self.pageViewController.viewControllerList.count - 1) {
-            return;
-        }
+        if (direction == .forward && self.pageViewController.currentPageIndex == self.pageViewController.viewControllerList.count - 1) { return }
         
         removeTargetActions()
         Vibration.medium.vibrate()
@@ -74,6 +82,10 @@ extension AuthenticationOnBoardingVC {
         pageControl.currentPage = pageViewController.currentPageIndex
         currentViewController = self.pageViewController.viewControllerList[self.pageViewController.currentPageIndex]
         
+        checkCurrentViewController(state: state)
+    }
+    
+    func checkCurrentViewController(state: Authstate? = nil) {
         if currentViewController is AuthStartVC, let _ = currentViewController as? AuthStartVC {
             firstButton.setupUI(title: "Login")
             secondButton.setupUI(title: "Sign up")
@@ -86,6 +98,7 @@ extension AuthenticationOnBoardingVC {
                 switch state {
                 case .login:
                     firstButton.setupUI(title: "Login")
+                    print("fisk")
                     firstButton.addTarget(self, action: #selector(LoginWithFirebase), for: .touchUpInside)
                 case .signUp:
                     firstButton.setupUI(title: "Sign Up")
@@ -94,12 +107,15 @@ extension AuthenticationOnBoardingVC {
                 secondButton.setupUI(title: "Cancel")
                 secondButton.addTarget(self, action: #selector(navigateBack), for: .touchUpInside)
             }
+        } else if currentViewController is PageCreateUserDetailsInfoVC, let _ = currentViewController as? PageCreateUserDetailsInfoVC {
+            firstButton.setupUI(title: "Save")
+            secondButton.setupUI(title: "Skip")
         }
     }
     
     func removeTargetActions (){
-        firstButton.removeTarget(self, action: nil, for: .allEvents)
-        secondButton.removeTarget(self, action: nil, for: .allEvents)
+        firstButton.removeTarget(nil, action: nil, for: .allEvents)
+        secondButton.removeTarget(nil, action: nil, for: .allEvents)
     }
     
     @objc func navigateForward() {
@@ -118,14 +134,18 @@ extension AuthenticationOnBoardingVC {
 extension AuthenticationOnBoardingVC {
     
     @objc private func LoginWithFirebase() {
+        ProgressHudService.shared.showSpinner()
         Vibration.medium.vibrate()
-        print("LoginWithFirebase")
         if let email = email, let password = password {
             FBAuthenticationService.shared.signIn(with: email, and: password) { (result) in
                 switch result {
                 case .success():
-                    print("User signed in")
+                    DB.auth.switchAuthState {
+                        self.navigate(to: .pageCreateUserDetailsInfoVC, direction: .forward, animated: true)
+                    }
+                    ProgressHudService.shared.dismiss()
                 case .failure(let error):
+                    ProgressHudService.shared.error(error.localizedDescription)
                     print(error.localizedDescription)
                 }
             }
@@ -133,14 +153,18 @@ extension AuthenticationOnBoardingVC {
     }
     
     @objc private func SignUpWithFirebase() {
+        ProgressHudService.shared.showSpinner()
         Vibration.medium.vibrate()
-        print("SignUpWithFirebase")
         if let email = email, let password = password {
-            FBAuthenticationService.shared.createUser(with: email, and: password) { (result) in
+            DB.auth.createUser(with: email, and: password) { (result) in
                 switch result {
                 case .success():
-                    print("User created")
+                    ProgressHudService.shared.dismiss()
+                    DB.auth.switchAuthState {
+                        self.navigate(to: .pageCreateUserDetailsInfoVC, direction: .forward, animated: true)
+                    }
                 case .failure(let error):
+                    ProgressHudService.shared.error(error.localizedDescription)
                     print(error.localizedDescription)
                 }
             }

@@ -11,6 +11,7 @@ import Firebase
 
 class UserModel {
     var userId: String!
+    var email: String?
     var firstName: String!
     var lastName: String!
     var city: String!

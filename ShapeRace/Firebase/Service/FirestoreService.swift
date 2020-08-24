@@ -9,6 +9,7 @@
 import Foundation
 import Firebase
 
+
 struct FirestoreService {
     enum PrivateState: String {
         case isPublic, isPublicForFriends, isPrivate
