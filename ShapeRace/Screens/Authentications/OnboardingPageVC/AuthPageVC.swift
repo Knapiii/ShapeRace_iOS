@@ -1,6 +1,6 @@
 //
 //  AuthPageVC.swift
-//  Shape Race
+//  ShapeRace
 //
 //  Created by Kristoffer Knape on 2020-08-22.
 //  Copyright © 2020 Kristoffer Knape. All rights reserved.
@@ -13,13 +13,20 @@ class AuthPageVC: UIPageViewController {
         case authStartVC = 0
         case signInAndUpVC = 1
         case pageCreateUserDetailsInfoVC = 2
+        case pageEnablePositionVC = 3
+        case pageEnableNotificationsVC = 4
+
     }
     let viewControllerList: [UIViewController] = [
         AuthStartVC(),
         SignInAndUpVC(),
-        PageCreateUserDetailsInfoVC()
+        PageCreateUserDetailsInfoVC(),
+        PageEnablePositionVC(),
+        PageEnableNotificationsVC(),
+        
     ]
     var currentPageIndex: Int = 0
+    var displayedPageIndex: Int = 0
     
     override init(transitionStyle style: UIPageViewController.TransitionStyle, navigationOrientation: UIPageViewController.NavigationOrientation, options: [UIPageViewController.OptionsKey : Any]? = nil) {
         super.init(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)

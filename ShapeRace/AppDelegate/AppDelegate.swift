@@ -1,6 +1,6 @@
 //
 //  AppDelegate.swift
-//  Shape Race
+//  ShapeRace
 //
 //  Created by Kristoffer Knape on 2020-08-21.
 //  Copyright © 2020 Kristoffer Knape. All rights reserved.

@@ -1,6 +1,6 @@
 //
 //  AuthenticationVC.swift
-//  Shape Race
+//  ShapeRace
 //
 //  Created by Kristoffer Knape on 2020-08-21.
 //  Copyright © 2020 Kristoffer Knape. All rights reserved.
@@ -27,11 +27,13 @@ class AuthenticationOnBoardingVC: UIViewController {
     var firstButton = SRDefaultButton(title: "Login", titleColor: .black, bgColor: .white)
     var secondButton = SRDefaultButton(title: "Sign up", titleColor: .black, bgColor: .white)
     var backButton = SRDefaultButton(title: "Back", titleColor: .white, bgColor: .clear)
-    var backButtonAlpa: CGFloat = 0.0 {
+    
+    var backButtonAlpha: CGFloat = 0.0 {
         didSet {
-            backButton.isEnabled = backButtonAlpa == 0
+            backButton.isEnabled = backButtonAlpha != 0
             UIView.animate(withDuration: 0.4) {
-                self.backButton.alpha = self.backButtonAlpa
+                self.backButton.alpha = self.backButtonAlpha
+                self.pageControl.alpha = self.backButtonAlpha
             }
         }
     }
@@ -53,6 +55,8 @@ class AuthenticationOnBoardingVC: UIViewController {
         setupPageVC()
         configureBackButton()
         checkCurrentViewController()
+        
+        backButtonAlpha = 0
     }
     
 }
@@ -66,7 +70,7 @@ extension AuthenticationOnBoardingVC {
         removeTargetActions()
         Vibration.medium.vibrate()
         pageViewController.navigate(to: page, direction: direction, animated: animated)
-        pageControl.currentPage = pageViewController.currentPageIndex
+        pageControl.currentPage = pageViewController.displayedPageIndex
         currentViewController = self.pageViewController.viewControllerList[self.pageViewController.currentPageIndex]
         
         checkCurrentViewController()
@@ -77,7 +81,7 @@ extension AuthenticationOnBoardingVC {
         
         Vibration.medium.vibrate()
         pageViewController.navigate(direction)
-        pageControl.currentPage = pageViewController.currentPageIndex
+        pageControl.currentPage = pageViewController.displayedPageIndex
         currentViewController = self.pageViewController.viewControllerList[self.pageViewController.currentPageIndex]
         
         checkCurrentViewController(state: state)
@@ -85,15 +89,14 @@ extension AuthenticationOnBoardingVC {
     
     func checkCurrentViewController(state: Authstate? = nil) {
         removeTargetActions()
-
-        backButtonAlpa = pageViewController.currentPageIndex >= 2 ? 1 : 0
+        backButtonAlpha = pageViewController.currentPageIndex >= 2 ? 1 : 0
+        
         if currentViewController is AuthStartVC, let _ = currentViewController as? AuthStartVC {
             firstButton.setupUI(title: "Login")
             secondButton.setupUI(title: "Sign up")
             firstButton.addAction { self.navigate(.forward, state: .login) }
             secondButton.addAction { self.navigate(.forward, state: .signUp) }
         } else if currentViewController is SignInAndUpVC, let vc = currentViewController as? SignInAndUpVC {
-            backButton.isHidden = false
             if let state = state {
                 vc.state = state
                 vc.delegate = self
@@ -103,29 +106,46 @@ extension AuthenticationOnBoardingVC {
                     firstButton.addAction { self.LoginWithFirebase() }
                 case .signUp:
                     firstButton.setupUI(title: "Sign Up")
-                    firstButton.addTarget(self, action: #selector(SignUpWithFirebase), for: .touchUpInside)
+                    firstButton.addAction { self.SignUpWithFirebase() }
                 }
                 secondButton.setupUI(title: "Cancel")
-                secondButton.addTarget(self, action: #selector(navigateBack), for: .touchUpInside)
+                secondButton.addAction { self.navigateBack() }
             }
         } else if currentViewController is PageCreateUserDetailsInfoVC, let _ = currentViewController as? PageCreateUserDetailsInfoVC {
+            pageViewController.displayedPageIndex = 1
             firstButton.setupUI(title: "Save")
             secondButton.setupUI(title: "Skip")
+            secondButton.addAction { self.navigateForward() }
+            backButton.addAction { self.navigateBack(state: .login) }
+        } else if currentViewController is PageEnablePositionVC, let _ = currentViewController as? PageEnablePositionVC {
+            pageViewController.displayedPageIndex = 2
+            firstButton.setupUI(title: "Enable location service")
+            secondButton.setupUI(title: "Skip")
+            secondButton.addAction { self.navigateForward() }
+            backButton.addAction {  self.navigate(.reverse) }
+        } else if currentViewController is PageEnableNotificationsVC, let _ = currentViewController as? PageEnableNotificationsVC {
+            pageViewController.displayedPageIndex = 3
+            firstButton.setupUI(title: "Enable notifications")
+            secondButton.setupUI(title: "Skip")
+            
+            secondButton.addAction { self.navigateForward() }
+            backButton.addAction { self.navigate(.reverse) }
         }
     }
     
     func removeTargetActions (){
         firstButton.removeTarget(nil, action: nil, for: .allEvents)
         secondButton.removeTarget(nil, action: nil, for: .allEvents)
+        backButton.removeTarget(nil, action: nil, for: .allEvents)
     }
     
     @objc func navigateForward() {
         navigate(.forward)
     }
     
-    @objc func navigateBack() {
+    func navigateBack(state: Authstate? = nil) {
         if self.pageViewController.currentPageIndex > 0 {
-            navigate(.reverse)
+            navigate(.reverse, state: state)
         }
     }
     
@@ -134,7 +154,7 @@ extension AuthenticationOnBoardingVC {
 ///Actions
 extension AuthenticationOnBoardingVC {
     
-    @objc private func LoginWithFirebase() {
+    private func LoginWithFirebase() {
         ProgressHudService.shared.showSpinner()
         Vibration.medium.vibrate()
         if let email = email, let password = password {
@@ -153,7 +173,7 @@ extension AuthenticationOnBoardingVC {
         }
     }
     
-    @objc private func SignUpWithFirebase() {
+    private func SignUpWithFirebase() {
         ProgressHudService.shared.showSpinner()
         Vibration.medium.vibrate()
         if let email = email, let password = password {
@@ -171,6 +191,16 @@ extension AuthenticationOnBoardingVC {
             }
         }
     }
+    
+    
+    private func AllowLocationService() {
+        
+    }
+    
+    private func allowNotificationService() {
+        
+    }
+    
     
 }
 
@@ -191,7 +221,7 @@ extension AuthenticationOnBoardingVC {
     func configurePageDots() {
         pageControl.pageIndicatorTintColor = .lightGray
         pageControl.currentPageIndicatorTintColor = .white
-        pageControl.numberOfPages = pageViewController.viewControllerList.count - 1
+        pageControl.numberOfPages = pageViewController.viewControllerList.count - 2
         pageControl.isUserInteractionEnabled = false
         pageControl.translatesAutoresizingMaskIntoConstraints = false
         
@@ -231,7 +261,6 @@ extension AuthenticationOnBoardingVC {
     }
     
     func configureBackButton() {
-        backButtonAlpa = 0
         view.addSubview(backButton)
         NSLayoutConstraint.activate([
             backButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
