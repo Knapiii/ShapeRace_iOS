@@ -92,25 +92,26 @@ class AuthTextFieldWithFloat: SkyFloatingLabelTextFieldWithIcon, Jiggerable {
     }
     
     private func defaultUI() {
-        self.placeholderColor = UIColor.white.withAlphaComponent(0.6)
-        self.placeholderFont = .systemFont(ofSize: 18)
+        tintColor = .white
+        placeholderColor = UIColor.white.withAlphaComponent(0.6)
+        placeholderFont = .systemFont(ofSize: 18)
 
         
-        self.titleColor = UIColor.white.withAlphaComponent(0.6)
-        self.titleFont = .systemFont(ofSize: 14)
-        self.selectedTitleColor = UIColor.white
+        titleColor = UIColor.white.withAlphaComponent(0.6)
+        titleFont = .systemFont(ofSize: 14)
+        selectedTitleColor = UIColor.white
 
-        self.textColor = .white
+        textColor = .white
         
-        self.lineColor = UIColor.white.withAlphaComponent(0.6)
-        self.selectedLineColor = UIColor.white
+        lineColor = UIColor.white.withAlphaComponent(0.6)
+        selectedLineColor = UIColor.white
 
-        self.lineHeight = 1.0
-        self.selectedLineHeight = 2.0
+        lineHeight = 1.0
+        selectedLineHeight = 2.0
         
-        self.font = UIFont.systemFont(ofSize: 16)
-        self.layer.masksToBounds = false
-        self.translatesAutoresizingMaskIntoConstraints = false
+        font = UIFont.systemFont(ofSize: 16)
+        layer.masksToBounds = false
+        translatesAutoresizingMaskIntoConstraints = false
     }
     
     func setPlaceholder(_ placeholder: String) {

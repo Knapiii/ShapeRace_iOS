@@ -10,7 +10,7 @@ import Foundation
 
 class WorkoutNavigationVC: SRNavigationController {
     let workoutVC: WorkoutVC
-        
+    
     init() {
         self.workoutVC = WorkoutVC()
         super.init(nibName: nil, bundle: nil)

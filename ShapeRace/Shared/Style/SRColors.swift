@@ -164,6 +164,18 @@ public enum SRColor {
     }
     
     
+    public static var blue: UIColor {
+        return UIColor.init(hexColor: "#1B69A3")
+    }
+    
+    public static var darkBlue: UIColor {
+        return UIColor.init(hexColor: "#103F61")
+    }
+    
+    public static var lightBlue: UIColor {
+        return UIColor.init(hexColor: "#76A5C7")
+    }
+    
     public static var fadedPopUpViewBackground: UIColor {
         if #available(iOS 13, *) {
             return UIColor { (traits) -> UIColor in

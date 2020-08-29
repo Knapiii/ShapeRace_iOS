@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="cDb-HH-c7q">
+    <device id="retina5_9" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="iDo-dc-nd1">
+            <objects>
+                <viewController id="cDb-HH-c7q" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="16R-4g-jE8">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="59U-sj-Nrv">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Full_Background_Image" translatesAutoresizingMaskIntoConstraints="NO" id="4nU-ap-Y9B">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                                    </imageView>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="Motivate yourself and your friends to exercice more!" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aJX-Pd-KHu">
+                                        <rect key="frame" x="60" y="391.33333333333331" width="255" height="100"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="100" id="5Kj-Eh-T3h"/>
+                                        </constraints>
+                                        <color key="textColor" name="Color"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="21"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Shape Race" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rcF-hV-fas">
+                                        <rect key="frame" x="47.666666666666657" y="316.66666666666669" width="280" height="58.666666666666686"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="50"/>
+                                        <color key="textColor" name="Color"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Dubmell_White" translatesAutoresizingMaskIntoConstraints="NO" id="xPw-NB-Yli">
+                                        <rect key="frame" x="162.66666666666666" y="511.33333333333326" width="50" height="50"/>
+                                    </imageView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="4nU-ap-Y9B" secondAttribute="bottom" id="9DY-It-86K"/>
+                                    <constraint firstItem="xPw-NB-Yli" firstAttribute="centerX" secondItem="rcF-hV-fas" secondAttribute="centerX" id="A96-BE-ior"/>
+                                    <constraint firstItem="aJX-Pd-KHu" firstAttribute="leading" secondItem="88e-Rc-rNE" secondAttribute="leading" constant="60" id="CsH-qw-jBd"/>
+                                    <constraint firstItem="4nU-ap-Y9B" firstAttribute="leading" secondItem="88e-Rc-rNE" secondAttribute="leading" id="M0l-BO-WhS"/>
+                                    <constraint firstItem="rcF-hV-fas" firstAttribute="centerX" secondItem="59U-sj-Nrv" secondAttribute="centerX" id="Mya-fB-MgJ"/>
+                                    <constraint firstItem="rcF-hV-fas" firstAttribute="centerY" secondItem="59U-sj-Nrv" secondAttribute="centerY" constant="-60" id="OqC-is-rm1"/>
+                                    <constraint firstItem="88e-Rc-rNE" firstAttribute="trailing" secondItem="4nU-ap-Y9B" secondAttribute="trailing" id="Rra-wz-KtV"/>
+                                    <constraint firstItem="aJX-Pd-KHu" firstAttribute="centerX" secondItem="rcF-hV-fas" secondAttribute="centerX" id="TPU-de-8KQ"/>
+                                    <constraint firstItem="4nU-ap-Y9B" firstAttribute="top" secondItem="59U-sj-Nrv" secondAttribute="top" id="YBj-wS-4Wg"/>
+                                    <constraint firstItem="xPw-NB-Yli" firstAttribute="top" secondItem="aJX-Pd-KHu" secondAttribute="bottom" constant="20" id="YIR-ij-K71"/>
+                                    <constraint firstItem="88e-Rc-rNE" firstAttribute="trailing" secondItem="aJX-Pd-KHu" secondAttribute="trailing" constant="60" id="c1Z-3a-ACe"/>
+                                    <constraint firstItem="aJX-Pd-KHu" firstAttribute="top" secondItem="rcF-hV-fas" secondAttribute="bottom" constant="16" id="dZj-O2-Acy"/>
+                                    <constraint firstItem="xPw-NB-Yli" firstAttribute="centerX" secondItem="aJX-Pd-KHu" secondAttribute="centerX" id="hor-B6-nLz"/>
+                                </constraints>
+                                <viewLayoutGuide key="safeArea" id="88e-Rc-rNE"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="59U-sj-Nrv" firstAttribute="leading" secondItem="QwQ-DC-Cag" secondAttribute="leading" id="CHG-TP-xtf"/>
+                            <constraint firstItem="59U-sj-Nrv" firstAttribute="top" secondItem="16R-4g-jE8" secondAttribute="top" id="NK8-Nl-ME5"/>
+                            <constraint firstAttribute="bottom" secondItem="59U-sj-Nrv" secondAttribute="bottom" id="Qsh-Gb-vtT"/>
+                            <constraint firstItem="59U-sj-Nrv" firstAttribute="trailing" secondItem="QwQ-DC-Cag" secondAttribute="trailing" id="axT-iK-raj"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="QwQ-DC-Cag"/>
+                    </view>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9NI-k7-a9R" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1927.2" y="-633.25123152709364"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="Dubmell_White" width="50" height="50"/>
+        <image name="Full_Background_Image" width="375" height="812"/>
+        <namedColor name="Color">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

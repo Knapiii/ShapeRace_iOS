@@ -8,6 +8,7 @@
 
 import Foundation
 import Firebase
+import FirebaseAuth
 
 class CurrentUserDatabase {
     static let shared = CurrentUserDatabase()
