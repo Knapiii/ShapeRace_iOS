@@ -71,5 +71,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
     }
+    
+    func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData!) {
+        NotificationCenter.default.post(name: Notis.notificationPermissionUpdated.name, object: true)
+        print("Got token data! \(deviceToken)")
+    }
+
+    func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError!) {
+        NotificationCenter.default.post(name: Notis.notificationPermissionUpdated.name, object: false)
+        print("Couldn't register: \(error)")
+    }
 }
 

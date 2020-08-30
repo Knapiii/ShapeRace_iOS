@@ -12,7 +12,6 @@ target 'ShapeRace' do
   pod 'SkyFloatingLabelTextField'
   pod 'IQKeyboardManager'
 
-
   # Firebase
   pod 'FirebaseCore'
   pod 'Firebase/Messaging'
@@ -26,8 +25,10 @@ target 'ShapeRace' do
   pod 'Firebase/DynamicLinks'
   pod 'Firebase/RemoteConfig'
   pod 'FirebaseUI/Storage'
+  
+  # Mapbox
 
-  pod 'Fabric', '~> 1.10.2'
-  pod 'Crashlytics', '~> 3.14.0'
+  pod 'Fabric',
+  pod 'Crashlytics',
 
 end

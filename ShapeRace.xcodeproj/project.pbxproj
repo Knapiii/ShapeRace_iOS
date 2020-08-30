@@ -21,7 +21,24 @@
 		D22C0D5324F26FBD005776C3 /* Completions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22C0D5224F26FBD005776C3 /* Completions.swift */; };
 		D22C0D5524F26FFD005776C3 /* FBAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22C0D5424F26FFD005776C3 /* FBAuthenticationService.swift */; };
 		D22C0D5724F27052005776C3 /* SRError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22C0D5624F27052005776C3 /* SRError.swift */; };
+		D25211E124FC67FF00155C4E /* SRTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25211E024FC67FF00155C4E /* SRTabBar.swift */; };
 		D2570C4D24FADDFC00BD3D24 /* TabbarService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2570C4C24FADDFC00BD3D24 /* TabbarService.swift */; };
+		D2570C5324FB062100BD3D24 /* Mapbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2570C4F24FAF77700BD3D24 /* Mapbox.framework */; };
+		D2570C5424FB062100BD3D24 /* Mapbox.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D2570C4F24FAF77700BD3D24 /* Mapbox.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		D2570C5624FB062200BD3D24 /* MapboxMobileEvents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2570C5024FAF77700BD3D24 /* MapboxMobileEvents.framework */; };
+		D2570C5724FB062200BD3D24 /* MapboxMobileEvents.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D2570C5024FAF77700BD3D24 /* MapboxMobileEvents.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		D2570C5A24FB22F000BD3D24 /* NotificationCenter+Name.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2570C5924FB22F000BD3D24 /* NotificationCenter+Name.swift */; };
+		D2570C5C24FB2F1700BD3D24 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2570C5B24FB2F1700BD3D24 /* MapKit.framework */; };
+		D2570C6124FBA6A400BD3D24 /* PageEnableNotificationsVC copy.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2570C6024FBA6A400BD3D24 /* PageEnableNotificationsVC copy.swift */; };
+		D2570C6524FBB25700BD3D24 /* HealtKitService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2570C6424FBB25700BD3D24 /* HealtKitService.swift */; };
+		D2570C6724FBBCAF00BD3D24 /* AuthNotificationHandlers.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2570C6624FBBCAF00BD3D24 /* AuthNotificationHandlers.swift */; };
+		D2570C6924FBD1F400BD3D24 /* ViewControllerSwitcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2570C6824FBD1F400BD3D24 /* ViewControllerSwitcher.swift */; };
+		D2570C6A24FBD87100BD3D24 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2570C5E24FB2F2B00BD3D24 /* HealthKit.framework */; };
+		D2570C6C24FBFB9A00BD3D24 /* WorkoutVC+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2570C6B24FBFB9A00BD3D24 /* WorkoutVC+UI.swift */; };
+		D2570C6E24FBFBA500BD3D24 /* WorkoutVC+Actions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2570C6D24FBFBA500BD3D24 /* WorkoutVC+Actions.swift */; };
+		D2570C7024FC187D00BD3D24 /* ChooseMusclePartsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2570C6F24FC187D00BD3D24 /* ChooseMusclePartsView.swift */; };
+		D2570C7224FC1A4400BD3D24 /* String+Capitalize.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2570C7124FC1A4400BD3D24 /* String+Capitalize.swift */; };
+		D2570C7424FC5E4C00BD3D24 /* View+Shadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2570C7324FC5E4C00BD3D24 /* View+Shadow.swift */; };
 		D286F03A24F088F3007D887F /* FloatingPanelSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = D286F03924F088F3007D887F /* FloatingPanelSetup.swift */; };
 		D286F03C24F08992007D887F /* LoginFloatingPanelVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D286F03B24F08992007D887F /* LoginFloatingPanelVC.swift */; };
 		D286F03E24F089A1007D887F /* SignUpFloatingPanelVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D286F03D24F089A1007D887F /* SignUpFloatingPanelVC.swift */; };
@@ -46,14 +63,28 @@
 		D2D732BA24F2F213000B30A6 /* DB.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D732B924F2F213000B30A6 /* DB.swift */; };
 		D2D732BC24F2F226000B30A6 /* CurrentUserDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D732BB24F2F226000B30A6 /* CurrentUserDatabase.swift */; };
 		D2D732C324F2F7BE000B30A6 /* PageCreateUserDetailsInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D732C224F2F7BE000B30A6 /* PageCreateUserDetailsInfoVC.swift */; };
-		D2F0CC1B24F2C7B30053E8BD /* FirestoreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F0CC1A24F2C7B30053E8BD /* FirestoreService.swift */; };
+		D2F0CC1B24F2C7B30053E8BD /* FirebaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F0CC1A24F2C7B30053E8BD /* FirebaseService.swift */; };
 		D2F0CC1E24F2CA490053E8BD /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F0CC1D24F2CA490053E8BD /* UserModel.swift */; };
 		D2F1B01924F59641004AA160 /* PageEnablePositionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F1B01824F59641004AA160 /* PageEnablePositionVC.swift */; };
-		D2F1B01B24F59653004AA160 /* PageEnableNotificationsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F1B01A24F59653004AA160 /* PageEnableNotificationsVC.swift */; };
+		D2F1B01B24F59653004AA160 /* PageEnableAppleHealthVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F1B01A24F59653004AA160 /* PageEnableAppleHealthVC.swift */; };
 		D2F1B02024F5A876004AA160 /* LocationManagerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F1B01F24F5A876004AA160 /* LocationManagerService.swift */; };
 		D2F1B02224F5A9DD004AA160 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2F1B02124F5A9D6004AA160 /* LaunchScreen.storyboard */; };
-		D2F1B02424F5AB55004AA160 /* SRTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F1B02324F5AB55004AA160 /* SRTabBar.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		D2570C5524FB062100BD3D24 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				D2570C5724FB062200BD3D24 /* MapboxMobileEvents.framework in Embed Frameworks */,
+				D2570C5424FB062100BD3D24 /* Mapbox.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		348B76E9B1CBB25D0AC45786 /* Pods_ShapeRace.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ShapeRace.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -71,7 +102,23 @@
 		D22C0D5224F26FBD005776C3 /* Completions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Completions.swift; sourceTree = "<group>"; };
 		D22C0D5424F26FFD005776C3 /* FBAuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBAuthenticationService.swift; sourceTree = "<group>"; };
 		D22C0D5624F27052005776C3 /* SRError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SRError.swift; sourceTree = "<group>"; };
+		D25211E024FC67FF00155C4E /* SRTabBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SRTabBar.swift; sourceTree = "<group>"; };
 		D2570C4C24FADDFC00BD3D24 /* TabbarService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbarService.swift; sourceTree = "<group>"; };
+		D2570C4F24FAF77700BD3D24 /* Mapbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Mapbox.framework; sourceTree = "<group>"; };
+		D2570C5024FAF77700BD3D24 /* MapboxMobileEvents.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MapboxMobileEvents.framework; sourceTree = "<group>"; };
+		D2570C5924FB22F000BD3D24 /* NotificationCenter+Name.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NotificationCenter+Name.swift"; sourceTree = "<group>"; };
+		D2570C5B24FB2F1700BD3D24 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		D2570C5D24FB2F2B00BD3D24 /* Shape Race.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Shape Race.entitlements"; sourceTree = "<group>"; };
+		D2570C5E24FB2F2B00BD3D24 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
+		D2570C6024FBA6A400BD3D24 /* PageEnableNotificationsVC copy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PageEnableNotificationsVC copy.swift"; sourceTree = "<group>"; };
+		D2570C6424FBB25700BD3D24 /* HealtKitService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealtKitService.swift; sourceTree = "<group>"; };
+		D2570C6624FBBCAF00BD3D24 /* AuthNotificationHandlers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthNotificationHandlers.swift; sourceTree = "<group>"; };
+		D2570C6824FBD1F400BD3D24 /* ViewControllerSwitcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerSwitcher.swift; sourceTree = "<group>"; };
+		D2570C6B24FBFB9A00BD3D24 /* WorkoutVC+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WorkoutVC+UI.swift"; sourceTree = "<group>"; };
+		D2570C6D24FBFBA500BD3D24 /* WorkoutVC+Actions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WorkoutVC+Actions.swift"; sourceTree = "<group>"; };
+		D2570C6F24FC187D00BD3D24 /* ChooseMusclePartsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseMusclePartsView.swift; sourceTree = "<group>"; };
+		D2570C7124FC1A4400BD3D24 /* String+Capitalize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Capitalize.swift"; sourceTree = "<group>"; };
+		D2570C7324FC5E4C00BD3D24 /* View+Shadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Shadow.swift"; sourceTree = "<group>"; };
 		D286F03924F088F3007D887F /* FloatingPanelSetup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingPanelSetup.swift; sourceTree = "<group>"; };
 		D286F03B24F08992007D887F /* LoginFloatingPanelVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginFloatingPanelVC.swift; sourceTree = "<group>"; };
 		D286F03D24F089A1007D887F /* SignUpFloatingPanelVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpFloatingPanelVC.swift; sourceTree = "<group>"; };
@@ -98,13 +145,12 @@
 		D2D732B924F2F213000B30A6 /* DB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DB.swift; sourceTree = "<group>"; };
 		D2D732BB24F2F226000B30A6 /* CurrentUserDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentUserDatabase.swift; sourceTree = "<group>"; };
 		D2D732C224F2F7BE000B30A6 /* PageCreateUserDetailsInfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageCreateUserDetailsInfoVC.swift; sourceTree = "<group>"; };
-		D2F0CC1A24F2C7B30053E8BD /* FirestoreService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreService.swift; sourceTree = "<group>"; };
+		D2F0CC1A24F2C7B30053E8BD /* FirebaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseService.swift; sourceTree = "<group>"; };
 		D2F0CC1D24F2CA490053E8BD /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		D2F1B01824F59641004AA160 /* PageEnablePositionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageEnablePositionVC.swift; sourceTree = "<group>"; };
-		D2F1B01A24F59653004AA160 /* PageEnableNotificationsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageEnableNotificationsVC.swift; sourceTree = "<group>"; };
+		D2F1B01A24F59653004AA160 /* PageEnableAppleHealthVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageEnableAppleHealthVC.swift; sourceTree = "<group>"; };
 		D2F1B01F24F5A876004AA160 /* LocationManagerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManagerService.swift; sourceTree = "<group>"; };
 		D2F1B02124F5A9D6004AA160 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
-		D2F1B02324F5AB55004AA160 /* SRTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SRTabBar.swift; sourceTree = "<group>"; };
 		D4F576B643C7D49A616DAE4D /* Pods-Shape Race.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shape Race.release.xcconfig"; path = "Target Support Files/Pods-Shape Race/Pods-Shape Race.release.xcconfig"; sourceTree = "<group>"; };
 		DC321CBBE44894CDBF283A97 /* Pods-ShapeRace.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShapeRace.debug.xcconfig"; path = "Target Support Files/Pods-ShapeRace/Pods-ShapeRace.debug.xcconfig"; sourceTree = "<group>"; };
 		E03E9D6CF172A09FC06ECF17 /* Pods-Shape Race.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shape Race.debug.xcconfig"; path = "Target Support Files/Pods-Shape Race/Pods-Shape Race.debug.xcconfig"; sourceTree = "<group>"; };
@@ -115,7 +161,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D2570C5624FB062200BD3D24 /* MapboxMobileEvents.framework in Frameworks */,
 				682B26255E7DB268D94D0469 /* Pods_ShapeRace.framework in Frameworks */,
+				D2570C5C24FB2F1700BD3D24 /* MapKit.framework in Frameworks */,
+				D2570C5324FB062100BD3D24 /* Mapbox.framework in Frameworks */,
+				D2570C6A24FBD87100BD3D24 /* HealthKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -136,6 +186,10 @@
 		CC8DA145D1DC477D2124498F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D2570C5E24FB2F2B00BD3D24 /* HealthKit.framework */,
+				D2570C5B24FB2F1700BD3D24 /* MapKit.framework */,
+				D2570C4F24FAF77700BD3D24 /* Mapbox.framework */,
+				D2570C5024FAF77700BD3D24 /* MapboxMobileEvents.framework */,
 				348B76E9B1CBB25D0AC45786 /* Pods_ShapeRace.framework */,
 			);
 			name = Frameworks;
@@ -155,6 +209,8 @@
 			isa = PBXGroup;
 			children = (
 				D229E58024F45246009AB681 /* WorkoutVC.swift */,
+				D2570C6B24FBFB9A00BD3D24 /* WorkoutVC+UI.swift */,
+				D2570C6D24FBFBA500BD3D24 /* WorkoutVC+Actions.swift */,
 				D229E57E24F45217009AB681 /* WorkoutNavigationVC.swift */,
 			);
 			path = Controller;
@@ -170,6 +226,7 @@
 		D229E57D24F45202009AB681 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				D2570C6F24FC187D00BD3D24 /* ChooseMusclePartsView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -286,7 +343,7 @@
 		D22C0D3724F26F29005776C3 /* Service */ = {
 			isa = PBXGroup;
 			children = (
-				D2F0CC1A24F2C7B30053E8BD /* FirestoreService.swift */,
+				D2F0CC1A24F2C7B30053E8BD /* FirebaseService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -299,16 +356,25 @@
 			path = Completions;
 			sourceTree = "<group>";
 		};
+		D2570C5824FB22BD00BD3D24 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				D2CE46C724F0814800376C81 /* SRTabController */,
+				D2CE46C624F0813C00376C81 /* SRNavigationController */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
 		D286F03024F0887F007D887F /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				D2570C5824FB22BD00BD3D24 /* Controllers */,
 				D2F1B01E24F5A86B004AA160 /* Services */,
 				D2F0CC1C24F2CA3C0053E8BD /* Model */,
 				D22C0D5124F26FAF005776C3 /* Completions */,
 				D286F04E24F0923D007D887F /* Style */,
 				D286F06924F1325A007D887F /* Enums */,
 				D286F04524F08E50007D887F /* Extensions */,
-				D286F03124F0888A007D887F /* FloatingPanels */,
 				D2CE46CC24F082B100376C81 /* Views */,
 			);
 			path = Shared;
@@ -353,9 +419,13 @@
 		D286F04524F08E50007D887F /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				D2570C5924FB22F000BD3D24 /* NotificationCenter+Name.swift */,
+				D22C0D5624F27052005776C3 /* SRError.swift */,
 				D286F04624F08E5C007D887F /* UIView+RoundedCorners.swift */,
 				D286F04C24F09228007D887F /* UIView+Jigger.swift */,
 				D286F05124F125F5007D887F /* AddAction.swift */,
+				D2570C7124FC1A4400BD3D24 /* String+Capitalize.swift */,
+				D2570C7324FC5E4C00BD3D24 /* View+Shadow.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -434,8 +504,8 @@
 		D2CE46A624F06ED400376C81 /* ShapeRace */ = {
 			isa = PBXGroup;
 			children = (
+				D2570C5D24FB2F2B00BD3D24 /* Shape Race.entitlements */,
 				D286F03024F0887F007D887F /* Shared */,
-				D2CE46C524F0813600376C81 /* Extra */,
 				D2CE46BE24F07F1500376C81 /* Screens */,
 				D22C0D1B24F26F15005776C3 /* Firebase */,
 				D2CE46BD24F07F0300376C81 /* AppDelegate */,
@@ -498,16 +568,6 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		D2CE46C524F0813600376C81 /* Extra */ = {
-			isa = PBXGroup;
-			children = (
-				D2CE46C724F0814800376C81 /* SRTabController */,
-				D2CE46C624F0813C00376C81 /* SRNavigationController */,
-				D22C0D5624F27052005776C3 /* SRError.swift */,
-			);
-			path = Extra;
-			sourceTree = "<group>";
-		};
 		D2CE46C624F0813C00376C81 /* SRNavigationController */ = {
 			isa = PBXGroup;
 			children = (
@@ -520,7 +580,7 @@
 			isa = PBXGroup;
 			children = (
 				D229E58224F4533E009AB681 /* SRTabBarController.swift */,
-				D2F1B02324F5AB55004AA160 /* SRTabBar.swift */,
+				D25211E024FC67FF00155C4E /* SRTabBar.swift */,
 				D2570C4C24FADDFC00BD3D24 /* TabbarService.swift */,
 			);
 			path = SRTabController;
@@ -529,6 +589,7 @@
 		D2CE46CC24F082B100376C81 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				D286F03124F0888A007D887F /* FloatingPanels */,
 				D286F04924F091F5007D887F /* TextField */,
 				D286F04824F091EA007D887F /* Buttons */,
 			);
@@ -542,7 +603,8 @@
 				D286F06C24F1385F007D887F /* SignInAndUpVC.swift */,
 				D2D732C224F2F7BE000B30A6 /* PageCreateUserDetailsInfoVC.swift */,
 				D2F1B01824F59641004AA160 /* PageEnablePositionVC.swift */,
-				D2F1B01A24F59653004AA160 /* PageEnableNotificationsVC.swift */,
+				D2570C6024FBA6A400BD3D24 /* PageEnableNotificationsVC copy.swift */,
+				D2F1B01A24F59653004AA160 /* PageEnableAppleHealthVC.swift */,
 			);
 			path = Pages;
 			sourceTree = "<group>";
@@ -560,6 +622,8 @@
 			children = (
 				D2CE46AB24F06ED400376C81 /* AuthenticationOnBoardingVC.swift */,
 				D22C0D1724F26C34005776C3 /* AuthenticationOnBoardingVC+Delegate.swift */,
+				D2570C6624FBBCAF00BD3D24 /* AuthNotificationHandlers.swift */,
+				D2570C6824FBD1F400BD3D24 /* ViewControllerSwitcher.swift */,
 			);
 			path = Actions;
 			sourceTree = "<group>";
@@ -568,6 +632,7 @@
 			isa = PBXGroup;
 			children = (
 				D2F1B01F24F5A876004AA160 /* LocationManagerService.swift */,
+				D2570C6424FBB25700BD3D24 /* HealtKitService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -584,6 +649,7 @@
 				D2CE46A124F06ED400376C81 /* Frameworks */,
 				D2CE46A224F06ED400376C81 /* Resources */,
 				D69CCE161614B66275993BCC /* [CP] Embed Pods Frameworks */,
+				D2570C5524FB062100BD3D24 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -688,30 +754,36 @@
 			buildActionMask = 2147483647;
 			files = (
 				D22C0D1824F26C34005776C3 /* AuthenticationOnBoardingVC+Delegate.swift in Sources */,
-				D2F0CC1B24F2C7B30053E8BD /* FirestoreService.swift in Sources */,
+				D2F0CC1B24F2C7B30053E8BD /* FirebaseService.swift in Sources */,
 				D286F05024F09245007D887F /* SRColors.swift in Sources */,
 				D22C0D5524F26FFD005776C3 /* FBAuthenticationService.swift in Sources */,
+				D2570C5A24FB22F000BD3D24 /* NotificationCenter+Name.swift in Sources */,
 				D229E57F24F45217009AB681 /* WorkoutNavigationVC.swift in Sources */,
 				D229E58524F45817009AB681 /* ProgressHUD.swift in Sources */,
 				D286F05224F125F5007D887F /* AddAction.swift in Sources */,
 				D286F03A24F088F3007D887F /* FloatingPanelSetup.swift in Sources */,
 				D286F06D24F1385F007D887F /* SignInAndUpVC.swift in Sources */,
 				D2CE46C424F080D500376C81 /* AuthenticationNavigationVC.swift in Sources */,
+				D2570C6524FBB25700BD3D24 /* HealtKitService.swift in Sources */,
 				D22C0D5724F27052005776C3 /* SRError.swift in Sources */,
 				D229E59624F46453009AB681 /* ProfileNavigationVC.swift in Sources */,
+				D2570C6124FBA6A400BD3D24 /* PageEnableNotificationsVC copy.swift in Sources */,
 				D2CE46AC24F06ED400376C81 /* AuthenticationOnBoardingVC.swift in Sources */,
+				D2570C7424FC5E4C00BD3D24 /* View+Shadow.swift in Sources */,
+				D2570C6E24FBFBA500BD3D24 /* WorkoutVC+Actions.swift in Sources */,
 				D229E59524F46451009AB681 /* ProfileVC.swift in Sources */,
 				D229E59324F4644A009AB681 /* FeedNavigationVC.swift in Sources */,
+				D2570C7224FC1A4400BD3D24 /* String+Capitalize.swift in Sources */,
 				D286F04D24F09228007D887F /* UIView+Jigger.swift in Sources */,
 				D286F03C24F08992007D887F /* LoginFloatingPanelVC.swift in Sources */,
 				D286F03E24F089A1007D887F /* SignUpFloatingPanelVC.swift in Sources */,
 				D229E58324F4533E009AB681 /* SRTabBarController.swift in Sources */,
 				D2CE46CE24F082BF00376C81 /* SRDefaultButton.swift in Sources */,
-				D2F1B01B24F59653004AA160 /* PageEnableNotificationsVC.swift in Sources */,
+				D25211E124FC67FF00155C4E /* SRTabBar.swift in Sources */,
+				D2F1B01B24F59653004AA160 /* PageEnableAppleHealthVC.swift in Sources */,
 				D286F04424F08B51007D887F /* FloatingPanelService.swift in Sources */,
 				D286F04724F08E5C007D887F /* UIView+RoundedCorners.swift in Sources */,
 				D22C0D5324F26FBD005776C3 /* Completions.swift in Sources */,
-				D2F1B02424F5AB55004AA160 /* SRTabBar.swift in Sources */,
 				D2D732C324F2F7BE000B30A6 /* PageCreateUserDetailsInfoVC.swift in Sources */,
 				D229E59424F4644C009AB681 /* FeedVC.swift in Sources */,
 				D2F1B01924F59641004AA160 /* PageEnablePositionVC.swift in Sources */,
@@ -720,10 +792,14 @@
 				D2F0CC1E24F2CA490053E8BD /* UserModel.swift in Sources */,
 				D286F06B24F13264007D887F /* Vibration.swift in Sources */,
 				D2D732BA24F2F213000B30A6 /* DB.swift in Sources */,
+				D2570C7024FC187D00BD3D24 /* ChooseMusclePartsView.swift in Sources */,
 				D286F06524F129C0007D887F /* AuthPageVC.swift in Sources */,
 				D286F06824F1309E007D887F /* AuthStartVC.swift in Sources */,
+				D2570C6724FBBCAF00BD3D24 /* AuthNotificationHandlers.swift in Sources */,
 				D2CE46A824F06ED400376C81 /* AppDelegate.swift in Sources */,
+				D2570C6924FBD1F400BD3D24 /* ViewControllerSwitcher.swift in Sources */,
 				D2CE46C924F0816000376C81 /* SRNavigationController.swift in Sources */,
+				D2570C6C24FBFB9A00BD3D24 /* WorkoutVC+UI.swift in Sources */,
 				D2CE46BC24F0708D00376C81 /* SceneDelegate.swift in Sources */,
 				D286F04B24F0920C007D887F /* SRTextFieldWithFloat.swift in Sources */,
 				D229E58124F45246009AB681 /* WorkoutVC.swift in Sources */,
@@ -854,8 +930,14 @@
 			baseConfigurationReference = DC321CBBE44894CDBF283A97 /* Pods-ShapeRace.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "ShapeRace/Shape Race.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8427K5Y5BA;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/ShapeRace/MapBox",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = "$(SRCROOT)/ShapeRace/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -864,7 +946,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = Knape.ShapeRace;
 				PRODUCT_NAME = "Shape Race";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -873,8 +955,14 @@
 			baseConfigurationReference = 6F803DFBD33D58B311BCAA0E /* Pods-ShapeRace.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "ShapeRace/Shape Race.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 8427K5Y5BA;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/ShapeRace/MapBox",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = "$(SRCROOT)/ShapeRace/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -883,7 +971,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = Knape.ShapeRace;
 				PRODUCT_NAME = "Shape Race";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

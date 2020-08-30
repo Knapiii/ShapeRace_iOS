@@ -37,13 +37,12 @@ class SRDefaultButton: UIButton {
     private func configure() {
         self.translatesAutoresizingMaskIntoConstraints = false
         self.contentHorizontalAlignment = .center
-        self.layer.cornerRadius = 19
+        self.layer.cornerRadius = 12
         self.titleLabel?.font = .systemFont(ofSize: 17, weight: .bold)
         self.addTarget(self, action: #selector(vibrate), for: .touchDown)
     }
 
     func setupUI(title: String?, titleColor: UIColor? = nil, bgColor: UIColor? = nil, borderColor: UIColor? = nil) {
-        self.configure()
         if let title = title {
             self.setTitle(title, for: .normal)
         }
@@ -61,6 +60,7 @@ class SRDefaultButton: UIButton {
             self.layer.borderWidth = 2
             self.layer.borderColor = borderColor.cgColor
         }
+        self.configure()
     }
     
     @objc private func vibrate() {

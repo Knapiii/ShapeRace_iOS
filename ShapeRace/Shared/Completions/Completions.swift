@@ -10,4 +10,5 @@ import UIKit
 
 typealias VoidCompletion = (Result<Void, Error>) -> ()
 typealias UserCompletion = (Result<UserModel, Error>) -> ()
+typealias BoolCompletion = (Result<Bool, Error>) -> ()
 

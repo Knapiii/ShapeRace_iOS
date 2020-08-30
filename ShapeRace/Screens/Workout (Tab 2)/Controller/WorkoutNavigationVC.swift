@@ -22,8 +22,12 @@ class WorkoutNavigationVC: SRNavigationController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationController?.navigationBar.isTranslucent = true
+        workoutVC.navigationController?.navigationBar.isTranslucent = true
+        workoutVC.navigationController?.setNavigationBarHidden(true, animated: false)
+        workoutVC.view.backgroundColor = SRColor.background
         pushViewController(workoutVC, animated: false)
     }
+    
+    
     
 }

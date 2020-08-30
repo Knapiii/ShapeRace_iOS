@@ -70,9 +70,9 @@ class FBAuthenticationService {
             } else {
                 guard let currentId = Auth.auth().currentUser?.uid else { return }
                 UserDefaults.standard.removeObject(forKey: "thirdPartyLoginDisplayName")
-                let data: [String: Any] = [FirestoreService.DBStrings.User.email: email,
-                                           FirestoreService.DBStrings.User.memberSince: Timestamp(date: (authData?.user.metadata.creationDate)!)]
-                FirestoreService.Ref.User.shared.specific(user: currentId).setData(data, merge: true) { (error) in
+                let data: [String: Any] = [FirebaseService.DBStrings.User.email: email,
+                                           FirebaseService.DBStrings.User.memberSince: Timestamp(date: (authData?.user.metadata.creationDate)!)]
+                FirebaseService.Ref.User.shared.specific(user: currentId).setData(data, merge: true) { (error) in
                     if let error = error {
                         completion(.failure(error))
                         return

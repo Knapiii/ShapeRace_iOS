@@ -27,4 +27,9 @@ class ProgressHudService {
     func showSpinner(_ text: String? = nil) {
         ProgressHUD.show(text)
     }
+    
+    func showText(_ text: String) {
+        ProgressHUD.show(text)
+        ProgressHUD.colorSpinner(.clear)
+    }
 }

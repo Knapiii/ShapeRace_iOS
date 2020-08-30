@@ -176,6 +176,16 @@ public enum SRColor {
         return UIColor.init(hexColor: "#76A5C7")
     }
     
+    public static var adaptiveBlue: UIColor {
+        if #available(iOS 13.0, *) {
+            return UIColor { (traits) -> UIColor in
+                return traits.userInterfaceStyle == .dark ? darkBlue : blue
+            }
+        } else {
+            return blue
+        }
+    }
+    
     public static var fadedPopUpViewBackground: UIColor {
         if #available(iOS 13, *) {
             return UIColor { (traits) -> UIColor in

@@ -13,7 +13,6 @@ class FeedVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureNavigation()
-        view.backgroundColor = SRColor.background.withAlphaComponent(0.6)
     }
     
     func configureNavigation() {

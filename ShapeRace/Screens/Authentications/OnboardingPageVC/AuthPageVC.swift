@@ -14,7 +14,8 @@ class AuthPageVC: UIPageViewController {
         case signInAndUpVC = 1
         case pageCreateUserDetailsInfoVC = 2
         case pageEnablePositionVC = 3
-        case pageEnableNotificationsVC = 4
+        //case pageEnableNotificationsVC = 4
+        case pageEnableAppleHealthVC = 4
 
     }
     let viewControllerList: [UIViewController] = [
@@ -22,7 +23,8 @@ class AuthPageVC: UIPageViewController {
         SignInAndUpVC(),
         PageCreateUserDetailsInfoVC(),
         PageEnablePositionVC(),
-        PageEnableNotificationsVC(),
+       // PageEnableNotificationsVC(),
+        PageEnableAppleHealthVC(),
         
     ]
     var currentPageIndex: Int = 0

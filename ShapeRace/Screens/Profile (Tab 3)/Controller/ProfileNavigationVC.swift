@@ -23,6 +23,7 @@ class ProfileNavigationVC: SRNavigationController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        profileVC.view.backgroundColor = SRColor.background
         navigationController?.navigationBar.isTranslucent = true
         pushViewController(profileVC, animated: false)
     }

@@ -7,9 +7,12 @@
 //
 
 import UIKit
+import CoreLocation
 
 class PageEnablePositionVC: UIViewController {
-    
+
+    private var hasBeenAskedLocation: Bool? = nil
+
     let topTitle: UILabel = {
         $0.text = "Allow location access"
         $0.translatesAutoresizingMaskIntoConstraints = false
@@ -32,6 +35,7 @@ class PageEnablePositionVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureTopText()
+        
     }
         
     func configureTopText() {
@@ -47,6 +51,10 @@ class PageEnablePositionVC: UIViewController {
             topDescription.leftAnchor.constraint(equalTo: view.layoutMarginsGuide.leftAnchor, constant: 16),
             topDescription.rightAnchor.constraint(equalTo: view.layoutMarginsGuide.rightAnchor, constant: -16),
         ])
+    }
+        
+    func askForLocation() {
+        LocationManagerService.shared.askUserForLocationRequest()
     }
 
 }

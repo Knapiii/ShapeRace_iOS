@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreLocation
 import FloatingPanel
 
 class AuthenticationOnBoardingVC: UIViewController {
@@ -90,47 +91,7 @@ extension AuthenticationOnBoardingVC {
     func checkCurrentViewController(state: Authstate? = nil) {
         removeTargetActions()
         backButtonAlpha = pageViewController.currentPageIndex >= 2 ? 1 : 0
-        
-        if currentViewController is AuthStartVC, let _ = currentViewController as? AuthStartVC {
-            firstButton.setupUI(title: "Login")
-            secondButton.setupUI(title: "Sign up")
-            firstButton.addAction { self.navigate(.forward, state: .login) }
-            secondButton.addAction { self.navigate(.forward, state: .signUp) }
-        } else if currentViewController is SignInAndUpVC, let vc = currentViewController as? SignInAndUpVC {
-            if let state = state {
-                vc.state = state
-                vc.delegate = self
-                switch state {
-                case .login:
-                    firstButton.setupUI(title: "Login")
-                    firstButton.addAction { self.LoginWithFirebase() }
-                case .signUp:
-                    firstButton.setupUI(title: "Sign Up")
-                    firstButton.addAction { self.SignUpWithFirebase() }
-                }
-                secondButton.setupUI(title: "Cancel")
-                secondButton.addAction { self.navigateBack() }
-            }
-        } else if currentViewController is PageCreateUserDetailsInfoVC, let _ = currentViewController as? PageCreateUserDetailsInfoVC {
-            pageViewController.displayedPageIndex = 1
-            firstButton.setupUI(title: "Save")
-            secondButton.setupUI(title: "Skip")
-            secondButton.addAction { self.navigateForward() }
-            backButton.addAction { self.navigateBack(state: .login) }
-        } else if currentViewController is PageEnablePositionVC, let _ = currentViewController as? PageEnablePositionVC {
-            pageViewController.displayedPageIndex = 2
-            firstButton.setupUI(title: "Enable location service")
-            secondButton.setupUI(title: "Skip")
-            secondButton.addAction { self.navigateForward() }
-            backButton.addAction {  self.navigate(.reverse) }
-        } else if currentViewController is PageEnableNotificationsVC, let _ = currentViewController as? PageEnableNotificationsVC {
-            pageViewController.displayedPageIndex = 3
-            firstButton.setupUI(title: "Enable notifications")
-            secondButton.setupUI(title: "Skip")
-            
-            secondButton.addAction { self.navigateForward() }
-            backButton.addAction { self.navigate(.reverse) }
-        }
+        configCurrentVC(state: state)
     }
     
     func removeTargetActions (){
@@ -154,10 +115,12 @@ extension AuthenticationOnBoardingVC {
 ///Actions
 extension AuthenticationOnBoardingVC {
     
-    private func LoginWithFirebase() {
-        ProgressHudService.shared.showSpinner()
+
+    
+    func LoginWithFirebase() {
         Vibration.medium.vibrate()
         if let email = email, let password = password {
+            ProgressHudService.shared.showSpinner()
             FBAuthenticationService.shared.signIn(with: email, and: password) { (result) in
                 switch result {
                 case .success():
@@ -170,10 +133,12 @@ extension AuthenticationOnBoardingVC {
                     print(error.localizedDescription)
                 }
             }
+        } else {
+            
         }
     }
     
-    private func SignUpWithFirebase() {
+    func SignUpWithFirebase() {
         ProgressHudService.shared.showSpinner()
         Vibration.medium.vibrate()
         if let email = email, let password = password {
@@ -192,15 +157,14 @@ extension AuthenticationOnBoardingVC {
         }
     }
     
-    
-    private func AllowLocationService() {
-        
+    func finnishWalkthrough() {
+        stopAppleHealthNotificationHandler()
+        stopNotificationPermissionNotificationHandler()
+        stopLocationNotificationHandler()
+        DB.currentUser.setWalkthroughFinished { (_) in
+            DB.auth.switchAuthState()
+        }
     }
-    
-    private func allowNotificationService() {
-        
-    }
-    
     
 }
 

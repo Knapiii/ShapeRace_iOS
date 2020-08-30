@@ -13,7 +13,6 @@ class ProfileVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureNavigation()
-        view.backgroundColor = SRColor.background.withAlphaComponent(1)
     }
     
     func configureNavigation() {

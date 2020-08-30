@@ -25,19 +25,17 @@ class LocationManagerService: NSObject, CLLocationManagerDelegate {
     private override init() {
         super.init()
         locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation
-        locationManager.activityType = .automotiveNavigation
+        locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+        locationManager.activityType = .other
     }
     
     func startTracking() {
         locationManager.startUpdatingLocation()
-        locationManager.startUpdatingHeading()
         locationManager.allowsBackgroundLocationUpdates = true
     }
     
     func stopTracking() {
         locationManager.stopUpdatingLocation()
-        locationManager.stopUpdatingHeading()
         locationManager.allowsBackgroundLocationUpdates = false
     }
     
@@ -45,27 +43,38 @@ class LocationManagerService: NSObject, CLLocationManagerDelegate {
         delegate?.locationUpdated(locations[0])
     }
     
-    var isUserSharingLocation: Bool {
+    func askUserForLocationRequest() {
+        locationManager.requestAlwaysAuthorization()
+    }
+    
+    enum SharingLocation {
+        case notDetermined, denied, authorized
+    }
+    var isUserSharingLocation: SharingLocation {
         switch CLLocationManager.authorizationStatus() {
-        case .notDetermined, .restricted, .denied:
-            return false
+        case .notDetermined:
+            return .notDetermined
+        case .restricted, .denied:
+            return .denied
         case .authorizedWhenInUse, .authorizedAlways:
-            return true
+            return .authorized
         @unknown default:
-            return false
+            return .notDetermined
         }
     }
     
     func askUserToGoToSettingsToUpdateLocationService() {
-        if !isUserSharingLocation && !alertIsBeeingViewed, let hasSeen = hasBeenAskedLocation, hasSeen {
-            alertIsBeeingViewed = true
+        if isUserSharingLocation == .denied && !alertIsBeeingViewed, let hasSeen = hasBeenAskedLocation, hasSeen {
             
         }
     }
     
-    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print(error.localizedDescription)
+    }
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        NotificationCenter.default.post(name: Notis.locationRequestUpdated.name, object: status)
         switch status {
         case .notDetermined:
             hasBeenAskedLocation = false
