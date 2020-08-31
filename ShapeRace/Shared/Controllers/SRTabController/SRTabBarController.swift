@@ -58,7 +58,6 @@ class SRTabBarController: UITabBarController {
     }
     
     fileprivate func setItemPosition(item: Int) {
-        self.tabBar.items?[item].
         switch item {
         case 0:
             let inset = UIEdgeInsets(top: 5, left: 0, bottom: -5, right: 0)
@@ -73,7 +72,7 @@ class SRTabBarController: UITabBarController {
             let inset = UIEdgeInsets(top: 5, left: 0, bottom: -5, right: 0)
             self.tabBar.items?[item].imageInsets = inset
         }
-        
+    
     }
     
     

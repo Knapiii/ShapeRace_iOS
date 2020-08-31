@@ -31,7 +31,7 @@ class SignInAndUpVC: UIViewController {
         $0.contentHorizontalAlignment = .right
         $0.isHidden = true
         return $0
-    }(SRDefaultButton(title: "Forgot password", titleColor: .white, bgColor: .clear))
+    }(DefaultButton(title: "Forgot password", titleColor: .white, bgColor: .clear))
     
     let textFieldStackView: UIStackView = {
         $0.axis = .vertical

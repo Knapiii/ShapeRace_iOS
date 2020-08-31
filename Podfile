@@ -28,7 +28,7 @@ target 'ShapeRace' do
   
   # Mapbox
 
-  pod 'Fabric',
-  pod 'Crashlytics',
+  pod 'Fabric'
+  pod 'Crashlytics'
 
 end

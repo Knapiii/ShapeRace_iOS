@@ -11,12 +11,12 @@ import Mapbox
 
 class WorkoutVC: UIViewController {
     let mapView = MGLMapView()
-    let startWorkoutButton = SRDefaultButton(title: "Start workout", titleColor: .white, bgColor: SRColor.adaptiveBlue)
+    let startWorkoutButton = StartWorkoutButton(title: "Start workout", titleColor: .white, bgColor: SRColor.adaptiveBlue)
     let chooseWorkouteTypeContainer: UIView = {
         $0.translatesAutoresizingMaskIntoConstraints = false
         return $0
     }(UIView())
-    
+    var topTimerView = TopTimerView()
     let chooseMusclePartsView = ChooseMusclePartsView()
 
     let showCurrentLocationButton: UIButton = {
@@ -28,11 +28,16 @@ class WorkoutVC: UIViewController {
         return $0
     }(UIButton())
 
+    var topTimerTopConstraint: NSLayoutConstraint?
+    var startWorkoutBottomConstraint: NSLayoutConstraint?
+    var locationButtonTopConstraint: NSLayoutConstraint?
+
     override func viewDidLoad() {
         super.viewDidLoad()
         configureMapView()
         configureStartWorkoutButton()
         configureChooseWorkouteTypeContainer()
+        configTopTimerView()
         configureLocationButton()
         showCurrentLocation()
     }
@@ -42,7 +47,6 @@ class WorkoutVC: UIViewController {
         self.navigationController?.setNavigationBarHidden(true, animated: false)
         self.tabBarController?.tabBarController?.tabBar.isTranslucent = true
     }
-    
     
 }
 

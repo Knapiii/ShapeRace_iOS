@@ -88,9 +88,14 @@ class MusclePartButton: UIButton {
     
     var isActive = false {
         didSet {
-            backgroundColor = isActive ? SRColor.adaptiveBlue : .white
+            backgroundColor = isActive ? SRColor.adaptiveBlue : UIColor.white.withAlphaComponent(0.8)
             setTitleColor(isActive ? .white: SRColor.adaptiveBlue, for: .normal)
-            layer.borderWidth = isActive ? 0 : 2
+            if traitCollection.userInterfaceStyle == .dark {
+                layer.borderWidth = 0
+            } else {
+                layer.borderColor = SRColor.darkBlue.cgColor
+                layer.borderWidth = isActive ? 0 : 2
+            }
         }
     }
     init(_ musclePart: MuscleParts) {
@@ -107,11 +112,16 @@ class MusclePartButton: UIButton {
         translatesAutoresizingMaskIntoConstraints = false
         setTitle(musclePart.rawValue.capitalizingFirstLetter, for: .normal)
         layer.cornerRadius = 12
-        layer.borderWidth = 2
-        layer.borderColor = SRColor.adaptiveBlue.cgColor
-        backgroundColor = .white
+        if traitCollection.userInterfaceStyle == .dark {
+            layer.borderWidth = 0
+        } else {
+            layer.borderColor = SRColor.darkBlue.cgColor
+            layer.borderWidth = 2
+        }
+        backgroundColor = UIColor.white.withAlphaComponent(0.8)
         setTitleColor(SRColor.reversedLabel, for: .normal)
         contentHorizontalAlignment = .center
+        setTitleColor(isActive ? .white : SRColor.adaptiveBlue, for: .normal)
         titleLabel?.font = .systemFont(ofSize: 17, weight: .medium)
         addAction {
             Vibration.medium.vibrate()
@@ -128,7 +138,7 @@ class MusclePartButton: UIButton {
             if backgroundColor == .clear {
                 setTitleColor(isHighlighted ? titleLabel?.textColor.withAlphaComponent(0.4) : titleLabel?.textColor.withAlphaComponent(1), for: .normal)
             } else {
-                backgroundColor = isHighlighted ? backgroundColor?.withAlphaComponent(0.8) : backgroundColor?.withAlphaComponent(1)
+                backgroundColor = isHighlighted ? backgroundColor?.withAlphaComponent(0.8) : isActive ? backgroundColor?.withAlphaComponent(1) : backgroundColor?.withAlphaComponent(0.8)
             }
         }
     }
@@ -139,9 +149,10 @@ class MusclePartButton: UIButton {
         if #available(iOS 13.0, *) {
             if traitCollection.hasDifferentColorAppearance(comparedTo: previousTraitCollection) {
                 if traitCollection.userInterfaceStyle == .dark {
-                    layer.borderColor = SRColor.blue.cgColor
+                    layer.borderWidth = 0
                 } else {
                     layer.borderColor = SRColor.darkBlue.cgColor
+                    layer.borderWidth = 2
                 }
             }
         }

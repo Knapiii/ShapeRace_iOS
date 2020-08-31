@@ -220,6 +220,7 @@ PODS:
   - BoringSSL-GRPC/Interface (0.0.7)
   - Crashlytics (3.14.0):
     - Fabric (~> 1.10.2)
+  - DTGradientButton (0.1.3)
   - Fabric (1.10.2)
   - Firebase/Analytics (6.30.0):
     - Firebase/Core
@@ -420,8 +421,9 @@ PODS:
   - SkyFloatingLabelTextField (3.8.0)
 
 DEPENDENCIES:
-  - Crashlytics (~> 3.14.0)
-  - Fabric (~> 1.10.2)
+  - Crashlytics
+  - DTGradientButton
+  - Fabric
   - Firebase/Analytics
   - Firebase/Auth
   - Firebase/Crashlytics
@@ -444,6 +446,7 @@ SPEC REPOS:
     - abseil
     - BoringSSL-GRPC
     - Crashlytics
+    - DTGradientButton
     - Fabric
     - Firebase
     - FirebaseABTesting
@@ -483,6 +486,7 @@ SPEC CHECKSUMS:
   abseil: 6c8eb7892aefa08d929b39f9bb108e5367e3228f
   BoringSSL-GRPC: 8edf627ee524575e2f8d19d56f068b448eea3879
   Crashlytics: 540b7e5f5da5a042647227a5e3ac51d85eed06df
+  DTGradientButton: 6f0f696cd433255d226c05e4ab047d991d13d4ef
   Fabric: 706c8b8098fff96c33c0db69cbf81f9c551d0d74
   Firebase: 210f41ca352067d83b1ba4fd2e7fb49a0c017397
   FirebaseABTesting: 8a9d8df3acc2b43f4a22014ddf9f601bca6af699
@@ -518,6 +522,6 @@ SPEC CHECKSUMS:
   SDWebImage: cf6922231e95550934da2ada0f20f2becf2ceba9
   SkyFloatingLabelTextField: 5a338412114808e961fe2d14ea2c5452c8b6e4aa
 
-PODFILE CHECKSUM: 5780aa75563fc4a3b2f5f6cfe16d58a4111c5bf8
+PODFILE CHECKSUM: 08012cbc512c64219e61e3b42ff7caa2ad4928f9
 
 COCOAPODS: 1.9.3

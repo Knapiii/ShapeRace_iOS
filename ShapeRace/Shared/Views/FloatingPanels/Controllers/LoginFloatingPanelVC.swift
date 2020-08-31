@@ -14,13 +14,13 @@ class LoginFloatingPanelVC: UIViewController {
     let emailTextField = SRTextFieldWithFloat(placeholder: "Email")
     let passwordTextField = SRTextFieldWithFloat(placeholder: "Password")
     
-    let loginButton = SRDefaultButton(title: "Log in", titleColor: .blue)
-    let cancelButton = SRDefaultButton(title: "Cancel", titleColor: .blue, bgColor: .clear)
+    let loginButton = DefaultButton(title: "Log in", titleColor: .blue)
+    let cancelButton = DefaultButton(title: "Cancel", titleColor: .blue, bgColor: .clear)
     
     let forgotPasswordButton: UIButton = {
         $0.contentHorizontalAlignment = .right
         return $0
-    }(SRDefaultButton(title: "Forgot password", titleColor: .blue, bgColor: .clear))
+    }(DefaultButton(title: "Forgot password", titleColor: .blue, bgColor: .clear))
 
     let textFieldStackView: UIStackView = {
         $0.axis = .vertical

@@ -53,13 +53,14 @@
 		D286F06824F1309E007D887F /* AuthStartVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D286F06724F1309E007D887F /* AuthStartVC.swift */; };
 		D286F06B24F13264007D887F /* Vibration.swift in Sources */ = {isa = PBXBuildFile; fileRef = D286F06A24F13264007D887F /* Vibration.swift */; };
 		D286F06D24F1385F007D887F /* SignInAndUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D286F06C24F1385F007D887F /* SignInAndUpVC.swift */; };
+		D291DFF324FD909B00882F39 /* TopTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D291DFF224FD909B00882F39 /* TopTimerView.swift */; };
 		D2CE46A824F06ED400376C81 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CE46A724F06ED400376C81 /* AppDelegate.swift */; };
 		D2CE46AC24F06ED400376C81 /* AuthenticationOnBoardingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CE46AB24F06ED400376C81 /* AuthenticationOnBoardingVC.swift */; };
 		D2CE46B124F06ED700376C81 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D2CE46B024F06ED700376C81 /* Assets.xcassets */; };
 		D2CE46BC24F0708D00376C81 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CE46BB24F0708D00376C81 /* SceneDelegate.swift */; };
 		D2CE46C424F080D500376C81 /* AuthenticationNavigationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CE46C324F080D500376C81 /* AuthenticationNavigationVC.swift */; };
 		D2CE46C924F0816000376C81 /* SRNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CE46C824F0816000376C81 /* SRNavigationController.swift */; };
-		D2CE46CE24F082BF00376C81 /* SRDefaultButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CE46CD24F082BF00376C81 /* SRDefaultButton.swift */; };
+		D2CE46CE24F082BF00376C81 /* DefaultButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CE46CD24F082BF00376C81 /* DefaultButton.swift */; };
 		D2D732BA24F2F213000B30A6 /* DB.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D732B924F2F213000B30A6 /* DB.swift */; };
 		D2D732BC24F2F226000B30A6 /* CurrentUserDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D732BB24F2F226000B30A6 /* CurrentUserDatabase.swift */; };
 		D2D732C324F2F7BE000B30A6 /* PageCreateUserDetailsInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D732C224F2F7BE000B30A6 /* PageCreateUserDetailsInfoVC.swift */; };
@@ -133,6 +134,7 @@
 		D286F06724F1309E007D887F /* AuthStartVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthStartVC.swift; sourceTree = "<group>"; };
 		D286F06A24F13264007D887F /* Vibration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vibration.swift; sourceTree = "<group>"; };
 		D286F06C24F1385F007D887F /* SignInAndUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInAndUpVC.swift; sourceTree = "<group>"; };
+		D291DFF224FD909B00882F39 /* TopTimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopTimerView.swift; sourceTree = "<group>"; };
 		D2CE46A424F06ED400376C81 /* Shape Race.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Shape Race.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2CE46A724F06ED400376C81 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D2CE46AB24F06ED400376C81 /* AuthenticationOnBoardingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationOnBoardingVC.swift; sourceTree = "<group>"; };
@@ -141,7 +143,7 @@
 		D2CE46BB24F0708D00376C81 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		D2CE46C324F080D500376C81 /* AuthenticationNavigationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationNavigationVC.swift; sourceTree = "<group>"; };
 		D2CE46C824F0816000376C81 /* SRNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SRNavigationController.swift; sourceTree = "<group>"; };
-		D2CE46CD24F082BF00376C81 /* SRDefaultButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SRDefaultButton.swift; sourceTree = "<group>"; };
+		D2CE46CD24F082BF00376C81 /* DefaultButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultButton.swift; sourceTree = "<group>"; };
 		D2D732B924F2F213000B30A6 /* DB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DB.swift; sourceTree = "<group>"; };
 		D2D732BB24F2F226000B30A6 /* CurrentUserDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentUserDatabase.swift; sourceTree = "<group>"; };
 		D2D732C224F2F7BE000B30A6 /* PageCreateUserDetailsInfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageCreateUserDetailsInfoVC.swift; sourceTree = "<group>"; };
@@ -227,6 +229,7 @@
 			isa = PBXGroup;
 			children = (
 				D2570C6F24FC187D00BD3D24 /* ChooseMusclePartsView.swift */,
+				D291DFF224FD909B00882F39 /* TopTimerView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -433,7 +436,7 @@
 		D286F04824F091EA007D887F /* Buttons */ = {
 			isa = PBXGroup;
 			children = (
-				D2CE46CD24F082BF00376C81 /* SRDefaultButton.swift */,
+				D2CE46CD24F082BF00376C81 /* DefaultButton.swift */,
 			);
 			path = Buttons;
 			sourceTree = "<group>";
@@ -767,6 +770,7 @@
 				D2570C6524FBB25700BD3D24 /* HealtKitService.swift in Sources */,
 				D22C0D5724F27052005776C3 /* SRError.swift in Sources */,
 				D229E59624F46453009AB681 /* ProfileNavigationVC.swift in Sources */,
+				D291DFF324FD909B00882F39 /* TopTimerView.swift in Sources */,
 				D2570C6124FBA6A400BD3D24 /* PageEnableNotificationsVC copy.swift in Sources */,
 				D2CE46AC24F06ED400376C81 /* AuthenticationOnBoardingVC.swift in Sources */,
 				D2570C7424FC5E4C00BD3D24 /* View+Shadow.swift in Sources */,
@@ -778,7 +782,7 @@
 				D286F03C24F08992007D887F /* LoginFloatingPanelVC.swift in Sources */,
 				D286F03E24F089A1007D887F /* SignUpFloatingPanelVC.swift in Sources */,
 				D229E58324F4533E009AB681 /* SRTabBarController.swift in Sources */,
-				D2CE46CE24F082BF00376C81 /* SRDefaultButton.swift in Sources */,
+				D2CE46CE24F082BF00376C81 /* DefaultButton.swift in Sources */,
 				D25211E124FC67FF00155C4E /* SRTabBar.swift in Sources */,
 				D2F1B01B24F59653004AA160 /* PageEnableAppleHealthVC.swift in Sources */,
 				D286F04424F08B51007D887F /* FloatingPanelService.swift in Sources */,

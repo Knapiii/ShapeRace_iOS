@@ -14,8 +14,8 @@ class SignUpFloatingPanelVC: UIViewController {
     let emailTextField = SRTextFieldWithFloat(placeholder: "Email")
     let passwordTextField = SRTextFieldWithFloat(placeholder: "Password")
     
-    let signUpButton = SRDefaultButton(title: "Sign up", titleColor: .blue)
-    let cancelButton = SRDefaultButton(title: "Cancel", titleColor: .blue, bgColor: .clear)
+    let signUpButton = DefaultButton(title: "Sign up", titleColor: .blue)
+    let cancelButton = DefaultButton(title: "Cancel", titleColor: .blue, bgColor: .clear)
 
     let textFieldStackView: UIStackView = {
         $0.axis = .vertical

@@ -28,7 +28,6 @@ extension WorkoutVC {
         ])
     }
     
-    
     func setupMapStyle() {
         if traitCollection.userInterfaceStyle == .dark {
             mapView.styleURL = MGLStyle.darkStyleURL
@@ -39,30 +38,20 @@ extension WorkoutVC {
     
     func configureStartWorkoutButton() {
         startWorkoutButton.setShadow()
+        startWorkoutBottomConstraint = startWorkoutButton.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor, constant: -26)
         view.addSubview(startWorkoutButton)
         NSLayoutConstraint.activate([
             startWorkoutButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16),
-            startWorkoutButton.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor, constant: -26),
+            startWorkoutBottomConstraint!,
             startWorkoutButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16),
             startWorkoutButton.heightAnchor.constraint(equalToConstant: 48)
         ])
-    }
-    
-    func configureLocationButton() {
-        view.addSubview(showCurrentLocationButton)
-        NSLayoutConstraint.activate([
-            showCurrentLocationButton.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor, constant: 24),
-            showCurrentLocationButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -8),
-            showCurrentLocationButton.heightAnchor.constraint(equalToConstant: 48 + 8),
-            showCurrentLocationButton.widthAnchor.constraint(equalToConstant: 48 + 8)
-        ])
-        showCurrentLocationButton.addAction {
+        startWorkoutButton.addAction {
             Vibration.medium.vibrate()
-            self.showCurrentLocation()
+            self.startWorkout()
         }
     }
-    
-    
+        
     func configureChooseWorkouteTypeContainer() {
         view.addSubview(chooseWorkouteTypeContainer)
         NSLayoutConstraint.activate([
@@ -70,7 +59,7 @@ extension WorkoutVC {
             chooseWorkouteTypeContainer.bottomAnchor.constraint(equalTo: startWorkoutButton.topAnchor, constant: -16),
             chooseWorkouteTypeContainer.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16),
         ])
-        
+    
         chooseWorkouteTypeContainer.addSubview(chooseMusclePartsView)
         NSLayoutConstraint.activate([
             chooseMusclePartsView.topAnchor.constraint(equalTo: chooseWorkouteTypeContainer.topAnchor),
@@ -84,7 +73,31 @@ extension WorkoutVC {
         for view in chooseMusclePartsView.rightStackView.arrangedSubviews {
             view.setShadow()
         }
-        
+    }
+    
+    func configTopTimerView() {
+        view.addSubview(topTimerView)
+        topTimerTopConstraint = topTimerView.topAnchor.constraint(equalTo: view.topAnchor, constant: -160)
+        NSLayoutConstraint.activate([
+            topTimerTopConstraint!,
+            topTimerView.leftAnchor.constraint(equalTo: view.leftAnchor),
+            topTimerView.rightAnchor.constraint(equalTo: view.rightAnchor),
+        ])
+    }
+    
+    func configureLocationButton() {
+        locationButtonTopConstraint = showCurrentLocationButton.topAnchor.constraint(equalTo: topTimerView.bottomAnchor, constant: 42)
+        view.addSubview(showCurrentLocationButton)
+        NSLayoutConstraint.activate([
+            locationButtonTopConstraint!,
+            showCurrentLocationButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -8),
+            showCurrentLocationButton.heightAnchor.constraint(equalToConstant: 48 + 8),
+            showCurrentLocationButton.widthAnchor.constraint(equalToConstant: 48 + 8)
+        ])
+        showCurrentLocationButton.addAction {
+            Vibration.medium.vibrate()
+            self.showCurrentLocation()
+        }
     }
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {

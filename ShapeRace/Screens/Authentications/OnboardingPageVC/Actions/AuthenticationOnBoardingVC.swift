@@ -25,9 +25,9 @@ class AuthenticationOnBoardingVC: UIViewController {
         return $0
     }(UIStackView())
     
-    var firstButton = SRDefaultButton(title: "Login", titleColor: .black, bgColor: .white)
-    var secondButton = SRDefaultButton(title: "Sign up", titleColor: .black, bgColor: .white)
-    var backButton = SRDefaultButton(title: "Back", titleColor: .white, bgColor: .clear)
+    var firstButton = DefaultButton(title: "Login", titleColor: .black, bgColor: .white)
+    var secondButton = DefaultButton(title: "Sign up", titleColor: .black, bgColor: .white)
+    var backButton = DefaultButton(title: "Back", titleColor: .white, bgColor: .clear)
     
     var backButtonAlpha: CGFloat = 0.0 {
         didSet {
