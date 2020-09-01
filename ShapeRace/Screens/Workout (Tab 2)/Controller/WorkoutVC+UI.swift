@@ -51,29 +51,6 @@ extension WorkoutVC {
             self.startWorkout()
         }
     }
-        
-    func configureChooseWorkouteTypeContainer() {
-        view.addSubview(chooseWorkouteTypeContainer)
-        NSLayoutConstraint.activate([
-            chooseWorkouteTypeContainer.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16),
-            chooseWorkouteTypeContainer.bottomAnchor.constraint(equalTo: startWorkoutButton.topAnchor, constant: -16),
-            chooseWorkouteTypeContainer.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16),
-        ])
-    
-        chooseWorkouteTypeContainer.addSubview(chooseMusclePartsView)
-        NSLayoutConstraint.activate([
-            chooseMusclePartsView.topAnchor.constraint(equalTo: chooseWorkouteTypeContainer.topAnchor),
-            chooseMusclePartsView.leftAnchor.constraint(equalTo: chooseWorkouteTypeContainer.leftAnchor),
-            chooseMusclePartsView.bottomAnchor.constraint(equalTo: chooseWorkouteTypeContainer.bottomAnchor),
-            chooseMusclePartsView.rightAnchor.constraint(equalTo: chooseWorkouteTypeContainer.rightAnchor),
-        ])
-        for view in chooseMusclePartsView.leftStackView.arrangedSubviews {
-            view.setShadow()
-        }
-        for view in chooseMusclePartsView.rightStackView.arrangedSubviews {
-            view.setShadow()
-        }
-    }
     
     func configTopTimerView() {
         view.addSubview(topTimerView)

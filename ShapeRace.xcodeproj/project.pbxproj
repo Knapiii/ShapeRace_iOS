@@ -56,6 +56,7 @@
 		D291DFF324FD909B00882F39 /* TopTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D291DFF224FD909B00882F39 /* TopTimerView.swift */; };
 		D291DFF524FDACAA00882F39 /* WorkoutTimerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D291DFF424FDACAA00882F39 /* WorkoutTimerService.swift */; };
 		D291DFF724FDB27100882F39 /* Int+Time.swift in Sources */ = {isa = PBXBuildFile; fileRef = D291DFF624FDB27100882F39 /* Int+Time.swift */; };
+		D2B3DDA624FEB2D800936014 /* WorkoutVC+Delegates.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B3DDA524FEB2D800936014 /* WorkoutVC+Delegates.swift */; };
 		D2BBF56F24FE5BAF0027C5B4 /* MapBoxService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BBF56E24FE5BAF0027C5B4 /* MapBoxService.swift */; };
 		D2CE46A824F06ED400376C81 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CE46A724F06ED400376C81 /* AppDelegate.swift */; };
 		D2CE46AC24F06ED400376C81 /* AuthenticationOnBoardingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CE46AB24F06ED400376C81 /* AuthenticationOnBoardingVC.swift */; };
@@ -140,6 +141,7 @@
 		D291DFF224FD909B00882F39 /* TopTimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopTimerView.swift; sourceTree = "<group>"; };
 		D291DFF424FDACAA00882F39 /* WorkoutTimerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutTimerService.swift; sourceTree = "<group>"; };
 		D291DFF624FDB27100882F39 /* Int+Time.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Time.swift"; sourceTree = "<group>"; };
+		D2B3DDA524FEB2D800936014 /* WorkoutVC+Delegates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WorkoutVC+Delegates.swift"; sourceTree = "<group>"; };
 		D2BBF56E24FE5BAF0027C5B4 /* MapBoxService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapBoxService.swift; sourceTree = "<group>"; };
 		D2CE46A424F06ED400376C81 /* Shape Race.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Shape Race.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2CE46A724F06ED400376C81 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -220,6 +222,7 @@
 				D2570C6B24FBFB9A00BD3D24 /* WorkoutVC+UI.swift */,
 				D2570C6D24FBFBA500BD3D24 /* WorkoutVC+Actions.swift */,
 				D229E57E24F45217009AB681 /* WorkoutNavigationVC.swift */,
+				D2B3DDA524FEB2D800936014 /* WorkoutVC+Delegates.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -803,6 +806,7 @@
 				D2F1B01924F59641004AA160 /* PageEnablePositionVC.swift in Sources */,
 				D286F04024F089C4007D887F /* DefaultFloatingPanelLayout.swift in Sources */,
 				D2F1B02024F5A876004AA160 /* LocationManagerService.swift in Sources */,
+				D2B3DDA624FEB2D800936014 /* WorkoutVC+Delegates.swift in Sources */,
 				D291DFF524FDACAA00882F39 /* WorkoutTimerService.swift in Sources */,
 				D2F0CC1E24F2CA490053E8BD /* UserModel.swift in Sources */,
 				D286F06B24F13264007D887F /* Vibration.swift in Sources */,

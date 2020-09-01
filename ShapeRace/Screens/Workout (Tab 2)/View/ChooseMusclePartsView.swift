@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ChooseMusclePartsView: UIView {
+class ChooseMusclePartsView: UIView, MusclePartButtonDelegate {
     let backButton = MusclePartButton(.back)
     let bicepsButton = MusclePartButton(.biceps)
     let legsButton = MusclePartButton(.legs)
@@ -17,11 +17,11 @@ class ChooseMusclePartsView: UIView {
     let coreButton = MusclePartButton(.core)
     let shouldersButton = MusclePartButton(.shoulders)
     let buttButton = MusclePartButton(.butt)
+    var delegate: MusclePartButtonDelegate?
 
-
-    init() {
+    init(viewNumber: Int) {
         super.init(frame: .zero)
-        config()
+        config(viewNumber: viewNumber)
     }
     
     required init?(coder: NSCoder) {
@@ -53,17 +53,20 @@ class ChooseMusclePartsView: UIView {
     }(UIStackView())
     
     
-    func config() {
+    func config(viewNumber: Int) {
         translatesAutoresizingMaskIntoConstraints = false
-        leftStackView.addArrangedSubview(backButton)
-        leftStackView.addArrangedSubview(bicepsButton)
-//        leftStackView.addArrangedSubview(legsButton)
-//        leftStackView.addArrangedSubview(shouldersButton)
-        
-        rightStackView.addArrangedSubview(chestButton)
-        rightStackView.addArrangedSubview(tricepsButton)
-//        rightStackView.addArrangedSubview(buttButton)
-//        rightStackView.addArrangedSubview(coreButton)
+        if viewNumber == 1 {
+            leftStackView.addArrangedSubview(backButton)
+            leftStackView.addArrangedSubview(bicepsButton)
+            rightStackView.addArrangedSubview(chestButton)
+            rightStackView.addArrangedSubview(tricepsButton)
+        } else if viewNumber == 2 {
+            leftStackView.addArrangedSubview(legsButton)
+            leftStackView.addArrangedSubview(shouldersButton)
+            rightStackView.addArrangedSubview(buttButton)
+            rightStackView.addArrangedSubview(coreButton)
+        }
+
         
         mainStackView.addArrangedSubview(leftStackView)
         mainStackView.addArrangedSubview(rightStackView)
@@ -74,9 +77,33 @@ class ChooseMusclePartsView: UIView {
             mainStackView.leftAnchor.constraint(equalTo: leftAnchor),
             mainStackView.bottomAnchor.constraint(equalTo: bottomAnchor),
             mainStackView.rightAnchor.constraint(equalTo: rightAnchor),
+            widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width - 16 - 16),
         ])
+        for view in leftStackView.arrangedSubviews {
+            if let view = view as? MusclePartButton {
+                view.delegate = self
+            }
+        }
+        for view in rightStackView.arrangedSubviews {
+            if let view = view as? MusclePartButton {
+                view.delegate = self
+            }
+        }
     }
 
+    func isSelected(_ type: MusclePartButton.MuscleParts) {
+        delegate?.isSelected(type)
+    }
+    
+    func isUnselected(_ type: MusclePartButton.MuscleParts) {
+        delegate?.isUnselected(type)
+    }
+    
+}
+
+protocol MusclePartButtonDelegate {
+    func isSelected(_ type: MusclePartButton.MuscleParts)
+    func isUnselected(_ type: MusclePartButton.MuscleParts)
 }
 
 class MusclePartButton: UIButton {
@@ -85,10 +112,10 @@ class MusclePartButton: UIButton {
     }
     
     var musclePart: MuscleParts
-    
+    var delegate: MusclePartButtonDelegate?
     var isActive = false {
         didSet {
-            backgroundColor = isActive ? SRColor.adaptiveBlue : UIColor.white.withAlphaComponent(0.8)
+            backgroundColor = isActive ? SRColor.adaptiveBlue : UIColor.white.withAlphaComponent(1)
             setTitleColor(isActive ? .white: SRColor.adaptiveBlue, for: .normal)
             if traitCollection.userInterfaceStyle == .dark {
                 layer.borderWidth = 0
@@ -118,14 +145,15 @@ class MusclePartButton: UIButton {
             layer.borderColor = SRColor.darkBlue.cgColor
             layer.borderWidth = 2
         }
-        backgroundColor = UIColor.white.withAlphaComponent(0.8)
+        backgroundColor = UIColor.white.withAlphaComponent(1)
         setTitleColor(SRColor.reversedLabel, for: .normal)
         contentHorizontalAlignment = .center
         setTitleColor(isActive ? .white : SRColor.adaptiveBlue, for: .normal)
         titleLabel?.font = .systemFont(ofSize: 17, weight: .medium)
-        addAction {
+        addAction { [self] in
             Vibration.medium.vibrate()
             self.isActive.toggle()
+            isActive ? delegate?.isSelected(musclePart) : delegate?.isUnselected(musclePart)
         }
         
         NSLayoutConstraint.activate([
@@ -138,7 +166,7 @@ class MusclePartButton: UIButton {
             if backgroundColor == .clear {
                 setTitleColor(isHighlighted ? titleLabel?.textColor.withAlphaComponent(0.4) : titleLabel?.textColor.withAlphaComponent(1), for: .normal)
             } else {
-                backgroundColor = isHighlighted ? backgroundColor?.withAlphaComponent(0.8) : isActive ? backgroundColor?.withAlphaComponent(1) : backgroundColor?.withAlphaComponent(0.8)
+                backgroundColor = isHighlighted ? backgroundColor?.withAlphaComponent(0.8) : isActive ? backgroundColor?.withAlphaComponent(1) : backgroundColor?.withAlphaComponent(1)
             }
         }
     }
