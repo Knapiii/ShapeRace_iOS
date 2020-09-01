@@ -54,6 +54,9 @@
 		D286F06B24F13264007D887F /* Vibration.swift in Sources */ = {isa = PBXBuildFile; fileRef = D286F06A24F13264007D887F /* Vibration.swift */; };
 		D286F06D24F1385F007D887F /* SignInAndUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D286F06C24F1385F007D887F /* SignInAndUpVC.swift */; };
 		D291DFF324FD909B00882F39 /* TopTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D291DFF224FD909B00882F39 /* TopTimerView.swift */; };
+		D291DFF524FDACAA00882F39 /* WorkoutTimerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D291DFF424FDACAA00882F39 /* WorkoutTimerService.swift */; };
+		D291DFF724FDB27100882F39 /* Int+Time.swift in Sources */ = {isa = PBXBuildFile; fileRef = D291DFF624FDB27100882F39 /* Int+Time.swift */; };
+		D2BBF56F24FE5BAF0027C5B4 /* MapBoxService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BBF56E24FE5BAF0027C5B4 /* MapBoxService.swift */; };
 		D2CE46A824F06ED400376C81 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CE46A724F06ED400376C81 /* AppDelegate.swift */; };
 		D2CE46AC24F06ED400376C81 /* AuthenticationOnBoardingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CE46AB24F06ED400376C81 /* AuthenticationOnBoardingVC.swift */; };
 		D2CE46B124F06ED700376C81 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D2CE46B024F06ED700376C81 /* Assets.xcassets */; };
@@ -135,6 +138,9 @@
 		D286F06A24F13264007D887F /* Vibration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vibration.swift; sourceTree = "<group>"; };
 		D286F06C24F1385F007D887F /* SignInAndUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInAndUpVC.swift; sourceTree = "<group>"; };
 		D291DFF224FD909B00882F39 /* TopTimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopTimerView.swift; sourceTree = "<group>"; };
+		D291DFF424FDACAA00882F39 /* WorkoutTimerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutTimerService.swift; sourceTree = "<group>"; };
+		D291DFF624FDB27100882F39 /* Int+Time.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Time.swift"; sourceTree = "<group>"; };
+		D2BBF56E24FE5BAF0027C5B4 /* MapBoxService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapBoxService.swift; sourceTree = "<group>"; };
 		D2CE46A424F06ED400376C81 /* Shape Race.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Shape Race.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2CE46A724F06ED400376C81 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D2CE46AB24F06ED400376C81 /* AuthenticationOnBoardingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationOnBoardingVC.swift; sourceTree = "<group>"; };
@@ -429,6 +435,7 @@
 				D286F05124F125F5007D887F /* AddAction.swift */,
 				D2570C7124FC1A4400BD3D24 /* String+Capitalize.swift */,
 				D2570C7324FC5E4C00BD3D24 /* View+Shadow.swift */,
+				D291DFF624FDB27100882F39 /* Int+Time.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -636,6 +643,8 @@
 			children = (
 				D2F1B01F24F5A876004AA160 /* LocationManagerService.swift */,
 				D2570C6424FBB25700BD3D24 /* HealtKitService.swift */,
+				D291DFF424FDACAA00882F39 /* WorkoutTimerService.swift */,
+				D2BBF56E24FE5BAF0027C5B4 /* MapBoxService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -758,6 +767,7 @@
 			files = (
 				D22C0D1824F26C34005776C3 /* AuthenticationOnBoardingVC+Delegate.swift in Sources */,
 				D2F0CC1B24F2C7B30053E8BD /* FirebaseService.swift in Sources */,
+				D291DFF724FDB27100882F39 /* Int+Time.swift in Sources */,
 				D286F05024F09245007D887F /* SRColors.swift in Sources */,
 				D22C0D5524F26FFD005776C3 /* FBAuthenticationService.swift in Sources */,
 				D2570C5A24FB22F000BD3D24 /* NotificationCenter+Name.swift in Sources */,
@@ -793,6 +803,7 @@
 				D2F1B01924F59641004AA160 /* PageEnablePositionVC.swift in Sources */,
 				D286F04024F089C4007D887F /* DefaultFloatingPanelLayout.swift in Sources */,
 				D2F1B02024F5A876004AA160 /* LocationManagerService.swift in Sources */,
+				D291DFF524FDACAA00882F39 /* WorkoutTimerService.swift in Sources */,
 				D2F0CC1E24F2CA490053E8BD /* UserModel.swift in Sources */,
 				D286F06B24F13264007D887F /* Vibration.swift in Sources */,
 				D2D732BA24F2F213000B30A6 /* DB.swift in Sources */,
@@ -808,6 +819,7 @@
 				D286F04B24F0920C007D887F /* SRTextFieldWithFloat.swift in Sources */,
 				D229E58124F45246009AB681 /* WorkoutVC.swift in Sources */,
 				D2D732BC24F2F226000B30A6 /* CurrentUserDatabase.swift in Sources */,
+				D2BBF56F24FE5BAF0027C5B4 /* MapBoxService.swift in Sources */,
 				D2570C4D24FADDFC00BD3D24 /* TabbarService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

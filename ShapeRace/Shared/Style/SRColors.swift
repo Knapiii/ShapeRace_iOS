@@ -204,6 +204,16 @@ public enum SRColor {
             return .white
         }
     }
+    
+    public static var topAnimatedView: UIColor {
+        if #available(iOS 13.0, *) {
+            return UIColor { (traits) -> UIColor in
+                return traits.userInterfaceStyle == .dark ? SRColor.systemGray5 : .white
+            }
+        } else {
+            return .white
+        }
+    }
 
     public static var darkGrey: UIColor {
         if #available(iOS 13.0, *) {

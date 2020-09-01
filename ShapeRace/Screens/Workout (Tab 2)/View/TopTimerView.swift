@@ -10,10 +10,16 @@ import UIKit
 
 class TopTimerView: UIView {
 
-    let timerLabel: UILabel = {
+    var timerSeconds = 0 {
+        didSet {
+            timerLabel.text = timerSeconds.secondsToTimeWithDotsInBetween(includeSeconds: true)
+        }
+    }
+    
+    private let timerLabel: UILabel = {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.text = "00:00"
-        $0.font = .systemFont(ofSize: 66, weight: .bold)
+        $0.font = .monospacedDigitSystemFont(ofSize: 66, weight: .bold)
         $0.textAlignment = .center
         return $0
     }(UILabel())
@@ -31,11 +37,9 @@ class TopTimerView: UIView {
         super.layoutSubviews()
         roundedCorners(corners: [.bottomRight, .bottomLeft], radius: 12)
     }
-    
 
-    
     private func config() {
-        backgroundColor = SRColor.cell
+        backgroundColor = SRColor.systemGray5
         translatesAutoresizingMaskIntoConstraints = false
         addSubview(timerLabel)
         NSLayoutConstraint.activate([
@@ -47,6 +51,5 @@ class TopTimerView: UIView {
         ])
         
     }
-    
     
 }

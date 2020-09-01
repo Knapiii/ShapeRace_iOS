@@ -40,12 +40,23 @@ class WorkoutVC: UIViewController {
         configTopTimerView()
         configureLocationButton()
         showCurrentLocation()
+        notificationHandler()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.navigationController?.setNavigationBarHidden(true, animated: false)
         self.tabBarController?.tabBarController?.tabBar.isTranslucent = true
+    }
+    
+    func notificationHandler() {
+        NotificationCenter.default.addObserver(self, selector: #selector(updateTimer(_:)), name: Notis.workoutTimeUpdate.name, object: nil)
+    }
+    
+    @objc func updateTimer(_ notification: Notification) {
+        if let seconds = notification.object as? Int {
+            topTimerView.timerSeconds = seconds
+        }
     }
     
 }

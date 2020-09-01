@@ -30,9 +30,9 @@ extension WorkoutVC {
     
     func setupMapStyle() {
         if traitCollection.userInterfaceStyle == .dark {
-            mapView.styleURL = MGLStyle.darkStyleURL
+            mapView.styleURL = MapBoxService.MapStyle.dark.url
         } else {
-            mapView.styleURL = MGLStyle.lightStyleURL
+            mapView.styleURL = MapBoxService.MapStyle.light.url
         }
     }
     

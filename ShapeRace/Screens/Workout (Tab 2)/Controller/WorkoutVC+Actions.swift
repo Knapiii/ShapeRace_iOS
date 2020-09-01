@@ -14,12 +14,15 @@ extension WorkoutVC {
         Vibration.medium.vibrate()
         if startWorkoutButton.buttonState == .start {
             animateViewsAtStartOfWorkout()
+            WorkoutTimerService.shared.startTimer()
         } else if startWorkoutButton.buttonState == .end {
             animateViewsAtEndOfWorkout()
+            WorkoutTimerService.shared.stopTimer()
         }
     }
     
     func animateViewsAtStartOfWorkout() {
+        self.startWorkoutButton.isEnabled = false
         startWorkoutButton.setTitle("End workout", for: .normal)
         topTimerTopConstraint?.constant = 0
         locationButtonTopConstraint?.constant = 16
@@ -29,17 +32,23 @@ extension WorkoutVC {
         }
         UIView.animate(withDuration: 0.5) {
             self.view.layoutIfNeeded()
+        } completion: { (succes) in
+            self.startWorkoutButton.isEnabled = true
         }
         startWorkoutButton.buttonState = .end
     }
     
     func animateViewsAtEndOfWorkout() {
+        self.startWorkoutButton.isEnabled = false
         startWorkoutButton.setTitle("Start workout", for: .normal)
         topTimerTopConstraint?.constant = -160
         locationButtonTopConstraint?.constant = 42
         startWorkoutBottomConstraint?.constant = -26
         UIView.animate(withDuration: 0.7) {
             self.tabBarController?.tabBar.alpha = 1
+        } completion: { (succes) in
+            self.topTimerView.timerSeconds = 0
+            self.startWorkoutButton.isEnabled = true
         }
         UIView.animate(withDuration: 0.5) {
             self.view.layoutIfNeeded()
