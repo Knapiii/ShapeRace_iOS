@@ -31,5 +31,10 @@ extension UIView {
         case .all:
             self.layer.shadowOffset = CGSize(width: 0, height: 0)
         }
+        
+        self.traitCollection.performAsCurrent {
+            self.layer.shadowColor = SRColor.shadow.cgColor
+        }
     }
+    
 }

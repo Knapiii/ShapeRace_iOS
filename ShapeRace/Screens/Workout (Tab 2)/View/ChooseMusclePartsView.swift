@@ -9,14 +9,14 @@
 import UIKit
 
 class ChooseMusclePartsView: UIView, MusclePartButtonDelegate {
-    let backButton = MusclePartButton(.back)
-    let bicepsButton = MusclePartButton(.biceps)
-    let legsButton = MusclePartButton(.legs)
-    let chestButton = MusclePartButton(.chest)
-    let tricepsButton = MusclePartButton(.triceps)
-    let coreButton = MusclePartButton(.core)
-    let shouldersButton = MusclePartButton(.shoulders)
-    let buttButton = MusclePartButton(.butt)
+    private let backButton = MusclePartButton(.back)
+    private let bicepsButton = MusclePartButton(.biceps)
+    private let legsButton = MusclePartButton(.legs)
+    private let chestButton = MusclePartButton(.chest)
+    private let tricepsButton = MusclePartButton(.triceps)
+    private let coreButton = MusclePartButton(.core)
+    private let shouldersButton = MusclePartButton(.shoulders)
+    private let buttButton = MusclePartButton(.butt)
     var delegate: MusclePartButtonDelegate?
 
     init(viewNumber: Int) {
@@ -28,7 +28,7 @@ class ChooseMusclePartsView: UIView, MusclePartButtonDelegate {
         fatalError("init(coder:) has not been implemented")
     }
     
-    let mainStackView: UIStackView = {
+    private let mainStackView: UIStackView = {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.axis = .horizontal
         $0.spacing = 8
@@ -36,7 +36,7 @@ class ChooseMusclePartsView: UIView, MusclePartButtonDelegate {
         return $0
     }(UIStackView())
     
-    let leftStackView: UIStackView = {
+    private let leftStackView: UIStackView = {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.axis = .vertical
         $0.spacing = 8
@@ -44,7 +44,7 @@ class ChooseMusclePartsView: UIView, MusclePartButtonDelegate {
         return $0
     }(UIStackView())
     
-    let rightStackView: UIStackView = {
+    private let rightStackView: UIStackView = {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.axis = .vertical
         $0.spacing = 8
@@ -53,7 +53,7 @@ class ChooseMusclePartsView: UIView, MusclePartButtonDelegate {
     }(UIStackView())
     
     
-    func config(viewNumber: Int) {
+    private func config(viewNumber: Int) {
         translatesAutoresizingMaskIntoConstraints = false
         if viewNumber == 1 {
             leftStackView.addArrangedSubview(backButton)
@@ -111,24 +111,20 @@ class MusclePartButton: UIButton {
         case back, biceps, legs, chest, triceps, butt, core, shoulders
     }
     
-    var musclePart: MuscleParts
+    private var musclePart: MuscleParts
     var delegate: MusclePartButtonDelegate?
-    var isActive = false {
+    private var isActive = false {
         didSet {
             backgroundColor = isActive ? SRColor.adaptiveBlue : UIColor.white.withAlphaComponent(1)
             setTitleColor(isActive ? .white: SRColor.adaptiveBlue, for: .normal)
-            if traitCollection.userInterfaceStyle == .dark {
-                layer.borderWidth = 0
-            } else {
-                layer.borderColor = SRColor.darkBlue.cgColor
-                layer.borderWidth = isActive ? 0 : 2
-            }
+            
         }
     }
     init(_ musclePart: MuscleParts) {
         self.musclePart = musclePart
         super.init(frame: .zero)
         config()
+        setShadow()
     }
     
     required init?(coder: NSCoder) {
@@ -139,12 +135,6 @@ class MusclePartButton: UIButton {
         translatesAutoresizingMaskIntoConstraints = false
         setTitle(musclePart.rawValue.capitalizingFirstLetter, for: .normal)
         layer.cornerRadius = 12
-        if traitCollection.userInterfaceStyle == .dark {
-            layer.borderWidth = 0
-        } else {
-            layer.borderColor = SRColor.darkBlue.cgColor
-            layer.borderWidth = 2
-        }
         backgroundColor = UIColor.white.withAlphaComponent(1)
         setTitleColor(SRColor.reversedLabel, for: .normal)
         contentHorizontalAlignment = .center
@@ -167,21 +157,6 @@ class MusclePartButton: UIButton {
                 setTitleColor(isHighlighted ? titleLabel?.textColor.withAlphaComponent(0.4) : titleLabel?.textColor.withAlphaComponent(1), for: .normal)
             } else {
                 backgroundColor = isHighlighted ? backgroundColor?.withAlphaComponent(0.8) : isActive ? backgroundColor?.withAlphaComponent(1) : backgroundColor?.withAlphaComponent(1)
-            }
-        }
-    }
-    
-    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        super.traitCollectionDidChange(previousTraitCollection)
-        
-        if #available(iOS 13.0, *) {
-            if traitCollection.hasDifferentColorAppearance(comparedTo: previousTraitCollection) {
-                if traitCollection.userInterfaceStyle == .dark {
-                    layer.borderWidth = 0
-                } else {
-                    layer.borderColor = SRColor.darkBlue.cgColor
-                    layer.borderWidth = 2
-                }
             }
         }
     }

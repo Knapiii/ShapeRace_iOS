@@ -11,6 +11,6 @@
 #endif
 
 
-FOUNDATION_EXPORT double DTGradientButtonVersionNumber;
-FOUNDATION_EXPORT const unsigned char DTGradientButtonVersionString[];
+FOUNDATION_EXPORT double FirebaseFirestoreSwiftVersionNumber;
+FOUNDATION_EXPORT const unsigned char FirebaseFirestoreSwiftVersionString[];
 

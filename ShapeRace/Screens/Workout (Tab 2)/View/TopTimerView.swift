@@ -27,19 +27,16 @@ class TopTimerView: UIView {
     init() {
         super.init(frame: .zero)
         config()
+        layer.cornerRadius = 12
+        setShadow()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        roundedCorners(corners: [.bottomRight, .bottomLeft], radius: 12)
-    }
 
     private func config() {
-        backgroundColor = SRColor.systemGray5
+        backgroundColor = SRColor.cell
         translatesAutoresizingMaskIntoConstraints = false
         addSubview(timerLabel)
         NSLayoutConstraint.activate([

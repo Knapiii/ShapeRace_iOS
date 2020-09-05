@@ -220,7 +220,6 @@ PODS:
   - BoringSSL-GRPC/Interface (0.0.7)
   - Crashlytics (3.14.0):
     - Fabric (~> 1.10.2)
-  - DTGradientButton (0.1.3)
   - Fabric (1.10.2)
   - Firebase/Analytics (6.30.0):
     - Firebase/Core
@@ -301,6 +300,8 @@ PODS:
     - "gRPC-C++ (~> 1.28.0)"
     - leveldb-library (~> 1.22)
     - nanopb (~> 1.30905.0)
+  - FirebaseFirestoreSwift (0.4.0):
+    - FirebaseFirestore (>= 1.6.1, ~> 1.6)
   - FirebaseFunctions (2.8.0):
     - FirebaseCore (~> 6.10)
     - GTMSessionFetcher/Core (~> 1.1)
@@ -422,7 +423,6 @@ PODS:
 
 DEPENDENCIES:
   - Crashlytics
-  - DTGradientButton
   - Fabric
   - Firebase/Analytics
   - Firebase/Auth
@@ -435,6 +435,7 @@ DEPENDENCIES:
   - Firebase/RemoteConfig
   - Firebase/Storage
   - FirebaseCore
+  - FirebaseFirestoreSwift
   - FirebaseUI/Storage
   - FloatingPanel
   - IQKeyboardManager
@@ -446,7 +447,6 @@ SPEC REPOS:
     - abseil
     - BoringSSL-GRPC
     - Crashlytics
-    - DTGradientButton
     - Fabric
     - Firebase
     - FirebaseABTesting
@@ -457,6 +457,7 @@ SPEC REPOS:
     - FirebaseCrashlytics
     - FirebaseDynamicLinks
     - FirebaseFirestore
+    - FirebaseFirestoreSwift
     - FirebaseFunctions
     - FirebaseInstallations
     - FirebaseInstanceID
@@ -486,7 +487,6 @@ SPEC CHECKSUMS:
   abseil: 6c8eb7892aefa08d929b39f9bb108e5367e3228f
   BoringSSL-GRPC: 8edf627ee524575e2f8d19d56f068b448eea3879
   Crashlytics: 540b7e5f5da5a042647227a5e3ac51d85eed06df
-  DTGradientButton: 6f0f696cd433255d226c05e4ab047d991d13d4ef
   Fabric: 706c8b8098fff96c33c0db69cbf81f9c551d0d74
   Firebase: 210f41ca352067d83b1ba4fd2e7fb49a0c017397
   FirebaseABTesting: 8a9d8df3acc2b43f4a22014ddf9f601bca6af699
@@ -497,6 +497,7 @@ SPEC CHECKSUMS:
   FirebaseCrashlytics: 859918905322e8816d2b5ab7fe54bf5a0c84d21c
   FirebaseDynamicLinks: 9a77759e598e3a8fd45124bd040c5c03e52174d5
   FirebaseFirestore: ff82cd15f8ed3b417c307eb729e3e2e68aad0bdd
+  FirebaseFirestoreSwift: 2c46dbc1156db97dc4f6dd798d4f5b57b9c7fab6
   FirebaseFunctions: e0694e614a5e3300120a10d925e2cd3be60a9c81
   FirebaseInstallations: 45f9d44d3a8d6f780fa337ee8987dad87210fcbc
   FirebaseInstanceID: c4ad474b87787afd27d09541800620993b457d6f
@@ -522,6 +523,6 @@ SPEC CHECKSUMS:
   SDWebImage: cf6922231e95550934da2ada0f20f2becf2ceba9
   SkyFloatingLabelTextField: 5a338412114808e961fe2d14ea2c5452c8b6e4aa
 
-PODFILE CHECKSUM: 08012cbc512c64219e61e3b42ff7caa2ad4928f9
+PODFILE CHECKSUM: f10418f75f47c4c7d13f779b58079eeb3110fd54
 
 COCOAPODS: 1.9.3

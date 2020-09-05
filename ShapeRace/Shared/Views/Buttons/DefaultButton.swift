@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import DTGradientButton
 
 class DefaultButton: UIButton {
         
@@ -70,13 +69,7 @@ class DefaultButton: UIButton {
 
 
 class StartWorkoutButton: UIButton {
-    
-    enum ButtonState {
-        case start, end
-    }
-        
-    var buttonState: ButtonState = .start
-    
+      
     override open var isHighlighted: Bool {
         didSet {
             if backgroundColor == .clear {

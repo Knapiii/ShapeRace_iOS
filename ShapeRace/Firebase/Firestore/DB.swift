@@ -11,4 +11,6 @@ import Foundation
 struct DB {
     static let auth = FBAuthenticationService.shared
     static let currentUser = CurrentUserDatabase.shared
+    static let workout = WorkoutDatabase.shared
+
 }

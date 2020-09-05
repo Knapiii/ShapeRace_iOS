@@ -34,6 +34,24 @@ struct FirebaseService {
             }
             
         }
+        
+        struct Workout {
+            static let shared = Workout()
+            let REF_WORKUTS = "workouts"
+            
+            var workouts: CollectionReference {
+                return Firestore.firestore().collection(REF_WORKUTS)
+            }
+            
+            func specific(workoutId: String) -> DocumentReference {
+                return workouts.document(workoutId)
+            }
+            
+            func specific(userId: String) -> Query {
+                return workouts.whereField("userId", isEqualTo: userId)
+            }
+            
+        }
     }
     
     struct DBStrings {

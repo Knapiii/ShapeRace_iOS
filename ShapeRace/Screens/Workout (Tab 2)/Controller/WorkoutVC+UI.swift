@@ -48,13 +48,13 @@ extension WorkoutVC {
         ])
         startWorkoutButton.addAction {
             Vibration.medium.vibrate()
-            self.startWorkout()
+            self.workoutButtonPressed()
         }
     }
     
     func configTopTimerView() {
         view.addSubview(topTimerView)
-        topTimerTopConstraint = topTimerView.topAnchor.constraint(equalTo: view.topAnchor, constant: -160)
+        topTimerTopConstraint = topTimerView.topAnchor.constraint(equalTo: view.topAnchor, constant: -175)
         NSLayoutConstraint.activate([
             topTimerTopConstraint!,
             topTimerView.leftAnchor.constraint(equalTo: view.leftAnchor),
@@ -63,7 +63,7 @@ extension WorkoutVC {
     }
     
     func configureLocationButton() {
-        locationButtonTopConstraint = showCurrentLocationButton.topAnchor.constraint(equalTo: topTimerView.bottomAnchor, constant: 42)
+        locationButtonTopConstraint = showCurrentLocationButton.topAnchor.constraint(equalTo: topTimerView.safeAreaLayoutGuide.bottomAnchor, constant: 62)
         view.addSubview(showCurrentLocationButton)
         NSLayoutConstraint.activate([
             locationButtonTopConstraint!,
@@ -76,6 +76,47 @@ extension WorkoutVC {
             self.showCurrentLocation()
         }
     }
+    
+    func configureMusclePartsView() {
+        let scrollView: UIScrollView = {
+            $0.translatesAutoresizingMaskIntoConstraints = false
+            $0.isPagingEnabled = true
+            $0.bounces = true
+            $0.showsHorizontalScrollIndicator = false
+            return $0
+        }(UIScrollView())
+        view.addSubview(scrollView)
+        NSLayoutConstraint.activate([
+            scrollView.leftAnchor.constraint(equalTo: view.leftAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: startWorkoutButton.topAnchor, constant: -16),
+            scrollView.rightAnchor.constraint(equalTo: view.rightAnchor),
+        ])
+        
+        let stackView: UIStackView = {
+            $0.translatesAutoresizingMaskIntoConstraints = false
+            $0.axis = .horizontal
+            $0.alignment = .fill
+            $0.distribution = .equalSpacing
+            $0.spacing = 16
+            return $0
+        }(UIStackView())
+        
+        scrollView.addSubview(stackView)
+        NSLayoutConstraint.activate([
+            stackView.centerYAnchor.constraint(equalTo: scrollView.centerYAnchor),
+            stackView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 16),
+            stackView.leftAnchor.constraint(equalTo: scrollView.leftAnchor, constant: 16),
+            stackView.rightAnchor.constraint(equalTo: scrollView.rightAnchor, constant: -16),
+            stackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: 16),
+
+        ])
+
+        chooseMusclePartsLeftView.delegate = self
+        chooseMusclePartsRightView.delegate = self
+        stackView.addArrangedSubview(chooseMusclePartsLeftView)
+        stackView.addArrangedSubview(chooseMusclePartsRightView)
+    }
+    
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)

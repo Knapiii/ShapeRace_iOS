@@ -10,52 +10,41 @@ import UIKit
 
 extension WorkoutVC {
     
-    func startWorkout() {
+    func uploadWorkout() {
+        let workout = WorkoutModel()
+        workout.bodyParts = WorkoutService.shared.currentlySelectedMuscleGroups
+        workout.checkInDate = Date()
+        workout.checkOutDate = Date()
+        workout.workoutTime = WorkoutTimerService.shared.seconds
+        DB.workout.uploadWorkout(workout: workout) { (_) in}
+    }
+    
+    func workoutButtonPressed() {
         Vibration.medium.vibrate()
-        if startWorkoutButton.buttonState == .start {
+        if screenState == .normal {
             animateViewsAtStartOfWorkout()
-            WorkoutTimerService.shared.startTimer()
-        } else if startWorkoutButton.buttonState == .end {
+            startWorkout()
+            screenState = .workout
+        } else if screenState == .workout {
             animateViewsAtEndOfWorkout()
-            WorkoutTimerService.shared.stopTimer()
+            endWorkout()
+            screenState = .normal
         }
     }
     
-    func animateViewsAtStartOfWorkout() {
-        self.startWorkoutButton.isEnabled = false
-        startWorkoutButton.setTitle("End workout", for: .normal)
-        topTimerTopConstraint?.constant = 0
-        locationButtonTopConstraint?.constant = 16
-        startWorkoutBottomConstraint?.constant = 16
-        UIView.animate(withDuration: 0.2) {
-            self.tabBarController?.tabBar.alpha = 0
-        }
-        UIView.animate(withDuration: 0.5) {
-            self.view.layoutIfNeeded()
-        } completion: { (succes) in
-            self.startWorkoutButton.isEnabled = true
-        }
-        startWorkoutButton.buttonState = .end
+    func startWorkout() {
+        WorkoutTimerService.shared.startTimer()
+        screenState = .workout
+
     }
     
-    func animateViewsAtEndOfWorkout() {
-        self.startWorkoutButton.isEnabled = false
-        startWorkoutButton.setTitle("Start workout", for: .normal)
-        topTimerTopConstraint?.constant = -160
-        locationButtonTopConstraint?.constant = 42
-        startWorkoutBottomConstraint?.constant = -26
-        UIView.animate(withDuration: 0.7) {
-            self.tabBarController?.tabBar.alpha = 1
-        } completion: { (succes) in
-            self.topTimerView.timerSeconds = 0
-            self.startWorkoutButton.isEnabled = true
-        }
-        UIView.animate(withDuration: 0.5) {
-            self.view.layoutIfNeeded()
-        }
-        startWorkoutButton.buttonState = .start
+    func endWorkout() {
+        uploadWorkout()
+        WorkoutService.shared.currentlySelectedMuscleGroups.removeAll()
+        WorkoutTimerService.shared.stopTimer()
+        screenState = .normal
     }
-    
+
     func showCurrentLocation() {
         if LocationManagerService.shared.isUserSharingLocation == .authorized {
             if let location = LocationManagerService.shared.locationManager.location?.coordinate {

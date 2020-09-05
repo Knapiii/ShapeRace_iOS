@@ -10,11 +10,11 @@ import UIKit
 
 extension WorkoutVC: MusclePartButtonDelegate {
     func isSelected(_ type: MusclePartButton.MuscleParts) {
-        print("selected: ", type.rawValue)
+        WorkoutService.shared.currentlySelectedMuscleGroups.append(type.rawValue)
     }
     
     func isUnselected(_ type: MusclePartButton.MuscleParts) {
-        print("unselected: ", type.rawValue)
+        WorkoutService.shared.currentlySelectedMuscleGroups.removeAll(where: { $0 == type.rawValue })
     }
     
 }

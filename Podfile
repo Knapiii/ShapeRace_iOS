@@ -25,6 +25,7 @@ target 'ShapeRace' do
   pod 'Firebase/DynamicLinks'
   pod 'Firebase/RemoteConfig'
   pod 'FirebaseUI/Storage'
+  pod 'FirebaseFirestoreSwift'
   
   # Mapbox
 

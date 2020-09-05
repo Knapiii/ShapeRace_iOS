@@ -7,12 +7,13 @@
 //
 
 import UIKit
+import Combine
 
-class WorkoutTimerService {
+class WorkoutTimerService: ObservableObject {
     static let shared = WorkoutTimerService()
     var timer: Timer?
-    var seconds = 0
-    
+    @Published var seconds: Int = 0
+
     func startTimer() {
         seconds = 0
         timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateTimer), userInfo: nil, repeats: true)
@@ -22,6 +23,7 @@ class WorkoutTimerService {
         timer?.invalidate()
         seconds = 0
         timer = nil
+         
     }
     
     func pauseTimer() {
@@ -34,7 +36,8 @@ class WorkoutTimerService {
     
     @objc private func updateTimer() {
         seconds += 1
-        NotificationCenter.default.post(name: Notis.workoutTimeUpdate.name, object: seconds)
+        
+        //NotificationCenter.default.post(name: Notis.workoutTimeUpdate.name, object: seconds)
     }
 }
 

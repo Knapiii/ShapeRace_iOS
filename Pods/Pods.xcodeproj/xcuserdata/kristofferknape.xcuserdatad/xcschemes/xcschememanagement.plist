@@ -14,11 +14,6 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>DTGradientButton.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>Fabric.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -65,6 +60,11 @@
 			<false/>
 		</dict>
 		<key>FirebaseFirestore.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>FirebaseFirestoreSwift.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>

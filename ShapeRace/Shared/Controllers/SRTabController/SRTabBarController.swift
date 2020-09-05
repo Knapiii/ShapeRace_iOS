@@ -75,11 +75,8 @@ class SRTabBarController: UITabBarController {
     
     }
     
-    
-    
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
         guard let barButtonView = item.value(forKey: "view") as? UIView else { return }
-        
         let animationLength: TimeInterval = 0.3
         
         let propertyAnimator = UIViewPropertyAnimator(duration: animationLength, dampingRatio: 0.7) {
