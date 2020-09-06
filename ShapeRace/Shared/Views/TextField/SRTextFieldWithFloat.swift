@@ -73,9 +73,15 @@ class SRTextFieldWithFloat: SkyFloatingLabelTextField, Jiggerable {
 class AuthTextFieldWithFloat: SkyFloatingLabelTextFieldWithIcon, Jiggerable {
     private let textFieldplaceholderColor = SRColor.systemGray2
 
-    convenience init(placeholder: String) {
+    convenience init(placeholder: String, iconName: String) {
         self.init(frame: .zero)
         self.placeholder = placeholder
+        iconType = .image
+        iconImage = UIImage(named: iconName)
+        iconMarginBottom = 4.0
+        iconMarginLeft = 2.0
+        iconImageView.contentMode = .scaleAspectFit
+        iconWidth = 35
     }
     
     override init(frame: CGRect) {
@@ -122,28 +128,8 @@ class AuthTextFieldWithFloat: SkyFloatingLabelTextFieldWithIcon, Jiggerable {
         case left, right
     }
     
-    func setEmailIcon() {
-        iconType = .image
-        iconImage = UIImage(named: "Email_Symbol")
-        iconMarginBottom = 4.0
-        iconMarginLeft = 2.0
-        iconImageView.contentMode = .scaleAspectFit
-        iconWidth = 35
-        self.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
-    }
-    
-    
-    func setPasswordIcon() {
-        iconType = .image
-        iconImage = UIImage(named: "Password_Symbol")
-        iconMarginBottom = 4.0
-        iconMarginLeft = 2.0
-        iconImageView.contentMode = .scaleAspectFit
-        iconWidth = 35
-        isSecureTextEntry = true
-    }
-    
     func setPasswordEyeButton(placement: ButtonPlacement) {
+        isSecureTextEntry = true
         let button  = UIButton(type: .custom)
         button.frame = CGRect(x:0, y:0, width:24, height:24)
         button.setImage(UIImage(named: "Eye_Crossed"), for: .normal)

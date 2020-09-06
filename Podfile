@@ -1,16 +1,15 @@
 # Uncomment the next line to define a global platform for your project
-# Required for Swift apps
-platform :ios, '12.0'
-use_frameworks!
+ platform :ios, '12.0'
+ use_frameworks!
 
-# The target name is most likely the name of your project.
 target 'ShapeRace' do
+  # Comment the next line if you don't want to use dynamic frameworks
 
-  # Extra
+  # Pods for ShapeRace
   pod 'ProgressHUD'
-  pod 'FloatingPanel'
   pod 'SkyFloatingLabelTextField'
   pod 'IQKeyboardManager'
+  pod 'FloatingPanel'
 
   # Firebase
   pod 'FirebaseCore'
@@ -26,6 +25,7 @@ target 'ShapeRace' do
   pod 'Firebase/RemoteConfig'
   pod 'FirebaseUI/Storage'
   pod 'FirebaseFirestoreSwift'
+  pod 'CodableFirebase'
   
   # Mapbox
 

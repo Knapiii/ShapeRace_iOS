@@ -42,8 +42,9 @@ class TopTimerView: UIView {
         NSLayoutConstraint.activate([
             heightAnchor.constraint(equalToConstant: 160),
             timerLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
-            timerLabel.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 14),
+            timerLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 16),
             timerLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: 16),
+            timerLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -16),
             timerLabel.rightAnchor.constraint(equalTo: rightAnchor, constant: -16),
         ])
         

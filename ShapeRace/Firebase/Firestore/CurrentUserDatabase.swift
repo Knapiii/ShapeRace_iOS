@@ -8,6 +8,7 @@
 
 import Foundation
 import Firebase
+import FirebaseFirestore
 import FirebaseAuth
 
 class CurrentUserDatabase {
@@ -16,30 +17,62 @@ class CurrentUserDatabase {
     var user: UserModel?
     
     func getCurrentUserData(completion: @escaping UserCompletion) {
-        guard let currentUserId =  FirebaseService.Ref.User.shared.currentUserId else { return }
-        FirebaseService.Ref.User.shared.specific(user: currentUserId).getDocument { [weak self] snapshot, error in
+        guard let currentUserId =  FirestoreService.Ref.User.shared.currentUserId else { return }
+        FirestoreService.Ref.User.shared.specific(user: currentUserId).getDocument { [weak self] snapshot, error in
+            guard let self = self else { return }
             if let error = error {
                 completion(.failure(error))
                 return
             }
-            guard let self = self,
-                let document = snapshot, document.exists,
-                let dictionary = document.data() else {
-                    completion(.failure(SRError("User doesn't exist")))
-                    return
+            
+            guard let document = snapshot, document.exists else {
+                completion(.failure(SRError("")))
+                return
             }
-            let currentUser: UserModel = UserModel(document.documentID, with: dictionary)
-            self.user = currentUser
-            self.user?.email = Auth.auth().currentUser?.email ?? ""
-            completion(.success(currentUser))
+            
+            do {
+                if let user = try? document.data(as: UserModel.self) {
+                    self.user = user
+                    self.user?.email = Auth.auth().currentUser?.email ?? ""
+                    completion(.success(user))
+                } else {
+                    completion(.failure(SRError("")))
+                }
+            }
+
+        }
+    }
+    
+    func uploadUserInfo(user: UserModel, image: UIImage?, completion: @escaping VoidCompletion) {
+        guard let currentUserId =  FirestoreService.Ref.User.shared.currentUserId else { return }
+        do {
+            let dispatchGroup = DispatchGroup()
+            dispatchGroup.enter()
+            let _ = try FirestoreService.Ref.User.shared.specific(user: currentUserId).setData(from: user, encoder: Firestore.Encoder(), completion: { (error) in
+                if let error = error {
+                    dispatchGroup.leave()
+                    completion(.failure(error))
+                    return
+                }
+                dispatchGroup.leave()
+                if let image = image {
+                    StorageAPI.user.setProfilePhoto(image: image, dispatchGroup: dispatchGroup, completion: completion)
+                }
+                dispatchGroup.notify(queue: .main) {
+                    completion(.success(()))
+                }
+            })
+        }
+        catch {
+            completion(.failure(error))
         }
     }
     
     func setWalkthroughFinished(completion: @escaping VoidCompletion) {
         guard let currentUserId = Auth.auth().currentUser?.uid else { return }
-        FirebaseService.Ref.User.shared
+        FirestoreService.Ref.User.shared
             .specific(user: currentUserId)
-            .setData([FirebaseService.DBStrings.User.hasFinishedWalkthrough: true], merge: true) { (error) in
+            .setData([FirestoreService.DBStrings.User.hasFinishedWalkthrough: true], merge: true) { (error) in
                 if let error = error {
                     completion(.failure(error))
                 } else {

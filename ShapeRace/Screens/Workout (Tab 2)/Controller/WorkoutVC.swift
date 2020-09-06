@@ -17,8 +17,8 @@ class WorkoutVC: UIViewController {
     let mapView = MGLMapView()
     let startWorkoutButton = StartWorkoutButton(title: "Start workout", titleColor: .white, bgColor: SRColor.adaptiveBlue)
     var topTimerView = TopTimerView()
-    let chooseMusclePartsLeftView = ChooseMusclePartsView(viewNumber: 1)
-    let chooseMusclePartsRightView = ChooseMusclePartsView(viewNumber: 2)
+    let chooseMusclePartsLeftView = ChooseMusclePartsView(side: .left)
+    let chooseMusclePartsRightView = ChooseMusclePartsView(side: .right)
     
     let showCurrentLocationButton: UIButton = {
         $0.backgroundColor = .clear
@@ -28,6 +28,8 @@ class WorkoutVC: UIViewController {
         $0.translatesAutoresizingMaskIntoConstraints = false
         return $0
     }(UIButton())
+    
+    var workout = WorkoutModel()
     
     var topTimerTopConstraint: NSLayoutConstraint?
     var startWorkoutBottomConstraint: NSLayoutConstraint?
@@ -51,20 +53,10 @@ class WorkoutVC: UIViewController {
         self.tabBarController?.tabBarController?.tabBar.isTranslucent = true
     }
     
-    func notificationHandler() {
+    private func notificationHandler() {
         NotificationCenter.default.addObserver(self, selector: #selector(updateTimer(_:)), name: Notis.workoutTimeUpdate.name, object: nil)
     }
-    
-    
-    
-    
-    
-    @objc func updateTimer(_ notification: Notification) {
-        if let seconds = notification.object as? Int {
-            topTimerView.timerSeconds = seconds
-        }
-    }
-    
+        
 }
 
 extension WorkoutVC: MGLMapViewDelegate {

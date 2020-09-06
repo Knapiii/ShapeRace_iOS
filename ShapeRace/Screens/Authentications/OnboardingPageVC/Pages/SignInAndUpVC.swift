@@ -24,8 +24,8 @@ class SignInAndUpVC: UIViewController {
     }
     var delegate: SignInAndUpVCDelegate?
 
-    let emailTextField = AuthTextFieldWithFloat(placeholder: "Email")
-    let passwordTextField = AuthTextFieldWithFloat(placeholder: "Password")
+    let emailTextField = AuthTextFieldWithFloat(placeholder: "Email", iconName: "Email_Symbol")
+    let passwordTextField = AuthTextFieldWithFloat(placeholder: "Password", iconName: "Password_Symbol")
     
     let forgotPasswordButton: UIButton = {
         $0.contentHorizontalAlignment = .right
@@ -47,8 +47,6 @@ class SignInAndUpVC: UIViewController {
     }
     
     private func configureTextFields() {
-        emailTextField.setEmailIcon()
-        passwordTextField.setPasswordIcon()
         passwordTextField.setPasswordEyeButton(placement: .right)
         emailTextField.addTarget(self, action: #selector(emailTextFieldChanged(_:)), for: .editingChanged)
         passwordTextField.addTarget(self, action: #selector(passwordTextFieldChanged(_:)), for: .editingChanged)
@@ -77,7 +75,6 @@ class SignInAndUpVC: UIViewController {
             forgotPasswordButton.topAnchor.constraint(equalTo: textFieldStackView.bottomAnchor, constant: 16),
             forgotPasswordButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16),
             forgotPasswordButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16),
-
         ])
     }
     

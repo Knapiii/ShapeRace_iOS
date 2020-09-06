@@ -11,6 +11,12 @@ import Mapbox
 
 extension WorkoutVC {
     
+    @objc func updateTimer(_ notification: Notification) {
+        if let seconds = notification.object as? Int {
+            topTimerView.timerSeconds = seconds
+        }
+    }
+    
     func configureMapView() {
         setupMapStyle()
         mapView.translatesAutoresizingMaskIntoConstraints = false
@@ -71,10 +77,7 @@ extension WorkoutVC {
             showCurrentLocationButton.heightAnchor.constraint(equalToConstant: 48 + 8),
             showCurrentLocationButton.widthAnchor.constraint(equalToConstant: 48 + 8)
         ])
-        showCurrentLocationButton.addAction {
-            Vibration.medium.vibrate()
-            self.showCurrentLocation()
-        }
+        showCurrentLocationButtonPressed()
     }
     
     func configureMusclePartsView() {

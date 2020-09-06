@@ -20,14 +20,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
         window = UIWindow(frame: UIScreen.main.bounds)
         FirebaseConfiguration.shared.setLoggerLevel(.min)
         FirebaseApp.configure()
         
+        
         configureInitialVC()
-//        rootViewController = HomeNavigationViewController()
-//        navigate(to: rootViewController!)
+        //navigate(to: nil)
         return true
     }
     
@@ -50,6 +49,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 case .success(let user):
                     switch user.hasFinishedWalkthrough {
                     case true:
+                        self.fetchAllSingeltons()
                         self.rootViewController = SRTabBarController()
                         self.navigate(to: self.rootViewController)
                     case false:
@@ -69,7 +69,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     }
                 }
             }
+        } else {
+            self.rootViewController = HomeNavigationViewController()
+            self.navigate(to: self.rootViewController)
         }
+        
     }
     
     func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData!) {

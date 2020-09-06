@@ -55,6 +55,13 @@
 		D291DFF324FD909B00882F39 /* TopTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D291DFF224FD909B00882F39 /* TopTimerView.swift */; };
 		D291DFF524FDACAA00882F39 /* WorkoutTimerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D291DFF424FDACAA00882F39 /* WorkoutTimerService.swift */; };
 		D291DFF724FDB27100882F39 /* Int+Time.swift in Sources */ = {isa = PBXBuildFile; fileRef = D291DFF624FDB27100882F39 /* Int+Time.swift */; };
+		D299F86925039AB2009DA507 /* AppDelegate+Singeltons.swift in Sources */ = {isa = PBXBuildFile; fileRef = D299F86825039AB2009DA507 /* AppDelegate+Singeltons.swift */; };
+		D299F86B2503EB9B009DA507 /* UIView+Anchor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D299F86A2503EB9B009DA507 /* UIView+Anchor.swift */; };
+		D299F86D2503EEC8009DA507 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D299F86C2503EEC8009DA507 /* ImagePicker.swift */; };
+		D299F86F25041B9B009DA507 /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D299F86E25041B9B009DA507 /* StorageService.swift */; };
+		D299F87225041DA7009DA507 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D299F87125041DA7009DA507 /* Storage.swift */; };
+		D299F87425041DCA009DA507 /* UserStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D299F87325041DCA009DA507 /* UserStorage.swift */; };
+		D299F87625041F31009DA507 /* CacheService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D299F87525041F31009DA507 /* CacheService.swift */; };
 		D2B3DDA624FEB2D800936014 /* WorkoutVC+Delegates.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B3DDA524FEB2D800936014 /* WorkoutVC+Delegates.swift */; };
 		D2B3DDA824FEB45F00936014 /* WorkoutService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B3DDA724FEB45F00936014 /* WorkoutService.swift */; };
 		D2B3DDAA24FEEE3700936014 /* WorkoutVC+Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B3DDA924FEEE3700936014 /* WorkoutVC+Animations.swift */; };
@@ -72,7 +79,7 @@
 		D2D7C2732502F47700A8FDE5 /* WorkoutDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D7C2722502F47700A8FDE5 /* WorkoutDatabase.swift */; };
 		D2D7C2752502F4DA00A8FDE5 /* WorkoutModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D7C2742502F4DA00A8FDE5 /* WorkoutModel.swift */; };
 		D2D7C27725030D0500A8FDE5 /* Print.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2D7C27625030D0500A8FDE5 /* Print.swift */; };
-		D2F0CC1B24F2C7B30053E8BD /* FirebaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F0CC1A24F2C7B30053E8BD /* FirebaseService.swift */; };
+		D2F0CC1B24F2C7B30053E8BD /* FirestoreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F0CC1A24F2C7B30053E8BD /* FirestoreService.swift */; };
 		D2F0CC1E24F2CA490053E8BD /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F0CC1D24F2CA490053E8BD /* UserModel.swift */; };
 		D2F1B01924F59641004AA160 /* PageEnablePositionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F1B01824F59641004AA160 /* PageEnablePositionVC.swift */; };
 		D2F1B01B24F59653004AA160 /* PageEnableAppleHealthVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F1B01A24F59653004AA160 /* PageEnableAppleHealthVC.swift */; };
@@ -144,6 +151,13 @@
 		D291DFF224FD909B00882F39 /* TopTimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopTimerView.swift; sourceTree = "<group>"; };
 		D291DFF424FDACAA00882F39 /* WorkoutTimerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutTimerService.swift; sourceTree = "<group>"; };
 		D291DFF624FDB27100882F39 /* Int+Time.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Time.swift"; sourceTree = "<group>"; };
+		D299F86825039AB2009DA507 /* AppDelegate+Singeltons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Singeltons.swift"; sourceTree = "<group>"; };
+		D299F86A2503EB9B009DA507 /* UIView+Anchor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Anchor.swift"; sourceTree = "<group>"; };
+		D299F86C2503EEC8009DA507 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		D299F86E25041B9B009DA507 /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
+		D299F87125041DA7009DA507 /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
+		D299F87325041DCA009DA507 /* UserStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStorage.swift; sourceTree = "<group>"; };
+		D299F87525041F31009DA507 /* CacheService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheService.swift; sourceTree = "<group>"; };
 		D2B3DDA524FEB2D800936014 /* WorkoutVC+Delegates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WorkoutVC+Delegates.swift"; sourceTree = "<group>"; };
 		D2B3DDA724FEB45F00936014 /* WorkoutService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutService.swift; sourceTree = "<group>"; };
 		D2B3DDA924FEEE3700936014 /* WorkoutVC+Animations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WorkoutVC+Animations.swift"; sourceTree = "<group>"; };
@@ -163,15 +177,13 @@
 		D2D7C2722502F47700A8FDE5 /* WorkoutDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutDatabase.swift; sourceTree = "<group>"; };
 		D2D7C2742502F4DA00A8FDE5 /* WorkoutModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutModel.swift; sourceTree = "<group>"; };
 		D2D7C27625030D0500A8FDE5 /* Print.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Print.swift; sourceTree = "<group>"; };
-		D2F0CC1A24F2C7B30053E8BD /* FirebaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseService.swift; sourceTree = "<group>"; };
+		D2F0CC1A24F2C7B30053E8BD /* FirestoreService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreService.swift; sourceTree = "<group>"; };
 		D2F0CC1D24F2CA490053E8BD /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		D2F1B01824F59641004AA160 /* PageEnablePositionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageEnablePositionVC.swift; sourceTree = "<group>"; };
 		D2F1B01A24F59653004AA160 /* PageEnableAppleHealthVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageEnableAppleHealthVC.swift; sourceTree = "<group>"; };
 		D2F1B01F24F5A876004AA160 /* LocationManagerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManagerService.swift; sourceTree = "<group>"; };
 		D2F1B02124F5A9D6004AA160 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
-		D4F576B643C7D49A616DAE4D /* Pods-Shape Race.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shape Race.release.xcconfig"; path = "Target Support Files/Pods-Shape Race/Pods-Shape Race.release.xcconfig"; sourceTree = "<group>"; };
 		DC321CBBE44894CDBF283A97 /* Pods-ShapeRace.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShapeRace.debug.xcconfig"; path = "Target Support Files/Pods-ShapeRace/Pods-ShapeRace.debug.xcconfig"; sourceTree = "<group>"; };
-		E03E9D6CF172A09FC06ECF17 /* Pods-Shape Race.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shape Race.debug.xcconfig"; path = "Target Support Files/Pods-Shape Race/Pods-Shape Race.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -193,8 +205,6 @@
 		CB39CC4CA676F0CF879A8420 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				E03E9D6CF172A09FC06ECF17 /* Pods-Shape Race.debug.xcconfig */,
-				D4F576B643C7D49A616DAE4D /* Pods-Shape Race.release.xcconfig */,
 				DC321CBBE44894CDBF283A97 /* Pods-ShapeRace.debug.xcconfig */,
 				6F803DFBD33D58B311BCAA0E /* Pods-ShapeRace.release.xcconfig */,
 			);
@@ -216,6 +226,7 @@
 		D229E57A24F451DB009AB681 /* Workout (Tab 2) */ = {
 			isa = PBXGroup;
 			children = (
+				D2D7C2782503983A00A8FDE5 /* Service¨ */,
 				D229E57C24F45202009AB681 /* Model */,
 				D229E57D24F45202009AB681 /* View */,
 				D229E57B24F45202009AB681 /* Controller */,
@@ -326,8 +337,8 @@
 				D22C0D3524F26F29005776C3 /* Auth */,
 				D22C0D3324F26F29005776C3 /* Extensions */,
 				D22C0D1C24F26F29005776C3 /* Firestore */,
+				D299F87025041D97009DA507 /* Storage */,
 				D22C0D3724F26F29005776C3 /* Service */,
-				D22C0D2C24F26F29005776C3 /* Storage */,
 			);
 			path = Firebase;
 			sourceTree = "<group>";
@@ -340,13 +351,6 @@
 				D2D7C2722502F47700A8FDE5 /* WorkoutDatabase.swift */,
 			);
 			path = Firestore;
-			sourceTree = "<group>";
-		};
-		D22C0D2C24F26F29005776C3 /* Storage */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Storage;
 			sourceTree = "<group>";
 		};
 		D22C0D3324F26F29005776C3 /* Extensions */ = {
@@ -367,7 +371,9 @@
 		D22C0D3724F26F29005776C3 /* Service */ = {
 			isa = PBXGroup;
 			children = (
-				D2F0CC1A24F2C7B30053E8BD /* FirebaseService.swift */,
+				D2F0CC1A24F2C7B30053E8BD /* FirestoreService.swift */,
+				D299F86E25041B9B009DA507 /* StorageService.swift */,
+				D299F87525041F31009DA507 /* CacheService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -451,6 +457,7 @@
 				D2570C7124FC1A4400BD3D24 /* String+Capitalize.swift */,
 				D291DFF624FDB27100882F39 /* Int+Time.swift */,
 				D2D7C27625030D0500A8FDE5 /* Print.swift */,
+				D299F86A2503EB9B009DA507 /* UIView+Anchor.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -509,6 +516,15 @@
 			path = Enums;
 			sourceTree = "<group>";
 		};
+		D299F87025041D97009DA507 /* Storage */ = {
+			isa = PBXGroup;
+			children = (
+				D299F87125041DA7009DA507 /* Storage.swift */,
+				D299F87325041DCA009DA507 /* UserStorage.swift */,
+			);
+			path = Storage;
+			sourceTree = "<group>";
+		};
 		D2CE469B24F06ED400376C81 = {
 			isa = PBXGroup;
 			children = (
@@ -548,6 +564,7 @@
 			children = (
 				D2CE46A724F06ED400376C81 /* AppDelegate.swift */,
 				D2CE46BB24F0708D00376C81 /* SceneDelegate.swift */,
+				D299F86825039AB2009DA507 /* AppDelegate+Singeltons.swift */,
 			);
 			path = AppDelegate;
 			sourceTree = "<group>";
@@ -634,6 +651,15 @@
 			path = Pages;
 			sourceTree = "<group>";
 		};
+		D2D7C2782503983A00A8FDE5 /* Service¨ */ = {
+			isa = PBXGroup;
+			children = (
+				D291DFF424FDACAA00882F39 /* WorkoutTimerService.swift */,
+				D2B3DDA724FEB45F00936014 /* WorkoutService.swift */,
+			);
+			path = "Service¨";
+			sourceTree = "<group>";
+		};
 		D2F0CC1C24F2CA3C0053E8BD /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -657,9 +683,8 @@
 			children = (
 				D2F1B01F24F5A876004AA160 /* LocationManagerService.swift */,
 				D2570C6424FBB25700BD3D24 /* HealtKitService.swift */,
-				D291DFF424FDACAA00882F39 /* WorkoutTimerService.swift */,
 				D2BBF56E24FE5BAF0027C5B4 /* MapBoxService.swift */,
-				D2B3DDA724FEB45F00936014 /* WorkoutService.swift */,
+				D299F86C2503EEC8009DA507 /* ImagePicker.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -781,9 +806,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				D22C0D1824F26C34005776C3 /* AuthenticationOnBoardingVC+Delegate.swift in Sources */,
-				D2F0CC1B24F2C7B30053E8BD /* FirebaseService.swift in Sources */,
+				D2F0CC1B24F2C7B30053E8BD /* FirestoreService.swift in Sources */,
 				D291DFF724FDB27100882F39 /* Int+Time.swift in Sources */,
 				D286F05024F09245007D887F /* SRColors.swift in Sources */,
+				D299F86925039AB2009DA507 /* AppDelegate+Singeltons.swift in Sources */,
 				D22C0D5524F26FFD005776C3 /* FBAuthenticationService.swift in Sources */,
 				D2570C5A24FB22F000BD3D24 /* NotificationCenter+Name.swift in Sources */,
 				D229E57F24F45217009AB681 /* WorkoutNavigationVC.swift in Sources */,
@@ -796,11 +822,14 @@
 				D22C0D5724F27052005776C3 /* SRError.swift in Sources */,
 				D229E59624F46453009AB681 /* ProfileNavigationVC.swift in Sources */,
 				D291DFF324FD909B00882F39 /* TopTimerView.swift in Sources */,
+				D299F87425041DCA009DA507 /* UserStorage.swift in Sources */,
 				D2570C6124FBA6A400BD3D24 /* PageEnableNotificationsVC copy.swift in Sources */,
 				D2CE46AC24F06ED400376C81 /* AuthenticationOnBoardingVC.swift in Sources */,
 				D2570C7424FC5E4C00BD3D24 /* View+Shadow.swift in Sources */,
+				D299F86F25041B9B009DA507 /* StorageService.swift in Sources */,
 				D2570C6E24FBFBA500BD3D24 /* WorkoutVC+Actions.swift in Sources */,
 				D229E59524F46451009AB681 /* ProfileVC.swift in Sources */,
+				D299F87225041DA7009DA507 /* Storage.swift in Sources */,
 				D229E59324F4644A009AB681 /* FeedNavigationVC.swift in Sources */,
 				D2570C7224FC1A4400BD3D24 /* String+Capitalize.swift in Sources */,
 				D286F04D24F09228007D887F /* UIView+Jigger.swift in Sources */,
@@ -823,7 +852,10 @@
 				D2F0CC1E24F2CA490053E8BD /* UserModel.swift in Sources */,
 				D286F06B24F13264007D887F /* Vibration.swift in Sources */,
 				D2D732BA24F2F213000B30A6 /* DB.swift in Sources */,
+				D299F86B2503EB9B009DA507 /* UIView+Anchor.swift in Sources */,
+				D299F86D2503EEC8009DA507 /* ImagePicker.swift in Sources */,
 				D2570C7024FC187D00BD3D24 /* ChooseMusclePartsView.swift in Sources */,
+				D299F87625041F31009DA507 /* CacheService.swift in Sources */,
 				D286F06524F129C0007D887F /* AuthPageVC.swift in Sources */,
 				D2D7C27725030D0500A8FDE5 /* Print.swift in Sources */,
 				D286F06824F1309E007D887F /* AuthStartVC.swift in Sources */,
@@ -979,6 +1011,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = Knape.ShapeRace;
 				PRODUCT_NAME = "Shape Race";
 				SWIFT_VERSION = 5.0;
@@ -1004,6 +1037,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = Knape.ShapeRace;
 				PRODUCT_NAME = "Shape Race";
 				SWIFT_VERSION = 5.0;

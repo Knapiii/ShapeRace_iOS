@@ -37,11 +37,22 @@ extension AuthenticationOnBoardingVC {
         }
         
         //MARK: PageCreateUserDetailsInfoVC
-        if currentViewController is PageCreateUserDetailsInfoVC, let _ = currentViewController as? PageCreateUserDetailsInfoVC {
+        if currentViewController is PageCreateUserDetailsInfoVC, let vc = currentViewController as? PageCreateUserDetailsInfoVC {
             stopLocationNotificationHandler()
             stopNotificationPermissionNotificationHandler()
             pageViewController.displayedPageIndex = 1
             firstButton.setupUI(title: "Save")
+            firstButton.addAction {
+                vc.uploadUserInfo { (result) in
+                    switch result {
+                    case .success():
+                        self.navigate(to: .pageEnablePositionVC, direction: .forward)
+                    case .failure(_):
+                        self.firstButton.setupUI(title: "Try again")
+                    }
+                }
+            }
+            
             secondButton.setupUI(title: "Skip")
             secondButton.addAction { self.navigateForward() }
             backButton.addAction { self.navigateBack(state: .login) }

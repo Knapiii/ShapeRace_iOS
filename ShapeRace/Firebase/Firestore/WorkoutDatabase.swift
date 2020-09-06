@@ -22,21 +22,13 @@ class WorkoutDatabase {
         }
         
         do {
-            let ref = try FirebaseService.Ref.Workout.shared.workouts.addDocument(from: workout, encoder: Firestore.Encoder(), completion: { (error) in
+            let ref = try FirestoreService.Ref.Workout.shared.workouts.addDocument(from: workout, encoder: Firestore.Encoder(), completion: { (error) in
                 if let error = error {
                     completion(.failure(error))
                     return
                 }
             })
-            if let checkInDate = workout.checkInDate {
-                ref.setData( [WorkoutModel.CodingKeys.checkInDate.rawValue: Timestamp(date: checkInDate)], merge: true )
-            }
-            if let checkOutDate = workout.checkOutDate {
-                ref.setData( [WorkoutModel.CodingKeys.checkOutDate.rawValue: Timestamp(date: checkOutDate)], merge: true )
-            }
-            if let timestamp = workout.timestamp {
-                ref.setData( [WorkoutModel.CodingKeys.timestamp.rawValue: Timestamp(date: timestamp)], merge: true )
-            }
+            workout.changeValuesToFirebaseCodable(ref: ref)
             completion(.success(()))
         }
         catch {
@@ -58,12 +50,15 @@ class WorkoutDatabase {
     }
     
     func fetchWorkoutsFrom(userId: String, completion: @escaping WorkoutsCompletion) {
-        FirebaseService.Ref.Workout.shared.specific(userId: userId).getDocuments { (snapshot, error) in
+        FirestoreService.Ref.Workout.shared.specific(userId: userId).getDocuments { (snapshot, error) in
             if let error = error {
                 completion(.failure(error))
                 return
             }
-            guard let documents = snapshot?.documents else { return }
+            guard let documents = snapshot?.documents else {
+                completion(.failure(SRError("")))
+                return
+            }
             
             let workouts: [WorkoutModel] = documents.compactMap { (doc) -> WorkoutModel? in
                 return try? doc.data(as: WorkoutModel.self)

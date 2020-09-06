@@ -115,8 +115,6 @@ extension AuthenticationOnBoardingVC {
 ///Actions
 extension AuthenticationOnBoardingVC {
     
-
-    
     func LoginWithFirebase() {
         Vibration.medium.vibrate()
         if let email = email, let password = password {
@@ -156,7 +154,7 @@ extension AuthenticationOnBoardingVC {
             }
         }
     }
-    
+        
     func finnishWalkthrough() {
         stopAppleHealthNotificationHandler()
         stopNotificationPermissionNotificationHandler()

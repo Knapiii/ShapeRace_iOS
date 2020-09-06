@@ -29,6 +29,10 @@ class LocationManagerService: NSObject, CLLocationManagerDelegate {
         locationManager.activityType = .other
     }
     
+    var currentLocation: CLLocationCoordinate2D? {
+        return locationManager.location?.coordinate
+    }
+    
     func startTracking() {
         locationManager.startUpdatingLocation()
         locationManager.allowsBackgroundLocationUpdates = true

@@ -18,10 +18,12 @@ class ChooseMusclePartsView: UIView, MusclePartButtonDelegate {
     private let shouldersButton = MusclePartButton(.shoulders)
     private let buttButton = MusclePartButton(.butt)
     var delegate: MusclePartButtonDelegate?
-
-    init(viewNumber: Int) {
+    enum Side {
+        case left, right
+    }
+    init(side: Side) {
         super.init(frame: .zero)
-        config(viewNumber: viewNumber)
+        config(side: side)
     }
     
     required init?(coder: NSCoder) {
@@ -52,21 +54,33 @@ class ChooseMusclePartsView: UIView, MusclePartButtonDelegate {
         return $0
     }(UIStackView())
     
+    func deselectAll() {
+        for view in leftStackView.arrangedSubviews {
+            if let view = view as? MusclePartButton {
+                view.isActive = false
+            }
+        }
+        for view in rightStackView.arrangedSubviews {
+            if let view = view as? MusclePartButton {
+                view.isActive = false
+            }
+        }
+    }
     
-    private func config(viewNumber: Int) {
+    private func config(side: Side) {
         translatesAutoresizingMaskIntoConstraints = false
-        if viewNumber == 1 {
+        switch side {
+        case .left:
             leftStackView.addArrangedSubview(backButton)
             leftStackView.addArrangedSubview(bicepsButton)
             rightStackView.addArrangedSubview(chestButton)
             rightStackView.addArrangedSubview(tricepsButton)
-        } else if viewNumber == 2 {
+        case .right:
             leftStackView.addArrangedSubview(legsButton)
             leftStackView.addArrangedSubview(shouldersButton)
             rightStackView.addArrangedSubview(buttButton)
             rightStackView.addArrangedSubview(coreButton)
         }
-
         
         mainStackView.addArrangedSubview(leftStackView)
         mainStackView.addArrangedSubview(rightStackView)
@@ -113,11 +127,10 @@ class MusclePartButton: UIButton {
     
     private var musclePart: MuscleParts
     var delegate: MusclePartButtonDelegate?
-    private var isActive = false {
+    var isActive = false {
         didSet {
             backgroundColor = isActive ? SRColor.adaptiveBlue : UIColor.white.withAlphaComponent(1)
             setTitleColor(isActive ? .white: SRColor.adaptiveBlue, for: .normal)
-            
         }
     }
     init(_ musclePart: MuscleParts) {

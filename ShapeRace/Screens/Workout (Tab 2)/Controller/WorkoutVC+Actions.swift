@@ -11,12 +11,12 @@ import UIKit
 extension WorkoutVC {
     
     func uploadWorkout() {
-        let workout = WorkoutModel()
-        workout.bodyParts = WorkoutService.shared.currentlySelectedMuscleGroups
-        workout.checkInDate = Date()
         workout.checkOutDate = Date()
+        workout.coord = Coordinate(latitude: LocationManagerService.shared.currentLocation?.latitude, longitude: LocationManagerService.shared.currentLocation?.longitude)
         workout.workoutTime = WorkoutTimerService.shared.seconds
         DB.workout.uploadWorkout(workout: workout) { (_) in}
+        print(workout.coord)
+        workout = WorkoutModel()
     }
     
     func workoutButtonPressed() {
@@ -33,21 +33,29 @@ extension WorkoutVC {
     }
     
     func startWorkout() {
+        workout.checkInDate = Date()
         WorkoutTimerService.shared.startTimer()
         screenState = .workout
-
     }
     
     func endWorkout() {
         uploadWorkout()
-        WorkoutService.shared.currentlySelectedMuscleGroups.removeAll()
+        chooseMusclePartsLeftView.deselectAll()
+        chooseMusclePartsRightView.deselectAll()
         WorkoutTimerService.shared.stopTimer()
         screenState = .normal
+    }
+    
+    func showCurrentLocationButtonPressed() {
+        showCurrentLocationButton.addAction {
+            Vibration.medium.vibrate()
+            self.showCurrentLocation()
+        }
     }
 
     func showCurrentLocation() {
         if LocationManagerService.shared.isUserSharingLocation == .authorized {
-            if let location = LocationManagerService.shared.locationManager.location?.coordinate {
+            if let location = LocationManagerService.shared.currentLocation {
                 mapView.setCenter(location, zoomLevel: 14, animated: true)
             }
             
