@@ -28,6 +28,7 @@ target 'ShapeRace' do
   pod 'CodableFirebase'
   
   # Mapbox
+  pod 'MapboxGeocoder.swift'
 
   pod 'Fabric'
   pod 'Crashlytics'

@@ -21,6 +21,7 @@
 		D22C0D5324F26FBD005776C3 /* Completions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22C0D5224F26FBD005776C3 /* Completions.swift */; };
 		D22C0D5524F26FFD005776C3 /* FBAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22C0D5424F26FFD005776C3 /* FBAuthenticationService.swift */; };
 		D22C0D5724F27052005776C3 /* SRError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22C0D5624F27052005776C3 /* SRError.swift */; };
+		D24A337125066B30005E4348 /* SaveWorkoutVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24A337025066B30005E4348 /* SaveWorkoutVC.swift */; };
 		D2570C4D24FADDFC00BD3D24 /* TabbarService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2570C4C24FADDFC00BD3D24 /* TabbarService.swift */; };
 		D2570C5324FB062100BD3D24 /* Mapbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2570C4F24FAF77700BD3D24 /* Mapbox.framework */; };
 		D2570C5424FB062100BD3D24 /* Mapbox.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D2570C4F24FAF77700BD3D24 /* Mapbox.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -118,6 +119,7 @@
 		D22C0D5224F26FBD005776C3 /* Completions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Completions.swift; sourceTree = "<group>"; };
 		D22C0D5424F26FFD005776C3 /* FBAuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBAuthenticationService.swift; sourceTree = "<group>"; };
 		D22C0D5624F27052005776C3 /* SRError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SRError.swift; sourceTree = "<group>"; };
+		D24A337025066B30005E4348 /* SaveWorkoutVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveWorkoutVC.swift; sourceTree = "<group>"; };
 		D2570C4C24FADDFC00BD3D24 /* TabbarService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbarService.swift; sourceTree = "<group>"; };
 		D2570C4F24FAF77700BD3D24 /* Mapbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Mapbox.framework; sourceTree = "<group>"; };
 		D2570C5024FAF77700BD3D24 /* MapboxMobileEvents.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = MapboxMobileEvents.framework; sourceTree = "<group>"; };
@@ -223,15 +225,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		D229E57A24F451DB009AB681 /* Workout (Tab 2) */ = {
+		D229E57A24F451DB009AB681 /* WorkoutView */ = {
 			isa = PBXGroup;
 			children = (
-				D2D7C2782503983A00A8FDE5 /* Service¨ */,
+				D2D7C2782503983A00A8FDE5 /* Service */,
 				D229E57C24F45202009AB681 /* Model */,
 				D229E57D24F45202009AB681 /* View */,
 				D229E57B24F45202009AB681 /* Controller */,
 			);
-			path = "Workout (Tab 2)";
+			path = WorkoutView;
 			sourceTree = "<group>";
 		};
 		D229E57B24F45202009AB681 /* Controller */ = {
@@ -264,24 +266,24 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		D229E58624F460C2009AB681 /* Profile (Tab 3) */ = {
+		D229E58624F460C2009AB681 /* ProfileView */ = {
 			isa = PBXGroup;
 			children = (
 				D229E58924F460EF009AB681 /* Model */,
 				D229E58A24F460EF009AB681 /* View */,
 				D229E58824F460EF009AB681 /* Controller */,
 			);
-			path = "Profile (Tab 3)";
+			path = ProfileView;
 			sourceTree = "<group>";
 		};
-		D229E58724F460D8009AB681 /* Feed (Tab 1) */ = {
+		D229E58724F460D8009AB681 /* FeedView */ = {
 			isa = PBXGroup;
 			children = (
 				D229E58D24F460F1009AB681 /* Model */,
 				D229E58B24F460F1009AB681 /* View */,
 				D229E58C24F460F1009AB681 /* Controller */,
 			);
-			path = "Feed (Tab 1)";
+			path = FeedView;
 			sourceTree = "<group>";
 		};
 		D229E58824F460EF009AB681 /* Controller */ = {
@@ -384,6 +386,46 @@
 				D22C0D5224F26FBD005776C3 /* Completions.swift */,
 			);
 			path = Completions;
+			sourceTree = "<group>";
+		};
+		D24A336025066AED005E4348 /* SaveWorkoutView */ = {
+			isa = PBXGroup;
+			children = (
+				D24A336325066AFE005E4348 /* Service */,
+				D24A336125066AFD005E4348 /* Model */,
+				D24A336D25066AFF005E4348 /* View */,
+				D24A336625066AFE005E4348 /* Controller */,
+			);
+			path = SaveWorkoutView;
+			sourceTree = "<group>";
+		};
+		D24A336125066AFD005E4348 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		D24A336325066AFE005E4348 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		D24A336625066AFE005E4348 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				D24A337025066B30005E4348 /* SaveWorkoutVC.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		D24A336D25066AFF005E4348 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		D2570C5824FB22BD00BD3D24 /* Controllers */ = {
@@ -573,9 +615,10 @@
 			isa = PBXGroup;
 			children = (
 				D2CE46BF24F07F2400376C81 /* Authentications */,
-				D229E58724F460D8009AB681 /* Feed (Tab 1) */,
-				D229E57A24F451DB009AB681 /* Workout (Tab 2) */,
-				D229E58624F460C2009AB681 /* Profile (Tab 3) */,
+				D229E58724F460D8009AB681 /* FeedView */,
+				D24A336025066AED005E4348 /* SaveWorkoutView */,
+				D229E57A24F451DB009AB681 /* WorkoutView */,
+				D229E58624F460C2009AB681 /* ProfileView */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -651,13 +694,13 @@
 			path = Pages;
 			sourceTree = "<group>";
 		};
-		D2D7C2782503983A00A8FDE5 /* Service¨ */ = {
+		D2D7C2782503983A00A8FDE5 /* Service */ = {
 			isa = PBXGroup;
 			children = (
 				D291DFF424FDACAA00882F39 /* WorkoutTimerService.swift */,
 				D2B3DDA724FEB45F00936014 /* WorkoutService.swift */,
 			);
-			path = "Service¨";
+			path = Service;
 			sourceTree = "<group>";
 		};
 		D2F0CC1C24F2CA3C0053E8BD /* Model */ = {
@@ -854,6 +897,7 @@
 				D2D732BA24F2F213000B30A6 /* DB.swift in Sources */,
 				D299F86B2503EB9B009DA507 /* UIView+Anchor.swift in Sources */,
 				D299F86D2503EEC8009DA507 /* ImagePicker.swift in Sources */,
+				D24A337125066B30005E4348 /* SaveWorkoutVC.swift in Sources */,
 				D2570C7024FC187D00BD3D24 /* ChooseMusclePartsView.swift in Sources */,
 				D299F87625041F31009DA507 /* CacheService.swift in Sources */,
 				D286F06524F129C0007D887F /* AuthPageVC.swift in Sources */,

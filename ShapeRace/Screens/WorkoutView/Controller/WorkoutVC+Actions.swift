@@ -14,32 +14,34 @@ extension WorkoutVC {
         workout.checkOutDate = Date()
         workout.coord = Coordinate(latitude: LocationManagerService.shared.currentLocation?.latitude, longitude: LocationManagerService.shared.currentLocation?.longitude)
         workout.workoutTime = WorkoutTimerService.shared.seconds
-        DB.workout.uploadWorkout(workout: workout) { (_) in}
-        print(workout.coord)
+        if WorkoutTimerService.shared.seconds > 5 {
+            DB.workout.uploadWorkout(workout: workout) { (_) in}
+        } else {
+            ProgressHudService.shared.error("Workout has to be atleast 5 seconds")
+            endWorkout()
+        }
         workout = WorkoutModel()
     }
     
     func workoutButtonPressed() {
         Vibration.medium.vibrate()
         if screenState == .normal {
-            animateViewsAtStartOfWorkout()
             startWorkout()
-            screenState = .workout
         } else if screenState == .workout {
-            animateViewsAtEndOfWorkout()
+            uploadWorkout()
             endWorkout()
-            screenState = .normal
         }
     }
     
     func startWorkout() {
+        animateViewsAtStartOfWorkout()
         workout.checkInDate = Date()
         WorkoutTimerService.shared.startTimer()
         screenState = .workout
     }
     
     func endWorkout() {
-        uploadWorkout()
+        animateViewsAtEndOfWorkout()
         chooseMusclePartsLeftView.deselectAll()
         chooseMusclePartsRightView.deselectAll()
         WorkoutTimerService.shared.stopTimer()

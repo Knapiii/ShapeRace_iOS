@@ -13,5 +13,6 @@ typealias UserCompletion = (Result<UserModel, Error>) -> ()
 typealias WorkoutCompletion = (Result<WorkoutModel, Error>) -> ()
 typealias WorkoutsCompletion = (Result<[WorkoutModel], Error>) -> ()
 
+typealias StringCompletion = (Result<String, Error>) -> ()
 typealias BoolCompletion = (Result<Bool, Error>) -> ()
 typealias Completion = (() -> ())

@@ -409,6 +409,7 @@ PODS:
   - GTMSessionFetcher/Core (1.4.0)
   - IQKeyboardManager (6.5.6)
   - leveldb-library (1.22)
+  - MapboxGeocoder.swift (0.12.0)
   - nanopb (1.30906.0):
     - nanopb/decode (= 1.30906.0)
     - nanopb/encode (= 1.30906.0)
@@ -441,6 +442,7 @@ DEPENDENCIES:
   - FirebaseUI/Storage
   - FloatingPanel
   - IQKeyboardManager
+  - MapboxGeocoder.swift
   - ProgressHUD
   - SkyFloatingLabelTextField
 
@@ -479,6 +481,7 @@ SPEC REPOS:
     - GTMSessionFetcher
     - IQKeyboardManager
     - leveldb-library
+    - MapboxGeocoder.swift
     - nanopb
     - ProgressHUD
     - PromisesObjC
@@ -520,6 +523,7 @@ SPEC CHECKSUMS:
   GTMSessionFetcher: 6f5c8abbab8a9bce4bb3f057e317728ec6182b10
   IQKeyboardManager: 2a6e97afdafc7becf0cb17a9a8d795e3a980717f
   leveldb-library: 55d93ee664b4007aac644a782d11da33fba316f7
+  MapboxGeocoder.swift: e8ca1fcdfb8f674cad390569199dccf3d807ff77
   nanopb: 59317e09cf1f1a0af72f12af412d54edf52603fc
   ProgressHUD: e603e8b8622c47d8818b9fb38b3cfe9d3e7ca421
   PromisesObjC: b14b1c6b68e306650688599de8a45e49fae81151
@@ -527,6 +531,6 @@ SPEC CHECKSUMS:
   SDWebImage: 62ae4a18473520c67b79e9724c31a63599cc9423
   SkyFloatingLabelTextField: 5a338412114808e961fe2d14ea2c5452c8b6e4aa
 
-PODFILE CHECKSUM: f3a378b5e187f6ef7e9d1bec27117226b4ae4d3e
+PODFILE CHECKSUM: d726868d2ba76ecec4e8fe133bcf997d5ed48801
 
 COCOAPODS: 1.10.0.beta.2
