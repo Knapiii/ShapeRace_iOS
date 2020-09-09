@@ -10,17 +10,40 @@ import UIKit
 
 extension WorkoutVC {
     
+    func changeSceenOnUploadWorkoutSuccess() {
+        guard let workout = workout else { return }
+        let vc = SaveWorkoutVC(workout: workout)
+        vc.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
     func uploadWorkout() {
-        workout.checkOutDate = Date()
-        workout.coord = Coordinate(latitude: LocationManagerService.shared.currentLocation?.latitude, longitude: LocationManagerService.shared.currentLocation?.longitude)
-        workout.workoutTime = WorkoutTimerService.shared.seconds
+        ProgressHudService.shared.showSpinner()
+        workout?.checkOutDate = Date()
+        if let currentLoc = LocationManagerService.shared.currentLocation {
+            workout?.getLocation(latitude: currentLoc.latitude, longitude: currentLoc.longitude)
+        }
+        workout?.workoutTime = WorkoutTimerService.shared.seconds
+        guard let workout = workout else { return }
         if WorkoutTimerService.shared.seconds > 5 {
-            DB.workout.uploadWorkout(workout: workout) { (_) in}
+            DB.workout.uploadWorkout(workout: workout) { [weak self] (result) in
+                guard let self = self else { return }
+                switch result {
+                case .success():
+                    ProgressHudService.shared.success()
+                    self.endWorkout()
+                    self.changeSceenOnUploadWorkoutSuccess()
+                case .failure(let error):
+                    ProgressHudService.shared.error(error.localizedDescription)
+                }
+                self.workout = nil
+            }
         } else {
             ProgressHudService.shared.error("Workout has to be atleast 5 seconds")
             endWorkout()
+            self.workout = nil
         }
-        workout = WorkoutModel()
+        
     }
     
     func workoutButtonPressed() {
@@ -29,22 +52,23 @@ extension WorkoutVC {
             startWorkout()
         } else if screenState == .workout {
             uploadWorkout()
-            endWorkout()
         }
     }
     
     func startWorkout() {
-        animateViewsAtStartOfWorkout()
-        workout.checkInDate = Date()
+        animateViewsAtStartOfWorkout(completion: {})
+        workout = WorkoutModel()
+        workout?.checkInDate = Date()
         WorkoutTimerService.shared.startTimer()
         screenState = .workout
     }
     
     func endWorkout() {
-        animateViewsAtEndOfWorkout()
-        chooseMusclePartsLeftView.deselectAll()
-        chooseMusclePartsRightView.deselectAll()
-        WorkoutTimerService.shared.stopTimer()
+        animateViewsAtEndOfWorkout(completion: { [self] in
+            self.chooseMusclePartsLeftView.deselectAll()
+            self.chooseMusclePartsRightView.deselectAll()
+            WorkoutTimerService.shared.stopTimer()
+        })
         screenState = .normal
     }
     

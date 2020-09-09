@@ -17,16 +17,17 @@
 		D229E59524F46451009AB681 /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D229E59124F46103009AB681 /* ProfileVC.swift */; };
 		D229E59624F46453009AB681 /* ProfileNavigationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D229E59024F46103009AB681 /* ProfileNavigationVC.swift */; };
 		D22C0D1824F26C34005776C3 /* AuthenticationOnBoardingVC+Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22C0D1724F26C34005776C3 /* AuthenticationOnBoardingVC+Delegate.swift */; };
-		D22C0D1A24F26E0E005776C3 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D22C0D1924F26E0E005776C3 /* GoogleService-Info.plist */; };
 		D22C0D5324F26FBD005776C3 /* Completions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22C0D5224F26FBD005776C3 /* Completions.swift */; };
 		D22C0D5524F26FFD005776C3 /* FBAuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22C0D5424F26FFD005776C3 /* FBAuthenticationService.swift */; };
 		D22C0D5724F27052005776C3 /* SRError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D22C0D5624F27052005776C3 /* SRError.swift */; };
 		D24A337125066B30005E4348 /* SaveWorkoutVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D24A337025066B30005E4348 /* SaveWorkoutVC.swift */; };
+		D25580192509748F00FFCC0D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D22C0D1924F26E0E005776C3 /* GoogleService-Info.plist */; };
+		D255801A250974A000FFCC0D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2F1B02124F5A9D6004AA160 /* LaunchScreen.storyboard */; };
+		D255801B250974A300FFCC0D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D2CE46B024F06ED700376C81 /* Assets.xcassets */; };
 		D2570C4D24FADDFC00BD3D24 /* TabbarService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2570C4C24FADDFC00BD3D24 /* TabbarService.swift */; };
 		D2570C5324FB062100BD3D24 /* Mapbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2570C4F24FAF77700BD3D24 /* Mapbox.framework */; };
 		D2570C5424FB062100BD3D24 /* Mapbox.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D2570C4F24FAF77700BD3D24 /* Mapbox.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D2570C5624FB062200BD3D24 /* MapboxMobileEvents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2570C5024FAF77700BD3D24 /* MapboxMobileEvents.framework */; };
-		D2570C5724FB062200BD3D24 /* MapboxMobileEvents.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D2570C5024FAF77700BD3D24 /* MapboxMobileEvents.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D2570C5A24FB22F000BD3D24 /* NotificationCenter+Name.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2570C5924FB22F000BD3D24 /* NotificationCenter+Name.swift */; };
 		D2570C5C24FB2F1700BD3D24 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2570C5B24FB2F1700BD3D24 /* MapKit.framework */; };
 		D2570C6124FBA6A400BD3D24 /* PageEnableNotificationsVC copy.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2570C6024FBA6A400BD3D24 /* PageEnableNotificationsVC copy.swift */; };
@@ -69,7 +70,6 @@
 		D2BBF56F24FE5BAF0027C5B4 /* MapBoxService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BBF56E24FE5BAF0027C5B4 /* MapBoxService.swift */; };
 		D2CE46A824F06ED400376C81 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CE46A724F06ED400376C81 /* AppDelegate.swift */; };
 		D2CE46AC24F06ED400376C81 /* AuthenticationOnBoardingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CE46AB24F06ED400376C81 /* AuthenticationOnBoardingVC.swift */; };
-		D2CE46B124F06ED700376C81 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D2CE46B024F06ED700376C81 /* Assets.xcassets */; };
 		D2CE46BC24F0708D00376C81 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CE46BB24F0708D00376C81 /* SceneDelegate.swift */; };
 		D2CE46C424F080D500376C81 /* AuthenticationNavigationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CE46C324F080D500376C81 /* AuthenticationNavigationVC.swift */; };
 		D2CE46C924F0816000376C81 /* SRNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2CE46C824F0816000376C81 /* SRNavigationController.swift */; };
@@ -85,7 +85,6 @@
 		D2F1B01924F59641004AA160 /* PageEnablePositionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F1B01824F59641004AA160 /* PageEnablePositionVC.swift */; };
 		D2F1B01B24F59653004AA160 /* PageEnableAppleHealthVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F1B01A24F59653004AA160 /* PageEnableAppleHealthVC.swift */; };
 		D2F1B02024F5A876004AA160 /* LocationManagerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F1B01F24F5A876004AA160 /* LocationManagerService.swift */; };
-		D2F1B02224F5A9DD004AA160 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2F1B02124F5A9D6004AA160 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -95,7 +94,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				D2570C5724FB062200BD3D24 /* MapboxMobileEvents.framework in Embed Frameworks */,
 				D2570C5424FB062100BD3D24 /* Mapbox.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -793,9 +791,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D2F1B02224F5A9DD004AA160 /* LaunchScreen.storyboard in Resources */,
-				D2CE46B124F06ED700376C81 /* Assets.xcassets in Resources */,
-				D22C0D1A24F26E0E005776C3 /* GoogleService-Info.plist in Resources */,
+				D25580192509748F00FFCC0D /* GoogleService-Info.plist in Resources */,
+				D255801B250974A300FFCC0D /* Assets.xcassets in Resources */,
+				D255801A250974A000FFCC0D /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

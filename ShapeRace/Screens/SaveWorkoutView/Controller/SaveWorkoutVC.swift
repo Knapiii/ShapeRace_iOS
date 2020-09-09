@@ -15,10 +15,25 @@ class SaveWorkoutVC: UIViewController {
         return $0
     }(UILabel())
 
+    var workout: WorkoutModel
+    
+    init(workout: WorkoutModel) {
+        self.workout = workout
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+        
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        view.backgroundColor = SRColor.adaptiveBlue
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
     }
     
 

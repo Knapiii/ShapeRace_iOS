@@ -9,8 +9,16 @@
 import Foundation
 import Mapbox
 import MapboxGeocoder
+import MapboxSearch
 
 class MapBoxService {
+    static let shared = MapBoxService()
+    let accessTooken = Bundle.infoPlistValue(forKey: "MGLMapboxAccessToken")
+    private let token = "pk.eyJ1Ijoia25hcGlpaSIsImEiOiJja2VnNGNqd2kxaHc3MnNydm0wNXRhZmg1In0.GoLBxzSXHOpodB2HCaLc2Q"
+    let searchEngine = CategorySearchEngine()
+    
+    private let geocoder = Geocoder.shared
+    
     enum MapStyle {
         case light, dark
         
@@ -24,53 +32,54 @@ class MapBoxService {
         }
     }
     
-    static let shared = MapBoxService()
-
     
-}
-
-
-class GeocodingService {
-    static let shared = GeocodingService()
-
-    private let startUrl = "https://api.mapbox.com/geocoding/v5/mapbox.places/"
-    private let proximity = "proximity="
-    private let language = "&language=\(Locale.preferredLocalLanguageCountryCode)"
-    private let token = "&access_token=pk.eyJ1IjoiZGV0ZWNodCIsImEiOiJjazAzd2l6MHUwaTFjM2hvMndnazJ2ZWRpIn0.iir3VRG6Co_GaJQ2TbVHUA"
-    
-    private let geocoder = Geocoder(accessToken: "pk.eyJ1IjoiZGV0ZWNodCIsImEiOiJjazAzd2l6MHUwaTFjM2hvMndnazJ2ZWRpIn0.iir3VRG6Co_GaJQ2TbVHUA")
-
-    private func buildUrl(currentLocation: CLLocationCoordinate2D, search: String) -> String? {
-        let proximityString = proximity + "\(currentLocation.longitude),\(currentLocation.latitude)"
-        let urlString = startUrl + search + ".json?" + proximityString + language + token
-        return urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
-    }
-    
-    
-    
-    func searchForLocation(currentLocation: CLLocationCoordinate2D, searchText: String) {
-        guard let urlString = buildUrl(currentLocation: currentLocation, search: searchText) else { return }
-        URLSession.shared.dataTask(with: URL(string: urlString)!) { (data, response, error) in
-            if let data = data {
-                do {
-                    let dict = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String:Any]
-                    if let results = dict?["features"] as? [[String:Any]] {
-                        results.forEach({
-                            if let center = $0["center"] as? [Double] {
-//                                if let waypoint = DTWaypoint(lon: center.first, lat: center.last, displayText: $0["place_name"] as? String) {
-//                                    waypoints.append(waypoint)
-//                                }
-                            }
-                        })
-                    }
-                } catch {
-                    print("Error serializing json")
-                }
+    func forwardGeoCoding(completion: @escaping MGLAnnotationsCompletion) {
+        guard let currentLocation = LocationManagerService.shared.currentLocation else { return }
+        let mapboxSFOfficeCoordinate = CLLocationCoordinate2D(latitude: currentLocation.latitude, longitude: currentLocation.longitude)
+        let requestOptions = CategorySearchEngine.RequestOptions(proximity: mapboxSFOfficeCoordinate)
+        requestOptions.boundingBox
+        searchEngine.search(categoryName: "gym", options: requestOptions) { response in
+            do {
+                let results = try response.get()
+                self.displaySearchResults(results, completion: completion)
+            } catch {
+                print(error.localizedDescription)
             }
-        }.resume()
-        
+        }
     }
-
+    
+    @objc func reloadResultInMapBounds(mapView: MGLMapView, completion: @escaping MGLAnnotationsCompletion) {
+        guard let currentLocation = LocationManagerService.shared.currentLocation else { return }
+        let mapboxSFOfficeCoordinate = CLLocationCoordinate2D(latitude: currentLocation.latitude, longitude: currentLocation.longitude)
+        
+        let boundingBox = BoundingBox(mapView.visibleCoordinateBounds.sw, mapView.visibleCoordinateBounds.ne)
+        let requestOptions = CategorySearchEngine.RequestOptions(proximity: mapboxSFOfficeCoordinate, boundingBox: boundingBox)
+        
+        searchEngine.search(categoryName: "gym", options: requestOptions) { response in
+            do {
+                let results = try response.get()
+                self.displaySearchResults(results, completion: completion)
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
+    func displaySearchResults(_ results: [SearchResult], completion: MGLAnnotationsCompletion) {
+        let annotations = results.map({ result -> MGLAnnotation in
+            let pointAnnotation = MGLPointAnnotation()
+            pointAnnotation.title = result.name
+            pointAnnotation.subtitle = result.address?.formattedAddress(style: .medium)
+            pointAnnotation.coordinate = result.coordinate
+            pointAnnotation.title = result.name
+            if let adress = result.address?.street {
+                pointAnnotation.subtitle = adress
+            }
+            return pointAnnotation
+        })
+        completion(annotations)
+    }
+    
     func reverseGeoCoding(from coordinate: CLLocationCoordinate2D, dispatchGroup: DispatchGroup? = nil, completion: @escaping StringCompletion) {
         let options = ReverseGeocodeOptions(coordinate: coordinate)
         dispatchGroup?.enter()
@@ -89,6 +98,7 @@ class GeocodingService {
     }
     
 }
+
 
 extension Locale {
     
@@ -129,5 +139,14 @@ extension Locale {
             return false
         }
         return measurementSystem == "Metric"
+    }
+}
+
+extension Bundle {
+    static func infoPlistValue(forKey key: String) -> Any? {
+        guard let value = Bundle.main.object(forInfoDictionaryKey: key) else {
+            return nil
+        }
+        return value
     }
 }

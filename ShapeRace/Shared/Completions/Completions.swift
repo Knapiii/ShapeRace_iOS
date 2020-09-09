@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Mapbox
 
 typealias VoidCompletion = (Result<Void, Error>) -> ()
 typealias UserCompletion = (Result<UserModel, Error>) -> ()
@@ -16,3 +17,4 @@ typealias WorkoutsCompletion = (Result<[WorkoutModel], Error>) -> ()
 typealias StringCompletion = (Result<String, Error>) -> ()
 typealias BoolCompletion = (Result<Bool, Error>) -> ()
 typealias Completion = (() -> ())
+typealias MGLAnnotationsCompletion = (([MGLAnnotation]) -> ())

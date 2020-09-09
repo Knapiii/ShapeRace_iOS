@@ -81,13 +81,6 @@ extension WorkoutVC {
     }
     
     func configureMusclePartsView() {
-        let scrollView: UIScrollView = {
-            $0.translatesAutoresizingMaskIntoConstraints = false
-            $0.isPagingEnabled = true
-            $0.bounces = true
-            $0.showsHorizontalScrollIndicator = false
-            return $0
-        }(UIScrollView())
         view.addSubview(scrollView)
         NSLayoutConstraint.activate([
             scrollView.leftAnchor.constraint(equalTo: view.leftAnchor),
@@ -113,7 +106,6 @@ extension WorkoutVC {
             stackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: 16),
 
         ])
-
         chooseMusclePartsLeftView.delegate = self
         chooseMusclePartsRightView.delegate = self
         stackView.addArrangedSubview(chooseMusclePartsLeftView)

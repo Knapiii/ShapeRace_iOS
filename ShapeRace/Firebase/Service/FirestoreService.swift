@@ -10,6 +10,7 @@ import Foundation
 import Firebase
 import FirebaseAuth
 import FirebaseFirestore
+import CoreLocation
 
 struct FirestoreService {
     enum PrivateState: String, Codable {
@@ -67,5 +68,18 @@ struct FirestoreService {
 
 
         }
+    }
+    
+}
+
+extension GeoPoint {
+    var toCLLocation2D: CLLocationCoordinate2D {
+        return CLLocationCoordinate2D(latitude: self.latitude, longitude: self.longitude)
+    }
+}
+
+extension CLLocationCoordinate2D {
+    var toGeoPoint: GeoPoint {
+        return GeoPoint(latitude: self.latitude, longitude: self.longitude)
     }
 }

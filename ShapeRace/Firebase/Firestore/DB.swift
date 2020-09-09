@@ -7,6 +7,14 @@
 //
 
 import Foundation
+import CodableFirebase
+import Firebase
+import FirebaseFirestore
+
+extension DocumentReference: DocumentReferenceType {}
+extension GeoPoint: GeoPointType {}
+extension FieldValue: FieldValueType {}
+extension Timestamp: TimestampType {}
 
 struct DB {
     static let auth = FBAuthenticationService.shared

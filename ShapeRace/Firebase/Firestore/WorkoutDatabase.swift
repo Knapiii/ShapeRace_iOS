@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CoreLocation
 import FirebaseAuth
 import FirebaseFirestore
 import Firebase
@@ -56,10 +57,10 @@ class WorkoutDatabase {
                 return
             }
             guard let documents = snapshot?.documents else {
-                completion(.failure(SRError("")))
+                completion(.failure(SRError("Something went wrong")))
                 return
             }
-            
+        
             let workouts: [WorkoutModel] = documents.compactMap { (doc) -> WorkoutModel? in
                 return try? doc.data(as: WorkoutModel.self)
             }

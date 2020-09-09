@@ -19,7 +19,8 @@ class WorkoutVC: UIViewController {
     var topTimerView = TopTimerView()
     let chooseMusclePartsLeftView = ChooseMusclePartsView(side: .left)
     let chooseMusclePartsRightView = ChooseMusclePartsView(side: .right)
-    
+    var draggingRefreshTimer: Timer?
+
     let showCurrentLocationButton: UIButton = {
         $0.backgroundColor = .clear
         $0.setImage(UIImage(named: "Follow_Active"), for: .normal)
@@ -29,7 +30,16 @@ class WorkoutVC: UIViewController {
         return $0
     }(UIButton())
     
-    var workout = WorkoutModel()
+    let scrollView: UIScrollView = {
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.isPagingEnabled = true
+        $0.bounces = true
+        $0.showsHorizontalScrollIndicator = false
+        $0.alpha = 0
+        return $0
+    }(UIScrollView())
+    
+    var workout: WorkoutModel?
     
     var topTimerTopConstraint: NSLayoutConstraint?
     var startWorkoutBottomConstraint: NSLayoutConstraint?
@@ -51,6 +61,7 @@ class WorkoutVC: UIViewController {
         super.viewDidAppear(animated)
         self.navigationController?.setNavigationBarHidden(true, animated: false)
         self.tabBarController?.tabBarController?.tabBar.isTranslucent = true
+        self.tabBarController?.tabBar.isHidden = false
     }
     
     private func notificationHandler() {
@@ -59,8 +70,3 @@ class WorkoutVC: UIViewController {
         
 }
 
-extension WorkoutVC: MGLMapViewDelegate {
-    func mapViewDidFinishLoadingMap(_ mapView: MGLMapView) {
-        showCurrentLocation()
-    }
-}

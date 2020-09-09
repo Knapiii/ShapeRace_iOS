@@ -24,7 +24,7 @@ class WorkoutNavigationVC: SRNavigationController {
         super.viewDidLoad()
         workoutVC.navigationController?.navigationBar.isTranslucent = true
         workoutVC.navigationController?.setNavigationBarHidden(true, animated: false)
-        workoutVC.view.backgroundColor = SRColor.background
+        navigationBar.tintColor = SRColor.label
         pushViewController(workoutVC, animated: false)
     }
     

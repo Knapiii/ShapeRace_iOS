@@ -410,6 +410,9 @@ PODS:
   - IQKeyboardManager (6.5.6)
   - leveldb-library (1.22)
   - MapboxGeocoder.swift (0.12.0)
+  - MapboxMobileEvents (0.10.3)
+  - MapboxSearch (1.0.0-beta.1):
+    - MapboxMobileEvents (~> 0.10.0)
   - nanopb (1.30906.0):
     - nanopb/decode (= 1.30906.0)
     - nanopb/encode (= 1.30906.0)
@@ -443,6 +446,7 @@ DEPENDENCIES:
   - FloatingPanel
   - IQKeyboardManager
   - MapboxGeocoder.swift
+  - MapboxSearch (< 2.0, >= 1.0.0-beta.1)
   - ProgressHUD
   - SkyFloatingLabelTextField
 
@@ -482,6 +486,8 @@ SPEC REPOS:
     - IQKeyboardManager
     - leveldb-library
     - MapboxGeocoder.swift
+    - MapboxMobileEvents
+    - MapboxSearch
     - nanopb
     - ProgressHUD
     - PromisesObjC
@@ -524,6 +530,8 @@ SPEC CHECKSUMS:
   IQKeyboardManager: 2a6e97afdafc7becf0cb17a9a8d795e3a980717f
   leveldb-library: 55d93ee664b4007aac644a782d11da33fba316f7
   MapboxGeocoder.swift: e8ca1fcdfb8f674cad390569199dccf3d807ff77
+  MapboxMobileEvents: e7ed269896eadbe7a756a16614955aa9db20a7a0
+  MapboxSearch: c35761821af8eff487858d6511953e06d93210b9
   nanopb: 59317e09cf1f1a0af72f12af412d54edf52603fc
   ProgressHUD: e603e8b8622c47d8818b9fb38b3cfe9d3e7ca421
   PromisesObjC: b14b1c6b68e306650688599de8a45e49fae81151
@@ -531,6 +539,6 @@ SPEC CHECKSUMS:
   SDWebImage: 62ae4a18473520c67b79e9724c31a63599cc9423
   SkyFloatingLabelTextField: 5a338412114808e961fe2d14ea2c5452c8b6e4aa
 
-PODFILE CHECKSUM: d726868d2ba76ecec4e8fe133bcf997d5ed48801
+PODFILE CHECKSUM: 4af83411f93902a9362737399b48542c34fc4756
 
 COCOAPODS: 1.10.0.beta.2
