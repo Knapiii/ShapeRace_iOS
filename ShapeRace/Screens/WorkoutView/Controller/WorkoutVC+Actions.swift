@@ -72,6 +72,17 @@ extension WorkoutVC {
         screenState = .normal
     }
     
+    func recieveNearestGymsOnMap() {
+        MapBoxService.shared.forwardGeoCodingGymCategory { (gymCenters) in
+            for gymCenter in gymCenters {
+                self.gymCenters.appendIfNotContains(gymCenter)
+                DispatchQueue.main.async {
+                    self.mapView.addAnnotation(gymCenter.convertToAnnotation)
+                }
+            }
+        }
+    }
+    
     func showCurrentLocationButtonPressed() {
         showCurrentLocationButton.addAction {
             Vibration.medium.vibrate()
@@ -83,6 +94,7 @@ extension WorkoutVC {
         if LocationManagerService.shared.isUserSharingLocation == .authorized {
             if let location = LocationManagerService.shared.currentLocation {
                 mapView.setCenter(location, zoomLevel: 14, animated: true)
+                recieveNearestGymsOnMap()
             }
             
         } else if LocationManagerService.shared.isUserSharingLocation == .notDetermined {
@@ -90,7 +102,6 @@ extension WorkoutVC {
         } else {
             
         }
-        
     }
     
 }

@@ -10,5 +10,6 @@ import Foundation
 
 class WorkoutService {
     
-    static let shared = WorkoutService()    
+    static let shared = WorkoutService()
+    
 }

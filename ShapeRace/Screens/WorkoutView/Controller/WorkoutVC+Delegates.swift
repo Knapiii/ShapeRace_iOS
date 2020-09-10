@@ -21,15 +21,31 @@ extension WorkoutVC: MusclePartButtonDelegate {
 }
 
 extension WorkoutVC: MGLMapViewDelegate {
+            
+    func mapView(_ mapView: MGLMapView, viewFor annotation: MGLAnnotation) -> MGLAnnotationView? {
+        guard annotation.title != nil, annotation.title != "" else { return nil }
+        let identifier = "Annotation"
+        let annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
+        annotationView?.annotation = annotation
+
+        return annotationView
+    }
     
     func mapViewDidFinishLoadingMap(_ mapView: MGLMapView) {
         showCurrentLocation()
     }
     
     @objc func reloadResultInMapBounds() {
-        MapBoxService.shared.reloadResultInMapBounds(mapView: mapView) { (annotations) in
-
-            self.mapView.addAnnotations(annotations)
+        MapBoxService.shared.reloadResultInMapBounds(mapView: mapView) { (gymCenters) in
+            for gymCenter in gymCenters {
+                if !self.gymCenters.contains(gymCenter) {
+                    DispatchQueue.main.async {
+                        self.mapView.addAnnotation(gymCenter.convertToAnnotation)
+                        self.gymCenters.appendIfNotContains(gymCenter)
+                    }
+                }
+                
+            }
         }
     }
     

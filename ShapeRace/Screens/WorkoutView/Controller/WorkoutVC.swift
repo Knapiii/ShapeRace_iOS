@@ -46,6 +46,8 @@ class WorkoutVC: UIViewController {
     var locationButtonTopConstraint: NSLayoutConstraint?
     var screenState: ScreenState = .normal
     
+    var gymCenters: [GymCenterModel] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureMapView()
