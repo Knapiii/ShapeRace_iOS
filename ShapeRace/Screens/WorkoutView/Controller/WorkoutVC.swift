@@ -40,13 +40,15 @@ class WorkoutVC: UIViewController {
     }(UIScrollView())
     
     var workout: WorkoutModel?
-    
+    var startLocation: CLLocationCoordinate2D?
+    var endLocation: CLLocationCoordinate2D?
+
     var topTimerTopConstraint: NSLayoutConstraint?
     var startWorkoutBottomConstraint: NSLayoutConstraint?
     var locationButtonTopConstraint: NSLayoutConstraint?
     var screenState: ScreenState = .normal
     
-    var gymCenters: [GymCenterModel] = []
+    var gymCenters: [GymLocationModel] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,6 +59,11 @@ class WorkoutVC: UIViewController {
         showCurrentLocation()
         notificationHandler()
         configureMusclePartsView()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
     }
     
     override func viewDidAppear(_ animated: Bool) {

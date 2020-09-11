@@ -425,6 +425,7 @@ PODS:
     - SDWebImage/Core (= 5.9.0)
   - SDWebImage/Core (5.9.0)
   - SkyFloatingLabelTextField (3.8.0)
+  - Turf (0.5.0)
 
 DEPENDENCIES:
   - CodableFirebase
@@ -449,6 +450,7 @@ DEPENDENCIES:
   - MapboxSearch (< 2.0, >= 1.0.0-beta.1)
   - ProgressHUD
   - SkyFloatingLabelTextField
+  - Turf
 
 SPEC REPOS:
   trunk:
@@ -494,6 +496,7 @@ SPEC REPOS:
     - Protobuf
     - SDWebImage
     - SkyFloatingLabelTextField
+    - Turf
 
 SPEC CHECKSUMS:
   abseil: 6c8eb7892aefa08d929b39f9bb108e5367e3228f
@@ -538,7 +541,8 @@ SPEC CHECKSUMS:
   Protobuf: 3dac39b34a08151c6d949560efe3f86134a3f748
   SDWebImage: 62ae4a18473520c67b79e9724c31a63599cc9423
   SkyFloatingLabelTextField: 5a338412114808e961fe2d14ea2c5452c8b6e4aa
+  Turf: bdcfefe60df3ca8dc5f742681c178e47f8c5a567
 
-PODFILE CHECKSUM: 4af83411f93902a9362737399b48542c34fc4756
+PODFILE CHECKSUM: fcbe2748c8a7cf64352fb796733fc5a36548cb19
 
 COCOAPODS: 1.10.0.beta.2

@@ -10,8 +10,8 @@ import Foundation
 import CoreLocation
 import Mapbox
 
-class GymCenterModel: Equatable, ReflectedStringConvertible {
-    static func == (lhs: GymCenterModel, rhs: GymCenterModel) -> Bool {
+class GymLocationModel: Equatable, ReflectedStringConvertible {
+    static func == (lhs: GymLocationModel, rhs: GymLocationModel) -> Bool {
         return lhs.id == rhs.id
     }
     
@@ -46,7 +46,7 @@ class GymCenterModel: Equatable, ReflectedStringConvertible {
     
 }
 
-extension GymCenterModel {
+extension GymLocationModel {
     
     var convertToAnnotation: MGLAnnotation {
         let pointAnnotation = MGLPointAnnotation()
@@ -60,7 +60,7 @@ extension GymCenterModel {
     
 }
 
-extension Array where Element == GymCenterModel {
+extension Array where Element == GymLocationModel {
     var convertToAnnotations: [MGLAnnotation] {
         let annotations = self.map({ result -> MGLAnnotation in
             let pointAnnotation = MGLPointAnnotation()

@@ -10,7 +10,8 @@ target 'ShapeRace' do
   pod 'SkyFloatingLabelTextField'
   pod 'IQKeyboardManager'
   pod 'FloatingPanel'
-
+  pod 'Turf'
+  
   # Firebase
   pod 'FirebaseCore'
   pod 'Firebase/Messaging'
@@ -30,7 +31,7 @@ target 'ShapeRace' do
   # Mapbox
   pod 'MapboxGeocoder.swift'
   pod 'MapboxSearch', ">= 1.0.0-beta.1", "< 2.0"
-
+  
   pod 'Fabric'
   pod 'Crashlytics'
 

@@ -19,6 +19,7 @@ extension WorkoutVC {
     
     func configureMapView() {
         setupMapStyle()
+        
         mapView.translatesAutoresizingMaskIntoConstraints = false
         mapView.compassView.compassVisibility = .hidden
         mapView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
@@ -35,11 +36,7 @@ extension WorkoutVC {
     }
     
     func setupMapStyle() {
-        if traitCollection.userInterfaceStyle == .dark {
-            mapView.styleURL = MapBoxService.MapStyle.dark.url
-        } else {
-            mapView.styleURL = MapBoxService.MapStyle.light.url
-        }
+        MapBoxService.shared.setupMapStyle(for: mapView, traitCollection)
     }
     
     func configureStartWorkoutButton() {

@@ -41,6 +41,8 @@
 		D2570C7024FC187D00BD3D24 /* ChooseMusclePartsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2570C6F24FC187D00BD3D24 /* ChooseMusclePartsView.swift */; };
 		D2570C7224FC1A4400BD3D24 /* String+Capitalize.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2570C7124FC1A4400BD3D24 /* String+Capitalize.swift */; };
 		D2570C7424FC5E4C00BD3D24 /* View+Shadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2570C7324FC5E4C00BD3D24 /* View+Shadow.swift */; };
+		D286B017250BA9F800B08157 /* ChooseNearestGymLocationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D286B016250BA9F800B08157 /* ChooseNearestGymLocationVC.swift */; };
+		D286B01A250BAF7600B08157 /* ChooseNearestGym+MapDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D286B019250BAF7600B08157 /* ChooseNearestGym+MapDelegate.swift */; };
 		D286F03A24F088F3007D887F /* FloatingPanelSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = D286F03924F088F3007D887F /* FloatingPanelSetup.swift */; };
 		D286F03C24F08992007D887F /* LoginFloatingPanelVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D286F03B24F08992007D887F /* LoginFloatingPanelVC.swift */; };
 		D286F03E24F089A1007D887F /* SignUpFloatingPanelVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D286F03D24F089A1007D887F /* SignUpFloatingPanelVC.swift */; };
@@ -87,6 +89,7 @@
 		D2F1B01924F59641004AA160 /* PageEnablePositionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F1B01824F59641004AA160 /* PageEnablePositionVC.swift */; };
 		D2F1B01B24F59653004AA160 /* PageEnableAppleHealthVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F1B01A24F59653004AA160 /* PageEnableAppleHealthVC.swift */; };
 		D2F1B02024F5A876004AA160 /* LocationManagerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F1B01F24F5A876004AA160 /* LocationManagerService.swift */; };
+		D2FAE590250BB4FB00110A9E /* ChooseNearestGym+Tableview.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2FAE58F250BB4FB00110A9E /* ChooseNearestGym+Tableview.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -137,6 +140,8 @@
 		D2570C6F24FC187D00BD3D24 /* ChooseMusclePartsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseMusclePartsView.swift; sourceTree = "<group>"; };
 		D2570C7124FC1A4400BD3D24 /* String+Capitalize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Capitalize.swift"; sourceTree = "<group>"; };
 		D2570C7324FC5E4C00BD3D24 /* View+Shadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Shadow.swift"; sourceTree = "<group>"; };
+		D286B016250BA9F800B08157 /* ChooseNearestGymLocationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseNearestGymLocationVC.swift; sourceTree = "<group>"; };
+		D286B019250BAF7600B08157 /* ChooseNearestGym+MapDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChooseNearestGym+MapDelegate.swift"; sourceTree = "<group>"; };
 		D286F03924F088F3007D887F /* FloatingPanelSetup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingPanelSetup.swift; sourceTree = "<group>"; };
 		D286F03B24F08992007D887F /* LoginFloatingPanelVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginFloatingPanelVC.swift; sourceTree = "<group>"; };
 		D286F03D24F089A1007D887F /* SignUpFloatingPanelVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpFloatingPanelVC.swift; sourceTree = "<group>"; };
@@ -187,6 +192,7 @@
 		D2F1B01A24F59653004AA160 /* PageEnableAppleHealthVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageEnableAppleHealthVC.swift; sourceTree = "<group>"; };
 		D2F1B01F24F5A876004AA160 /* LocationManagerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManagerService.swift; sourceTree = "<group>"; };
 		D2F1B02124F5A9D6004AA160 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		D2FAE58F250BB4FB00110A9E /* ChooseNearestGym+Tableview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChooseNearestGym+Tableview.swift"; sourceTree = "<group>"; };
 		DC321CBBE44894CDBF283A97 /* Pods-ShapeRace.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShapeRace.debug.xcconfig"; path = "Target Support Files/Pods-ShapeRace/Pods-ShapeRace.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -419,6 +425,7 @@
 		D24A336625066AFE005E4348 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				D286B018250BAF5C00B08157 /* ChooseNearestGym */,
 				D24A337025066B30005E4348 /* SaveWorkoutVC.swift */,
 			);
 			path = Controller;
@@ -438,6 +445,16 @@
 				D2CE46C624F0813C00376C81 /* SRNavigationController */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		D286B018250BAF5C00B08157 /* ChooseNearestGym */ = {
+			isa = PBXGroup;
+			children = (
+				D286B016250BA9F800B08157 /* ChooseNearestGymLocationVC.swift */,
+				D286B019250BAF7600B08157 /* ChooseNearestGym+MapDelegate.swift */,
+				D2FAE58F250BB4FB00110A9E /* ChooseNearestGym+Tableview.swift */,
+			);
+			path = ChooseNearestGym;
 			sourceTree = "<group>";
 		};
 		D286F03024F0887F007D887F /* Shared */ = {
@@ -766,7 +783,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1160;
-				LastUpgradeCheck = 1160;
+				LastUpgradeCheck = 1200;
 				ORGANIZATIONNAME = "Kristoffer Knape";
 				TargetAttributes = {
 					D2CE46A324F06ED400376C81 = {
@@ -862,6 +879,7 @@
 				D229E57F24F45217009AB681 /* WorkoutNavigationVC.swift in Sources */,
 				D255801D250980B100FFCC0D /* GymCenterModel.swift in Sources */,
 				D229E58524F45817009AB681 /* ProgressHUD.swift in Sources */,
+				D286B017250BA9F800B08157 /* ChooseNearestGymLocationVC.swift in Sources */,
 				D286F05224F125F5007D887F /* AddAction.swift in Sources */,
 				D286F03A24F088F3007D887F /* FloatingPanelSetup.swift in Sources */,
 				D286F06D24F1385F007D887F /* SignInAndUpVC.swift in Sources */,
@@ -881,6 +899,7 @@
 				D229E59324F4644A009AB681 /* FeedNavigationVC.swift in Sources */,
 				D2570C7224FC1A4400BD3D24 /* String+Capitalize.swift in Sources */,
 				D286F04D24F09228007D887F /* UIView+Jigger.swift in Sources */,
+				D2FAE590250BB4FB00110A9E /* ChooseNearestGym+Tableview.swift in Sources */,
 				D286F03C24F08992007D887F /* LoginFloatingPanelVC.swift in Sources */,
 				D2D7C2752502F4DA00A8FDE5 /* WorkoutModel.swift in Sources */,
 				D286F03E24F089A1007D887F /* SignUpFloatingPanelVC.swift in Sources */,
@@ -910,6 +929,7 @@
 				D2D7C27725030D0500A8FDE5 /* Print.swift in Sources */,
 				D286F06824F1309E007D887F /* AuthStartVC.swift in Sources */,
 				D2570C6724FBBCAF00BD3D24 /* AuthNotificationHandlers.swift in Sources */,
+				D286B01A250BAF7600B08157 /* ChooseNearestGym+MapDelegate.swift in Sources */,
 				D2CE46A824F06ED400376C81 /* AppDelegate.swift in Sources */,
 				D2570C6924FBD1F400BD3D24 /* ViewControllerSwitcher.swift in Sources */,
 				D2CE46C924F0816000376C81 /* SRNavigationController.swift in Sources */,
@@ -955,6 +975,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -1015,6 +1036,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;

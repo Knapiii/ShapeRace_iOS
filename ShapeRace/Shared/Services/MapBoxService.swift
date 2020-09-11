@@ -33,6 +33,14 @@ class MapBoxService {
         }
     }
     
+    func setupMapStyle(for mapView: MGLMapView, _ traitCollection: UITraitCollection) {
+        if traitCollection.userInterfaceStyle == .dark {
+            mapView.styleURL = MapBoxService.MapStyle.dark.url
+        } else {
+            mapView.styleURL = MapBoxService.MapStyle.light.url
+        }
+    }
+    
     func reverseGeoCoding(from coordinate: CLLocationCoordinate2D, dispatchGroup: DispatchGroup? = nil, completion: @escaping StringCompletion) {
         let options = ReverseGeocodeOptions(coordinate: coordinate)
         dispatchGroup?.enter()
@@ -50,16 +58,16 @@ class MapBoxService {
         }
     }
     
-    private func getResultFromCategory(_ results: [SearchResult], completion: GymCentersCompletion) {
-        let gymCenters = results.map({ result -> GymCenterModel in
-            let gymCenter = GymCenterModel(id: result.id, name: result.name, adress: result.address?.street, city: result.address?.place, coordinates: result.coordinate, categories: result.categories)
+    private func getResultFromCategory(_ results: [SearchResult], completion: GymLocationsCompletion) {
+        let gymCenters = results.map({ result -> GymLocationModel in
+            let gymCenter = GymLocationModel(id: result.id, name: result.name, adress: result.address?.street, city: result.address?.place, coordinates: result.coordinate, categories: result.categories)
             return gymCenter
         })
         completion(gymCenters)
         
     }
     
-    func forwardGeoCodingGymCategory(completion: @escaping GymCentersCompletion) {
+    func forwardGeoCodingGymCategory(completion: @escaping GymLocationsCompletion) {
         guard let currentLocation = LocationManagerService.shared.currentLocation else { return }
         let mapboxSFOfficeCoordinate = CLLocationCoordinate2D(latitude: currentLocation.latitude, longitude: currentLocation.longitude)
         let requestOptions = CategorySearchEngine.RequestOptions(proximity: mapboxSFOfficeCoordinate)
@@ -73,7 +81,7 @@ class MapBoxService {
         }
     }
     
-    func reloadResultInMapBounds(mapView: MGLMapView, completion: @escaping GymCentersCompletion) {
+    func reloadResultInMapBounds(mapView: MGLMapView, completion: @escaping GymLocationsCompletion) {
         guard let currentLocation = LocationManagerService.shared.currentLocation else { return }
         let mapboxSFOfficeCoordinate = CLLocationCoordinate2D(latitude: currentLocation.latitude, longitude: currentLocation.longitude)
         

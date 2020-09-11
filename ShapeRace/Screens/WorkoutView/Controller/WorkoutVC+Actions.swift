@@ -10,38 +10,58 @@ import UIKit
 
 extension WorkoutVC {
     
-    func changeSceenOnUploadWorkoutSuccess() {
-        guard let workout = workout else { return }
-        let vc = SaveWorkoutVC(workout: workout)
+    func changeSceenToNearestGymListView(_ workout: WorkoutModel, _ closestGymLocations: [GymLocationModel]) {
+        let vc = ChooseNearestGymLocationVC(workout: workout, closestGymLocations: closestGymLocations)
         vc.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
     func uploadWorkout() {
-        ProgressHudService.shared.showSpinner()
+        var canCheckout = false
+        var closestGyms: [GymLocationModel]?
+        guard let currentLoc = LocationManagerService.shared.currentLocation, let startLocation = startLocation else { return }
+        
+        
+        WorkoutService.shared.observeClose(gymLocations: gymCenters, toUserLocation: currentLoc) { (nearestGymLocations) in
+            guard startLocation.distance(to: currentLoc) < 200 else {
+                ProgressHudService.shared.error("Go back to where yo checked in")
+                canCheckout = false
+                return
+            }
+            
+            guard !nearestGymLocations.isEmpty else {
+                ProgressHudService.shared.error("You have to be close to the gym to save your workout")
+                canCheckout = false
+                return
+            }
+            
+            closestGyms = nearestGymLocations
+            canCheckout = true
+            
+        }
+        guard canCheckout else { return }
+        
+        endLocation = currentLoc
         workout?.checkOutDate = Date()
-        if let currentLoc = LocationManagerService.shared.currentLocation {
-            workout?.getLocation(latitude: currentLoc.latitude, longitude: currentLoc.longitude)
+        if let endLocation = endLocation {
+            workout?.getLocation(latitude: endLocation.latitude, longitude: endLocation.longitude)
         }
         workout?.workoutTime = WorkoutTimerService.shared.seconds
-        guard let workout = workout else { return }
-        if WorkoutTimerService.shared.seconds > 5 {
-            DB.workout.uploadWorkout(workout: workout) { [weak self] (result) in
-                guard let self = self else { return }
-                switch result {
-                case .success():
-                    ProgressHudService.shared.success()
-                    self.endWorkout()
-                    self.changeSceenOnUploadWorkoutSuccess()
-                case .failure(let error):
-                    ProgressHudService.shared.error(error.localizedDescription)
-                }
-                self.workout = nil
-            }
-        } else {
-            ProgressHudService.shared.error("Workout has to be atleast 5 seconds")
+        
+        
+        guard let workout = workout else {
             endWorkout()
-            self.workout = nil
+            return
+        }
+        guard WorkoutTimerService.shared.seconds >= 5 else {
+            ProgressHudService.shared.error("Workout has to be atleast 5 seconds")
+            return
+        }
+        if let closestGyms = closestGyms, !closestGyms.isEmpty {
+            changeSceenToNearestGymListView(workout, closestGyms)
+            endWorkout()
+        } else {
+            ProgressHudService.shared.error("You have to be at a gym to finish your workout")
         }
         
     }
@@ -56,6 +76,19 @@ extension WorkoutVC {
     }
     
     func startWorkout() {
+        var canCheckIn = false
+        if let currentLoc = LocationManagerService.shared.currentLocation {
+            WorkoutService.shared.observeClose(gymLocations: gymCenters, toUserLocation: currentLoc) { (nearestGymLocations) in
+                canCheckIn = !nearestGymLocations.isEmpty
+            }
+            if canCheckIn {
+                startLocation = currentLoc
+            }
+        }
+        guard canCheckIn else {
+            ProgressHudService.shared.error("You have to be at a gym to start your workout")
+            return
+        }
         animateViewsAtStartOfWorkout(completion: {})
         workout = WorkoutModel()
         workout?.checkInDate = Date()
@@ -70,6 +103,8 @@ extension WorkoutVC {
             WorkoutTimerService.shared.stopTimer()
         })
         screenState = .normal
+        workout = nil
+        topTimerView.timerSeconds = 0
     }
     
     func recieveNearestGymsOnMap() {
@@ -89,7 +124,7 @@ extension WorkoutVC {
             self.showCurrentLocation()
         }
     }
-
+    
     func showCurrentLocation() {
         if LocationManagerService.shared.isUserSharingLocation == .authorized {
             if let location = LocationManagerService.shared.currentLocation {
