@@ -18,8 +18,8 @@ extension WorkoutVC {
     }
     
     func configureMapView() {
-        setupMapStyle()
-        
+        MapBoxService.shared.setupMapStyle(for: mapView, traitCollection)
+
         mapView.translatesAutoresizingMaskIntoConstraints = false
         mapView.compassView.compassVisibility = .hidden
         mapView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
@@ -28,30 +28,36 @@ extension WorkoutVC {
         mapView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(mapView)
         NSLayoutConstraint.activate([
-            mapView.topAnchor.constraint(equalTo: view.topAnchor),
+            mapView.topAnchor.constraint(equalTo: view.topAnchor, constant: -80),
             mapView.leftAnchor.constraint(equalTo: view.leftAnchor),
-            mapView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            mapView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 80),
             mapView.rightAnchor.constraint(equalTo: view.rightAnchor),
         ])
     }
     
-    func setupMapStyle() {
-        MapBoxService.shared.setupMapStyle(for: mapView, traitCollection)
-    }
-    
     func configureStartWorkoutButton() {
-        startWorkoutButton.setShadow()
-        startWorkoutBottomConstraint = startWorkoutButton.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor, constant: -26)
-        view.addSubview(startWorkoutButton)
+        startWorkoutBottomConstraint = bottomButtonStackView.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor, constant: -24)
+        view.addSubview(bottomButtonStackView)
         NSLayoutConstraint.activate([
-            startWorkoutButton.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16),
+            bottomButtonStackView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16),
             startWorkoutBottomConstraint!,
-            startWorkoutButton.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16),
-            startWorkoutButton.heightAnchor.constraint(equalToConstant: 48)
+            bottomButtonStackView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -16),
+            bottomButtonStackView.heightAnchor.constraint(equalToConstant: 48)
         ])
+        
+        cancelWorkoutButton.isHidden = true
+        bottomButtonStackView.addArrangedSubview(cancelWorkoutButton)
+        bottomButtonStackView.addArrangedSubview(startWorkoutButton)
+        
+        startWorkoutButton.setShadow()
+        cancelWorkoutButton.setShadow()
+        
         startWorkoutButton.addAction {
-            Vibration.medium.vibrate()
-            self.workoutButtonPressed()
+            self.startWorkoutButtonPressed()
+        }
+        
+        cancelWorkoutButton.addAction {
+            self.cancelWorkoutButtonPressed()
         }
     }
     
@@ -81,7 +87,7 @@ extension WorkoutVC {
         view.addSubview(scrollView)
         NSLayoutConstraint.activate([
             scrollView.leftAnchor.constraint(equalTo: view.leftAnchor),
-            scrollView.bottomAnchor.constraint(equalTo: startWorkoutButton.topAnchor, constant: -16),
+            scrollView.bottomAnchor.constraint(equalTo: bottomButtonStackView.topAnchor, constant: -16),
             scrollView.rightAnchor.constraint(equalTo: view.rightAnchor),
         ])
         
@@ -115,7 +121,7 @@ extension WorkoutVC {
         
         if #available(iOS 13.0, *) {
             if traitCollection.hasDifferentColorAppearance(comparedTo: previousTraitCollection) {
-                setupMapStyle()
+                MapBoxService.shared.setupMapStyle(for: mapView, traitCollection)
             }
         }
     }

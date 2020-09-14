@@ -15,7 +15,8 @@ class WorkoutVC: UIViewController {
         case normal, workout
     }
     let mapView = MGLMapView()
-    let startWorkoutButton = StartWorkoutButton(title: "Start workout", titleColor: .white, bgColor: SRColor.adaptiveBlue)
+    let startWorkoutButton = WorkoutButton(title: "Start workout", titleColor: .white, bgColor: SRColor.adaptiveBlue)
+    let cancelWorkoutButton = WorkoutButton(title: "Cancel workout", titleColor: .white, bgColor: SRColor.adaptiveBlue)
     var topTimerView = TopTimerView()
     let chooseMusclePartsLeftView = ChooseMusclePartsView(side: .left)
     let chooseMusclePartsRightView = ChooseMusclePartsView(side: .right)
@@ -39,6 +40,14 @@ class WorkoutVC: UIViewController {
         return $0
     }(UIScrollView())
     
+    let bottomButtonStackView: UIStackView = {
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.axis = .horizontal
+        $0.spacing = 16
+        $0.distribution = .fillEqually
+        return $0
+    }(UIStackView())
+    
     var workout: WorkoutModel?
     var startLocation: CLLocationCoordinate2D?
     var endLocation: CLLocationCoordinate2D?
@@ -48,7 +57,7 @@ class WorkoutVC: UIViewController {
     var locationButtonTopConstraint: NSLayoutConstraint?
     var screenState: ScreenState = .normal
     
-    var gymCenters: [GymLocationModel] = []
+    var gymCenters: [GymPlaceModel] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()

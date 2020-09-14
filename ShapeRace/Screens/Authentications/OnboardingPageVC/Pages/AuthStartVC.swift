@@ -23,7 +23,6 @@ class AuthStartVC: UIViewController {
         configureLogoImage()
     }
     
-    
     func configureLogoImage() {
         view.addSubview(logoImageView)
         NSLayoutConstraint.activate([

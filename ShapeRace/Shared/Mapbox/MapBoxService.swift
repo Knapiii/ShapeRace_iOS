@@ -20,7 +20,7 @@ class MapBoxService {
     
     private let geocoder = Geocoder.shared
     
-    enum MapStyle {
+    enum MapStyle: String {
         case light, dark
         
         var url: URL? {
@@ -59,8 +59,8 @@ class MapBoxService {
     }
     
     private func getResultFromCategory(_ results: [SearchResult], completion: GymLocationsCompletion) {
-        let gymCenters = results.map({ result -> GymLocationModel in
-            let gymCenter = GymLocationModel(id: result.id, name: result.name, adress: result.address?.street, city: result.address?.place, coordinates: result.coordinate, categories: result.categories)
+        let gymCenters = results.map({ result -> GymPlaceModel in
+            let gymCenter = GymPlaceModel(id: result.id, name: result.name, adress: result.address?.street, city: result.address?.place, coordinates: result.coordinate, categories: result.categories)
             return gymCenter
         })
         completion(gymCenters)

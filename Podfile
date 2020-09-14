@@ -11,6 +11,8 @@ target 'ShapeRace' do
   pod 'IQKeyboardManager'
   pod 'FloatingPanel'
   pod 'Turf'
+  pod 'SCLAlertView'
+  pod 'GSKStretchyHeaderView'
   
   # Firebase
   pod 'FirebaseCore'

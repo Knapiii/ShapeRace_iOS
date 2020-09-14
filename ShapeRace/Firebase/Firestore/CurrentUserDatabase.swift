@@ -15,6 +15,9 @@ class CurrentUserDatabase {
     static let shared = CurrentUserDatabase()
     
     var user: UserModel?
+    var userId: String? {
+        return FirestoreService.Ref.User.shared.currentUserId
+    }
     
     func getCurrentUserData(completion: @escaping UserCompletion) {
         guard let currentUserId =  FirestoreService.Ref.User.shared.currentUserId else { return }

@@ -8,6 +8,10 @@
 
 import UIKit
 
+enum MuscleParts: String, Codable {
+    case back, biceps, legs, chest, triceps, butt, core, shoulders
+}
+
 class ChooseMusclePartsView: UIView, MusclePartButtonDelegate {
     private let backButton = MusclePartButton(.back)
     private let bicepsButton = MusclePartButton(.biceps)
@@ -18,10 +22,15 @@ class ChooseMusclePartsView: UIView, MusclePartButtonDelegate {
     private let shouldersButton = MusclePartButton(.shoulders)
     private let buttButton = MusclePartButton(.butt)
     var delegate: MusclePartButtonDelegate?
+        
     enum Side {
         case left, right
     }
+    
+    var side: Side?
+    
     init(side: Side) {
+        self.side = side
         super.init(frame: .zero)
         config(side: side)
     }
@@ -67,6 +76,40 @@ class ChooseMusclePartsView: UIView, MusclePartButtonDelegate {
         }
     }
     
+    func setActive(workout: WorkoutModel) {
+        guard let side = side else { return }
+        let bodyparts = workout.bodyParts
+        for bodypart in bodyparts {
+            if side == .left {
+                switch bodypart {
+                case .back:
+                    backButton.isActive = true
+                case .biceps:
+                    bicepsButton.isActive = true
+                case .chest:
+                    chestButton.isActive = true
+                case .triceps:
+                    tricepsButton.isActive = true
+                case .butt, .legs, .core, .shoulders:
+                    break
+                }
+            } else {
+                switch bodypart {
+                case .butt:
+                    buttButton.isActive = true
+                case .legs:
+                    legsButton.isActive = true
+                case .core:
+                    coreButton.isActive = true
+                case .shoulders:
+                    shouldersButton.isActive = true
+                case .back, .biceps, .chest, .triceps:
+                    break
+                }
+            }
+        }
+    }
+    
     private func config(side: Side) {
         translatesAutoresizingMaskIntoConstraints = false
         switch side {
@@ -105,25 +148,23 @@ class ChooseMusclePartsView: UIView, MusclePartButtonDelegate {
         }
     }
 
-    func isSelected(_ type: MusclePartButton.MuscleParts) {
+    func isSelected(_ type: MuscleParts) {
         delegate?.isSelected(type)
     }
     
-    func isUnselected(_ type: MusclePartButton.MuscleParts) {
+    func isUnselected(_ type: MuscleParts) {
         delegate?.isUnselected(type)
     }
     
 }
 
 protocol MusclePartButtonDelegate {
-    func isSelected(_ type: MusclePartButton.MuscleParts)
-    func isUnselected(_ type: MusclePartButton.MuscleParts)
+    func isSelected(_ type: MuscleParts)
+    func isUnselected(_ type: MuscleParts)
 }
 
 class MusclePartButton: UIButton {
-    enum MuscleParts: String {
-        case back, biceps, legs, chest, triceps, butt, core, shoulders
-    }
+
     
     private var musclePart: MuscleParts
     var delegate: MusclePartButtonDelegate?

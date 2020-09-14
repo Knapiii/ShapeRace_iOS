@@ -20,6 +20,7 @@ class UserStorage {
             return
         }
         guard let imageData = image?.jpegData(compressionQuality: 0.4) else { return }
+        CacheService.shared.profileImages[userId] = image
         dispatchGroup.enter()
         let metadata = StorageMetadata()
         metadata.contentType = "image/jpeg"

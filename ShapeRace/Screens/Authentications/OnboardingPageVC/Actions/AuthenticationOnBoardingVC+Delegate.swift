@@ -25,9 +25,7 @@ extension AuthenticationOnBoardingVC: SignInAndUpVCDelegate {
         }
     }
     
-    func resetPassword() {
-        print("hej")
-    }
+    func resetPassword() {}
     
     
 }

@@ -30,6 +30,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
     
+    func applicationWillResignActive(_ application: UIApplication) {
+        if WorkoutTimerService.shared.timer != nil {
+            WorkoutTimerService.shared.didBecomeInActiveDate = Date()
+            WorkoutTimerService.shared.pauseTimer()
+        }
+    }
+    
+    func applicationDidBecomeActive(_ application: UIApplication) {
+        if WorkoutTimerService.shared.timer != nil {
+            guard let inactiveDate = WorkoutTimerService.shared.didBecomeInActiveDate  else { return }
+            let secondsSinceResignedActive = Int(Date().timeIntervalSince(inactiveDate))
+            WorkoutTimerService.shared.seconds += secondsSinceResignedActive
+            WorkoutTimerService.shared.resumeTimer()
+            WorkoutTimerService.shared.didBecomeInActiveDate = nil
+        }
+    }
+    
     func navigate(to rootView: UIViewController?) {
         if let rootView = rootView {
             self.window?.rootViewController = rootView

@@ -10,6 +10,9 @@ import UIKit
 
 class WorkoutTimerService: ObservableObject {
     static let shared = WorkoutTimerService()
+    
+    var didBecomeInActiveDate: Date?
+    
     var timer: Timer?
     var seconds: Int = 0
 
@@ -22,7 +25,6 @@ class WorkoutTimerService: ObservableObject {
         timer?.invalidate()
         seconds = 0
         timer = nil
-         
     }
     
     func pauseTimer() {
@@ -35,7 +37,6 @@ class WorkoutTimerService: ObservableObject {
     
     @objc private func updateTimer() {
         seconds += 1
-        
         NotificationCenter.default.post(name: Notis.workoutTimeUpdate.name, object: seconds)
     }
 }

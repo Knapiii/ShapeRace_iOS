@@ -9,21 +9,27 @@
 import UIKit
 import Mapbox
 
+protocol ChooseNearestGymLocationDelegate{
+    func selected(gym: GymPlaceModel)
+}
+
 class ChooseNearestGymLocationVC: UIViewController {
 
     var mapView: MGLMapView?
-
     let tableView: UITableView = {
         $0.translatesAutoresizingMaskIntoConstraints = false
         return $0
     }(UITableView())
     
     var workout: WorkoutModel
-    var closestGymLocations: [GymLocationModel]
+    var nearestGymLocations: [GymPlaceModel]
+    var selectedGym: GymPlaceModel
+    var delegate: ChooseNearestGymLocationDelegate?
     
-    init(workout: WorkoutModel, closestGymLocations: [GymLocationModel]) {
+    init(workout: WorkoutModel, selectedGym: GymPlaceModel, nearestGymLocations: [GymPlaceModel]) {
         self.workout = workout
-        self.closestGymLocations = closestGymLocations
+        self.nearestGymLocations = nearestGymLocations
+        self.selectedGym = selectedGym
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -38,9 +44,10 @@ class ChooseNearestGymLocationVC: UIViewController {
         configureTableView()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        self.navigationController?.setNavigationBarHidden(false, animated: false)
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        mapView?.removeFromSuperview()
+        mapView = nil
     }
     
     func setupMapStyle() {
@@ -65,13 +72,18 @@ class ChooseNearestGymLocationVC: UIViewController {
             mapView.rightAnchor.constraint(equalTo: view.rightAnchor),
             mapView.heightAnchor.constraint(equalToConstant: 230)
         ])
+        
+        if let selectedGymLocation = selectedGym.coordinates {
+            mapView.setCenter(selectedGymLocation, zoomLevel: 14, animated: false)
+        }
+        
+        
     }
     
     func configureTableView() {
         guard let mapView = mapView else { return }
-        //tableView.delegate = self
         tableView.dataSource = self
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
+        tableView.register(ChooseNearestTVC.self, forCellReuseIdentifier: ChooseNearestTVC.identifier)
         view.addSubview(tableView)
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: mapView.bottomAnchor, constant: -30),

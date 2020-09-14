@@ -18,6 +18,6 @@ typealias StringCompletion = (Result<String, Error>) -> ()
 typealias BoolCompletion = (Result<Bool, Error>) -> ()
 typealias Completion = (() -> ())
 typealias MGLAnnotationsCompletion = (([MGLAnnotation]) -> ())
-typealias GymLocationsCompletion = (([GymLocationModel]) -> ())
-typealias GymLocationCompletion = ((GymLocationModel) -> ())
+typealias GymLocationsCompletion = (([GymPlaceModel]) -> ())
+typealias GymLocationCompletion = ((GymPlaceModel) -> ())
 

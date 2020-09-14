@@ -15,10 +15,10 @@ class WorkoutService {
     
     static let shared = WorkoutService()
     
-    func observeClose(gymLocations: [GymLocationModel], toUserLocation: CLLocationCoordinate2D, completion: GymLocationsCompletion) {
-        let distanceLimit: CLLocationDistance = 700
+    func observeClose(gymLocations: [GymPlaceModel], toUserLocation: CLLocationCoordinate2D, completion: GymLocationsCompletion) {
+        let distanceLimit: CLLocationDistance = 2000
         
-        let gymLocationsWithinDistanceLimit: [GymLocationModel] = gymLocations.compactMap { (gymlocation) -> GymLocationModel? in
+        let gymLocationsWithinDistanceLimit: [GymPlaceModel] = gymLocations.compactMap { (gymlocation) -> GymPlaceModel? in
             if let locationCoordinate = gymlocation.coordinates {
                 let distanceToLocation = toUserLocation.distance(to: locationCoordinate)
                 if distanceToLocation < distanceLimit {

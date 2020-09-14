@@ -10,20 +10,32 @@ import UIKit
 import Mapbox
 
 extension WorkoutVC: MusclePartButtonDelegate {
-    func isSelected(_ type: MusclePartButton.MuscleParts) {
-        workout?.bodyParts.append(type.rawValue)
+    func isSelected(_ type: MuscleParts) {
+        workout?.bodyParts.append(type)
     }
     
-    func isUnselected(_ type: MusclePartButton.MuscleParts) {
-        workout?.bodyParts.removeAll(where: { $0 == type.rawValue })
+    func isUnselected(_ type: MuscleParts) {
+        workout?.bodyParts.removeAll(where: { $0 == type })
     }
     
 }
 
 extension WorkoutVC: MGLMapViewDelegate {
+    
+    func mapView(_ mapView: MGLMapView, didSelect annotation: MGLAnnotation) {
+        mapView.setCenter(annotation.coordinate, animated: true)
+    }
+    
+//    func mapView(_ mapView: MGLMapView, didSelect annotationView: MGLAnnotationView) {
+//        if let annotation = annotationView.annotation?.coordinate {
+//            mapView.setCenter(annotation, animated: true)
+//            
+//        }
+//        print(annotationView.annotation)
+//    }
             
     func mapView(_ mapView: MGLMapView, viewFor annotation: MGLAnnotation) -> MGLAnnotationView? {
-        guard annotation.title != nil, annotation.title != "" else { return nil }
+        guard let annotation = annotation as? GymLocationAnnotation else { return nil }
         let identifier = "Annotation"
         let annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
         annotationView?.annotation = annotation
@@ -55,7 +67,7 @@ extension WorkoutVC: MGLMapViewDelegate {
     
     func mapView(_ mapView: MGLMapView, regionDidChangeWith reason: MGLCameraChangeReason, animated: Bool) {
         guard reason != .programmatic else { return }
-        draggingRefreshTimer?.invalidate()
-        draggingRefreshTimer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(reloadResultInMapBounds), userInfo: nil, repeats: false)
+        //draggingRefreshTimer?.invalidate()
+        //draggingRefreshTimer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(reloadResultInMapBounds), userInfo: nil, repeats: false)
     }
 }

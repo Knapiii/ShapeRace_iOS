@@ -68,7 +68,7 @@ class DefaultButton: UIButton {
 }
 
 
-class StartWorkoutButton: UIButton {
+class WorkoutButton: UIButton {
       
     override open var isHighlighted: Bool {
         didSet {

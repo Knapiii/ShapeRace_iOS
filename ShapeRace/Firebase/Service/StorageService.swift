@@ -37,14 +37,14 @@ struct StorageService {
         struct WorkoutMap {
             static let shared = WorkoutMap()
             func mapImageFolder(userId: String, workoutId: String) -> StorageReference {
-                return storageRoot.child(ImageRef.workoutMapImages.rawValue).child(userId)
+                return storageRoot.child(ImageRef.workoutMapImages.rawValue).child(userId).child(workoutId)
             }
             
-            func mapImageReference(userId: String, workoutId: String, mapStyle: String) -> StorageReference {
-                mapImageFolder(userId: userId, workoutId: workoutId).child("\(workoutId)_\(mapStyle).jpg")
+            func mapImageReference(userId: String, workoutId: String, mapStyle: MapBoxService.MapStyle) -> StorageReference {
+                mapImageFolder(userId: userId, workoutId: workoutId).child("\(workoutId)_\(mapStyle.rawValue).jpg")
             }
         }
-        
+                
         //MARK: - Workout Photos
         struct WorkoutPhotos {
             static var photo: StorageReference {

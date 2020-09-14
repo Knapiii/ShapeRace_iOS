@@ -9,4 +9,5 @@
 import Foundation
 struct StorageAPI {
     static let user = UserStorage.shared
+    static let workout = WorkoutStorage.shared
 }

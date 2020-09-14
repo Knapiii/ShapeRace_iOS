@@ -10,14 +10,14 @@ import Foundation
 import CoreLocation
 import Mapbox
 
-class GymLocationModel: Equatable, ReflectedStringConvertible {
-    static func == (lhs: GymLocationModel, rhs: GymLocationModel) -> Bool {
+class GymPlaceModel: Equatable, ReflectedStringConvertible {
+    static func == (lhs: GymPlaceModel, rhs: GymPlaceModel) -> Bool {
         return lhs.id == rhs.id
     }
     
     var id: String?
     var name: String?
-    var adress: String?
+    var address: String?
     var city: String?
     var coordinates: CLLocationCoordinate2D?
     var categories: [String]?
@@ -28,7 +28,7 @@ class GymLocationModel: Equatable, ReflectedStringConvertible {
             self.name = name
         }
         if let adress = adress {
-            self.adress = adress
+            self.address = adress
         }
         if let city = city {
             self.city = city
@@ -46,29 +46,19 @@ class GymLocationModel: Equatable, ReflectedStringConvertible {
     
 }
 
-extension GymLocationModel {
+extension GymPlaceModel {
     
-    var convertToAnnotation: MGLAnnotation {
-        let pointAnnotation = MGLPointAnnotation()
-        pointAnnotation.title = self.name
-        pointAnnotation.subtitle = self.adress
-        if let coordinates = self.coordinates {
-            pointAnnotation.coordinate = coordinates
-        }
+    var convertToAnnotation: GymLocationAnnotation {
+        let pointAnnotation = GymLocationAnnotation(gymlocation: self)
         return pointAnnotation
     }
     
 }
 
-extension Array where Element == GymLocationModel {
-    var convertToAnnotations: [MGLAnnotation] {
-        let annotations = self.map({ result -> MGLAnnotation in
-            let pointAnnotation = MGLPointAnnotation()
-            pointAnnotation.title = result.name
-            pointAnnotation.subtitle = result.adress
-            if let coordinates = result.coordinates {
-                pointAnnotation.coordinate = coordinates
-            }
+extension Array where Element == GymPlaceModel {
+    var convertToAnnotations: [GymLocationAnnotation] {
+        let annotations = self.map({ result -> GymLocationAnnotation in
+            let pointAnnotation = GymLocationAnnotation(gymlocation: result)
             return pointAnnotation
         })
         return annotations

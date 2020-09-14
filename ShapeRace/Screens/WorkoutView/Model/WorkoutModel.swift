@@ -15,17 +15,37 @@ import FirebaseFirestoreSwift
 class WorkoutModel: Identifiable, Codable, ReflectedStringConvertible {
     @DocumentID var workoutId: String!
     var userId: String!
+    var userName: String?
     var timestamp: Date!
     var checkInDate: Date?
     var checkOutDate: Date?
-    var coord: GeoPoint?
+    private var coord: GeoPoint?
     var workoutTime: Int?
-    var bodyParts: [String] = []
+    var bodyParts: [MuscleParts] = []
+    
+    var gymAddress: String?
+    var gymName: String?
+    private var gymCoord: GeoPoint?
+
     
     var coordinate: CLLocationCoordinate2D? {
-        didSet {
-            if let coordinate = coordinate {
-                self.getLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
+        get {
+            return coord?.toCLLocation2D
+        }
+        set {
+            if let coordinate = newValue {
+                self.coord = GeoPoint(latitude: coordinate.latitude, longitude: coordinate.longitude)
+            }
+        }
+    }
+
+    var gymCoordinate: CLLocationCoordinate2D? {
+        get {
+            return gymCoord?.toCLLocation2D
+        }
+        set {
+            if let coordinate = newValue {
+                self.gymCoord = GeoPoint(latitude: coordinate.latitude, longitude: coordinate.longitude)
             }
         }
     }
@@ -44,20 +64,21 @@ class WorkoutModel: Identifiable, Codable, ReflectedStringConvertible {
         }
     }
     
-    func getLocation(latitude: Double, longitude: Double) {
-        self.coord = GeoPoint(latitude: latitude, longitude: longitude)
-    }
 }
 
 extension WorkoutModel {
     enum CodingKeys: String, CodingKey {
         case workoutId
         case userId
+        case userName
         case timestamp
         case checkInDate
         case checkOutDate
         case coord
         case workoutTime
         case bodyParts
+        case gymAddress
+        case gymName
+        case gymCoord
     }
 }

@@ -10,32 +10,33 @@ import UIKit
 
 extension WorkoutVC {
     
-    func changeSceenToNearestGymListView(_ workout: WorkoutModel, _ closestGymLocations: [GymLocationModel]) {
-        let vc = ChooseNearestGymLocationVC(workout: workout, closestGymLocations: closestGymLocations)
+    func changeSceeneToSaveWorkoutView(_ workout: WorkoutModel, _ nearestGymLocations: [GymPlaceModel]) {
+        let vc = SaveWorkoutVC(workout: workout, nearestGymLocations: nearestGymLocations)
         vc.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(vc, animated: true)
     }
-    
+        
     func uploadWorkout() {
         var canCheckout = false
-        var closestGyms: [GymLocationModel]?
+        var nearestGyms: [GymPlaceModel]?
         guard let currentLoc = LocationManagerService.shared.currentLocation, let startLocation = startLocation else { return }
-        
-        
+    
         WorkoutService.shared.observeClose(gymLocations: gymCenters, toUserLocation: currentLoc) { (nearestGymLocations) in
             guard startLocation.distance(to: currentLoc) < 200 else {
-                ProgressHudService.shared.error("Go back to where yo checked in")
+                AlertService.shared.showError(text: "Go back to where yo checked in", autoHide: true)
+
                 canCheckout = false
                 return
             }
             
             guard !nearestGymLocations.isEmpty else {
-                ProgressHudService.shared.error("You have to be close to the gym to save your workout")
+                AlertService.shared.showError(text: "You have to be close to the gym to save your workout", autoHide: true)
+
                 canCheckout = false
                 return
             }
             
-            closestGyms = nearestGymLocations
+            nearestGyms = nearestGymLocations
             canCheckout = true
             
         }
@@ -44,7 +45,8 @@ extension WorkoutVC {
         endLocation = currentLoc
         workout?.checkOutDate = Date()
         if let endLocation = endLocation {
-            workout?.getLocation(latitude: endLocation.latitude, longitude: endLocation.longitude)
+            workout?.coordinate = endLocation
+            
         }
         workout?.workoutTime = WorkoutTimerService.shared.seconds
         
@@ -54,25 +56,32 @@ extension WorkoutVC {
             return
         }
         guard WorkoutTimerService.shared.seconds >= 5 else {
-            ProgressHudService.shared.error("Workout has to be atleast 5 seconds")
+            AlertService.shared.showError(text: "Workout has to be atleast 5 seconds", autoHide: true)
             return
         }
-        if let closestGyms = closestGyms, !closestGyms.isEmpty {
-            changeSceenToNearestGymListView(workout, closestGyms)
+        if let nearestGyms = nearestGyms, !nearestGyms.isEmpty {
+            changeSceeneToSaveWorkoutView(workout, nearestGyms)
             endWorkout()
         } else {
-            ProgressHudService.shared.error("You have to be at a gym to finish your workout")
+            AlertService.shared.showError(text: "You have to be at a gym to finish your workout", autoHide: true)
         }
         
     }
     
-    func workoutButtonPressed() {
+    func startWorkoutButtonPressed() {
         Vibration.medium.vibrate()
         if screenState == .normal {
             startWorkout()
         } else if screenState == .workout {
             uploadWorkout()
         }
+    }
+    
+    func cancelWorkoutButtonPressed() {
+        Vibration.medium.vibrate()
+        AlertService.shared.showAlert(title: "You are about to cancel your workout", text: "Are you sure you want to continue?", hideAuto: false,amountOfButtonsMax2: 2, button1Text: "Yes", button2Text: "No", button1Completion: {
+            self.endWorkout()
+        })
     }
     
     func startWorkout() {
@@ -86,10 +95,10 @@ extension WorkoutVC {
             }
         }
         guard canCheckIn else {
-            ProgressHudService.shared.error("You have to be at a gym to start your workout")
+            AlertService.shared.showError(text: "You have to be at a gym to start your workout", autoHide: true)
             return
         }
-        animateViewsAtStartOfWorkout(completion: {})
+        startWorkoutAnimate(completion: {})
         workout = WorkoutModel()
         workout?.checkInDate = Date()
         WorkoutTimerService.shared.startTimer()
@@ -97,14 +106,14 @@ extension WorkoutVC {
     }
     
     func endWorkout() {
-        animateViewsAtEndOfWorkout(completion: { [self] in
+        endWorkoutAnimate(completion: { [self] in
             self.chooseMusclePartsLeftView.deselectAll()
             self.chooseMusclePartsRightView.deselectAll()
             WorkoutTimerService.shared.stopTimer()
+            topTimerView.timerSeconds = 0
         })
         screenState = .normal
         workout = nil
-        topTimerView.timerSeconds = 0
     }
     
     func recieveNearestGymsOnMap() {

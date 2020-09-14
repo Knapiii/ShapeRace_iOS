@@ -14,8 +14,10 @@ class CacheService: NSObject {
     private override init() {
         super.init()
     }
-
+    
     var profileImages: [String: UIImage] = [:]
+    var workoutMapDarkImages: [String: UIImage] = [:]
+    var workoutMapLightImages: [String: UIImage] = [:]
     
 }
 
@@ -55,6 +57,54 @@ extension UIImageView {
             }
         }
     }
+    
+    func setWorkoutMapImage(userId: String, workoutId: String, style: MapBoxService.MapStyle, completion: Completion? = nil) {
+        var image: UIImage?
+        switch style {
+        
+        case .light:
+            image = CacheService.shared.workoutMapLightImages[workoutId]
+            if let image = CacheService.shared.workoutMapLightImages[workoutId] {
+                self.image = image
+                if let completion = completion {
+                    completion()
+                }
+            }
+        case .dark:
+            image = CacheService.shared.workoutMapDarkImages[workoutId]
+            if let image = CacheService.shared.workoutMapDarkImages[workoutId] {
+                self.image = image
+                if let completion = completion {
+                    completion()
+                }
+            }
+        }
+        guard image == nil else { return }
+        let mapImageReference = StorageService.Ref.WorkoutMap.shared.mapImageReference(userId: userId, workoutId: workoutId, mapStyle: style)
+        self.sd_setImage(with: mapImageReference, placeholderImage: nil) { (image, error, _, ref) in
+            self.sd_setImage(with: mapImageReference, placeholderImage: nil) { (image, error, _, ref) in
+                ref.getMetadata { (metadata, _) in
+                    if let url = NSURL.sd_URL(with: ref)?.absoluteString,
+                       let cachePath = SDImageCache.shared.cachePath(forKey: url),
+                       let attributes = try? FileManager.default.attributesOfItem(atPath: cachePath),
+                       let cacheDate = attributes[.creationDate] as? Date,
+                       let serverDate = metadata?.timeCreated,
+                       serverDate > cacheDate {
+                        SDImageCache.shared.removeImage(forKey: url) {
+                            self.sd_setImage(with: ref, placeholderImage: nil)
+                            if let completion = completion {
+                                completion()
+                            }
+                        }
+                    } else {
+                        if let completion = completion {
+                            completion()
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
 
 extension UIButton {
@@ -71,11 +121,11 @@ extension UIButton {
                 }
                 ref.getMetadata { metadata, _ in
                     if let url = NSURL.sd_URL(with: ref)?.absoluteString,
-                        let cachePath = SDImageCache.shared.cachePath(forKey: url),
-                        let attributes = try? FileManager.default.attributesOfItem(atPath: cachePath),
-                        let cacheDate = attributes[.creationDate] as? Date,
-                        let serverDate = metadata?.timeCreated,
-                        serverDate > cacheDate {
+                       let cachePath = SDImageCache.shared.cachePath(forKey: url),
+                       let attributes = try? FileManager.default.attributesOfItem(atPath: cachePath),
+                       let cacheDate = attributes[.creationDate] as? Date,
+                       let serverDate = metadata?.timeCreated,
+                       serverDate > cacheDate {
                         SDImageCache.shared.removeImage(forKey: url) {
                             self.setProfileImage(userId: userId)
                         }
