@@ -41,6 +41,8 @@
 		D2570C7024FC187D00BD3D24 /* ChooseMusclePartsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2570C6F24FC187D00BD3D24 /* ChooseMusclePartsView.swift */; };
 		D2570C7224FC1A4400BD3D24 /* String+Capitalize.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2570C7124FC1A4400BD3D24 /* String+Capitalize.swift */; };
 		D2570C7424FC5E4C00BD3D24 /* View+Shadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2570C7324FC5E4C00BD3D24 /* View+Shadow.swift */; };
+		D2782D0225110B8E0056763B /* SaveWorkout+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2782D0125110B8E0056763B /* SaveWorkout+UI.swift */; };
+		D2782D04251110280056763B /* GymAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2782D03251110280056763B /* GymAnnotationView.swift */; };
 		D286B017250BA9F800B08157 /* ChooseNearestGymLocationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D286B016250BA9F800B08157 /* ChooseNearestGymLocationVC.swift */; };
 		D286B01A250BAF7600B08157 /* ChooseNearestGym+MapDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D286B019250BAF7600B08157 /* ChooseNearestGym+MapDelegate.swift */; };
 		D286F03A24F088F3007D887F /* FloatingPanelSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = D286F03924F088F3007D887F /* FloatingPanelSetup.swift */; };
@@ -150,6 +152,8 @@
 		D2570C6F24FC187D00BD3D24 /* ChooseMusclePartsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseMusclePartsView.swift; sourceTree = "<group>"; };
 		D2570C7124FC1A4400BD3D24 /* String+Capitalize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Capitalize.swift"; sourceTree = "<group>"; };
 		D2570C7324FC5E4C00BD3D24 /* View+Shadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Shadow.swift"; sourceTree = "<group>"; };
+		D2782D0125110B8E0056763B /* SaveWorkout+UI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SaveWorkout+UI.swift"; sourceTree = "<group>"; };
+		D2782D03251110280056763B /* GymAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GymAnnotationView.swift; sourceTree = "<group>"; };
 		D286B016250BA9F800B08157 /* ChooseNearestGymLocationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseNearestGymLocationVC.swift; sourceTree = "<group>"; };
 		D286B019250BAF7600B08157 /* ChooseNearestGym+MapDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ChooseNearestGym+MapDelegate.swift"; sourceTree = "<group>"; };
 		D286F03924F088F3007D887F /* FloatingPanelSetup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingPanelSetup.swift; sourceTree = "<group>"; };
@@ -291,6 +295,7 @@
 			children = (
 				D2570C6F24FC187D00BD3D24 /* ChooseMusclePartsView.swift */,
 				D291DFF224FD909B00882F39 /* TopTimerView.swift */,
+				D2782D03251110280056763B /* GymAnnotationView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -443,6 +448,7 @@
 			children = (
 				D286B018250BAF5C00B08157 /* ChooseNearestGym */,
 				D24A337025066B30005E4348 /* SaveWorkoutVC.swift */,
+				D2782D0125110B8E0056763B /* SaveWorkout+UI.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -919,6 +925,7 @@
 				D255801D250980B100FFCC0D /* GymCenterModel.swift in Sources */,
 				D229E58524F45817009AB681 /* ProgressHUD.swift in Sources */,
 				D286B017250BA9F800B08157 /* ChooseNearestGymLocationVC.swift in Sources */,
+				D2782D0225110B8E0056763B /* SaveWorkout+UI.swift in Sources */,
 				D286F05224F125F5007D887F /* AddAction.swift in Sources */,
 				D286F03A24F088F3007D887F /* FloatingPanelSetup.swift in Sources */,
 				D286F06D24F1385F007D887F /* SignInAndUpVC.swift in Sources */,
@@ -983,6 +990,7 @@
 				D2D7C2732502F47700A8FDE5 /* WorkoutDatabase.swift in Sources */,
 				D2570C6C24FBFB9A00BD3D24 /* WorkoutVC+UI.swift in Sources */,
 				D2CE46BC24F0708D00376C81 /* SceneDelegate.swift in Sources */,
+				D2782D04251110280056763B /* GymAnnotationView.swift in Sources */,
 				D286F04B24F0920C007D887F /* SRTextFieldWithFloat.swift in Sources */,
 				D2B3DDAA24FEEE3700936014 /* WorkoutVC+Animations.swift in Sources */,
 				D2B3DDA824FEB45F00936014 /* WorkoutService.swift in Sources */,

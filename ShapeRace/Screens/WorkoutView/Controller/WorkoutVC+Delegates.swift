@@ -37,10 +37,9 @@ extension WorkoutVC: MGLMapViewDelegate {
     func mapView(_ mapView: MGLMapView, viewFor annotation: MGLAnnotation) -> MGLAnnotationView? {
         guard let annotation = annotation as? GymLocationAnnotation else { return nil }
         let identifier = "Annotation"
-        let annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
-        annotationView?.annotation = annotation
-
-        return annotationView
+        let view = GymAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+        
+        return view
     }
     
     func mapViewDidFinishLoadingMap(_ mapView: MGLMapView) {

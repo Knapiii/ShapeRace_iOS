@@ -22,13 +22,13 @@ class WorkoutTVC: UITableViewCell {
     let userImageView = UserProfileImageView()
     let nameLabel: UILabel = {
         $0.translatesAutoresizingMaskIntoConstraints = false
-        $0.font = .systemFont(ofSize: 14, weight: .semibold)
+        $0.font = .systemFont(ofSize: 17, weight: .semibold)
         $0.textColor = SRColor.label
         return $0
     }(UILabel())
     let timestampLabel: UILabel = {
         $0.translatesAutoresizingMaskIntoConstraints = false
-        $0.font = .systemFont(ofSize: 10, weight: .regular)
+        $0.font = .systemFont(ofSize: 12, weight: .regular)
         $0.textColor = SRColor.label
         return $0
     }(UILabel())
@@ -65,6 +65,13 @@ class WorkoutTVC: UITableViewCell {
         return $0
     }(UILabel())
     
+    let line: UIImageView = {
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.backgroundColor = SRColor.label.withAlphaComponent(0.3)
+        $0.layer.cornerRadius = 1
+        return $0
+    }(UIImageView())
+    
     let amountOfBoosts: UILabel = {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.font = .systemFont(ofSize: 14, weight: .semibold)
@@ -87,12 +94,13 @@ class WorkoutTVC: UITableViewCell {
         return $0
     }(UIImageView())
     
-    let likeButton: UIImageView = {
+    let likeButton: UIButton = {
         $0.translatesAutoresizingMaskIntoConstraints = false
-        $0.contentMode = .scaleAspectFit
-        $0.image = UIImage(named: "Muscle_White")
+        $0.imageView?.contentMode = .scaleAspectFit
+        $0.setImage(UIImage(named: "Muscle_White"), for: .normal)
+        $0.imageEdgeInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
         return $0
-    }(UIImageView())
+    }(UIButton())
     
     var workout: WorkoutModel? {
         didSet {
@@ -131,7 +139,7 @@ class WorkoutTVC: UITableViewCell {
             mapImage.setWorkoutMapImage(userId: workout.userId, workoutId: workout.workoutId, style: .light)
         }
         
-        likeButton.addTapGestureRecognizer {
+        likeButton.addAction {
             self.likeButtonTapped()
         }
     
@@ -150,9 +158,9 @@ class WorkoutTVC: UITableViewCell {
     func updateCell(_ newWorkout: Bool) {
         guard let workout = workout else { return }
         if workout.isLiked {
-            likeButton.image = UIImage(named: "Muscle_Filled_White")
+            likeButton.setImage(UIImage(named: "Muscle_Filled_White"), for: .normal)
         } else {
-            likeButton.image = UIImage(named: "Muscle_White")
+            likeButton.setImage(UIImage(named: "Muscle_White"), for: .normal)
         }
         amountOfBoosts.text = workout.likedBy.count == 1 ? "\(workout.likedBy.count) Boost" : "\(workout.likedBy.count) Boosts"
     }
@@ -198,7 +206,7 @@ class WorkoutTVC: UITableViewCell {
         cellContentView.addSubview(nameLabel)
         NSLayoutConstraint.activate([
             nameLabel.leftAnchor.constraint(equalTo: userImageView.rightAnchor, constant: 8),
-            nameLabel.bottomAnchor.constraint(equalTo: userImageView.centerYAnchor),
+            nameLabel.bottomAnchor.constraint(equalTo: userImageView.centerYAnchor, constant: 2),
         ])
         cellContentView.addSubview(timestampLabel)
         NSLayoutConstraint.activate([
@@ -212,9 +220,17 @@ class WorkoutTVC: UITableViewCell {
             workoutTimeLabel.leftAnchor.constraint(equalTo: cellContentView.leftAnchor, constant: 8),
         ])
         
+        cellContentView.addSubview(line)
+        NSLayoutConstraint.activate([
+            line.heightAnchor.constraint(equalToConstant: 1),
+            line.leftAnchor.constraint(equalTo: cellContentView.leftAnchor, constant: 4),
+            line.rightAnchor.constraint(equalTo: cellContentView.rightAnchor, constant: -4),
+            line.bottomAnchor.constraint(equalTo: workoutTimeLabel.topAnchor, constant: -4)
+        ])
+        
         cellContentView.addSubview(mapContainer)
         NSLayoutConstraint.activate([
-            mapContainer.topAnchor.constraint(equalTo: workoutTimeLabel.bottomAnchor, constant: 16),
+            mapContainer.topAnchor.constraint(equalTo: workoutTimeLabel.bottomAnchor, constant: 8),
             mapContainer.leftAnchor.constraint(equalTo: cellContentView.leftAnchor),
             mapContainer.rightAnchor.constraint(equalTo: cellContentView.rightAnchor),
             mapContainer.heightAnchor.constraint(equalToConstant: 160)
@@ -252,11 +268,11 @@ class WorkoutTVC: UITableViewCell {
         
         cellContentView.addSubview(likeButton)
         NSLayoutConstraint.activate([
-            likeButton.topAnchor.constraint(equalTo: mapContainer.bottomAnchor, constant: 16),
-            likeButton.heightAnchor.constraint(equalToConstant: 28),
-            likeButton.widthAnchor.constraint(equalToConstant: 28),
-            likeButton.leftAnchor.constraint(equalTo: cellContentView.leftAnchor, constant: 8),
-            likeButton.bottomAnchor.constraint(equalTo: cellContentView.bottomAnchor, constant: -16)
+            likeButton.topAnchor.constraint(equalTo: mapContainer.bottomAnchor, constant: 0),
+            likeButton.heightAnchor.constraint(equalToConstant: 28 + 16),
+            likeButton.widthAnchor.constraint(equalToConstant: 38 + 16),
+            likeButton.leftAnchor.constraint(equalTo: cellContentView.leftAnchor, constant: 0),
+            likeButton.bottomAnchor.constraint(equalTo: cellContentView.bottomAnchor, constant: -0)
         ])
         
         cellContentView.addSubview(amountOfBoosts)
