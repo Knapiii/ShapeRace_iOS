@@ -10,7 +10,7 @@ import UIKit
 
 class WorkoutTVC: UITableViewCell {
     static let identifier = "WorkoutTVC"
-
+    
     let cellContentView: UIView = {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.clipsToBounds = true
@@ -87,10 +87,18 @@ class WorkoutTVC: UITableViewCell {
         return $0
     }(UIImageView())
     
+    let likeButton: UIImageView = {
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.contentMode = .scaleAspectFit
+        $0.image = UIImage(named: "Muscle_White")
+        return $0
+    }(UIImageView())
+    
     var workout: WorkoutModel? {
         didSet {
             DispatchQueue.main.async { [self] in
                 self.setLabels()
+                self.updateCell(false)
             }
         }
     }
@@ -107,7 +115,7 @@ class WorkoutTVC: UITableViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
     func setLabels() {
         //= workout?.workoutTime?.secondsToTimeWithDotsInBetween(includeSeconds: true)
         guard let workout = workout else { return }
@@ -122,17 +130,60 @@ class WorkoutTVC: UITableViewCell {
         } else if traitCollection.userInterfaceStyle == .light {
             mapImage.setWorkoutMapImage(userId: workout.userId, workoutId: workout.workoutId, style: .light)
         }
+        
+        likeButton.addTapGestureRecognizer {
+            self.likeButtonTapped()
+        }
+    
+    }
+    
+    @objc func toggleRouteLikes(_ notification: Notification) {
+        guard let object = notification.object as? [String : Any],
+              let workoutId = object["workoutId"] as? String,
+              let likedBy = object["likedBy"] as? [String],
+              workoutId == workout?.workoutId else { return }
+        
+        self.workout?.likedBy = likedBy
+        updateCell(false)
+    }
+    
+    func updateCell(_ newWorkout: Bool) {
+        guard let workout = workout else { return }
+        if workout.isLiked {
+            likeButton.image = UIImage(named: "Muscle_Filled_White")
+        } else {
+            likeButton.image = UIImage(named: "Muscle_White")
+        }
+        amountOfBoosts.text = workout.likedBy.count == 1 ? "\(workout.likedBy.count) Boost" : "\(workout.likedBy.count) Boosts"
+    }
+    
+    func likeButtonTapped() {
+        guard let workout = workout else { return }
+        Vibration.selection.vibrate()
+        
+        UIView.animate(withDuration: 0.1,
+                       animations: {
+                        self.likeButton.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
+                       },
+                       completion: { _ in
+                        UIView.animate(withDuration: 0.1) {
+                            self.likeButton.transform = CGAffineTransform.identity
+                        }
+                       })
+        
+        workout.toggleLike()
     }
     
     private func config() {
+        NotificationCenter.default.addObserver(self, selector: #selector(toggleRouteLikes), name: Notis.toggleRouteLikes.name, object: nil)
         selectionStyle = .none
         backgroundColor = .clear
-        addSubview(cellContentView)
+        contentView.addSubview(cellContentView)
         NSLayoutConstraint.activate([
-            cellContentView.topAnchor.constraint(equalTo: topAnchor, constant: 8),
-            cellContentView.leftAnchor.constraint(equalTo: leftAnchor, constant: 8),
-            cellContentView.rightAnchor.constraint(equalTo: rightAnchor, constant: -8),
-            cellContentView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8)
+            cellContentView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
+            cellContentView.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 8),
+            cellContentView.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -8),
+            cellContentView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8)
         ])
         
         cellContentView.addSubview(userImageView)
@@ -198,14 +249,22 @@ class WorkoutTVC: UITableViewCell {
             gymAddressLabel.bottomAnchor.constraint(equalTo: gymLabelsContainer.bottomAnchor, constant: -8),
             gymAddressLabel.rightAnchor.constraint(equalTo: gymLabelsContainer.rightAnchor, constant: -8),
         ])
-                
+        
+        cellContentView.addSubview(likeButton)
+        NSLayoutConstraint.activate([
+            likeButton.topAnchor.constraint(equalTo: mapContainer.bottomAnchor, constant: 16),
+            likeButton.heightAnchor.constraint(equalToConstant: 28),
+            likeButton.widthAnchor.constraint(equalToConstant: 28),
+            likeButton.leftAnchor.constraint(equalTo: cellContentView.leftAnchor, constant: 8),
+            likeButton.bottomAnchor.constraint(equalTo: cellContentView.bottomAnchor, constant: -16)
+        ])
+        
         cellContentView.addSubview(amountOfBoosts)
         NSLayoutConstraint.activate([
-            amountOfBoosts.topAnchor.constraint(equalTo: mapContainer.bottomAnchor, constant: 16),
+            amountOfBoosts.centerYAnchor.constraint(equalTo: likeButton.centerYAnchor),
             amountOfBoosts.rightAnchor.constraint(equalTo: cellContentView.rightAnchor, constant: -8),
-            amountOfBoosts.heightAnchor.constraint(equalToConstant: 24),
-            amountOfBoosts.bottomAnchor.constraint(equalTo: cellContentView.bottomAnchor, constant: -8)
         ])
+        
     }
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {

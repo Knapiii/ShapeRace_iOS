@@ -25,4 +25,5 @@ enum Notis: String, NotificationName {
     case notificationPermissionUpdated
     case appleHealthPermissionUpdated
     case workoutTimeUpdate
+    case toggleRouteLikes
 }

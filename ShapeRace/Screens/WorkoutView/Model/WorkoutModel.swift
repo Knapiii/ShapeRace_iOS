@@ -22,12 +22,20 @@ class WorkoutModel: Identifiable, Codable, ReflectedStringConvertible {
     private var coord: GeoPoint?
     var workoutTime: Int?
     var bodyParts: [MuscleParts] = []
+    var likedBy: [String] = []
     
     var gymAddress: String?
     var gymName: String?
-    private var gymCoord: GeoPoint?
-
     
+    private var gymCoord: GeoPoint?
+    
+    var isLiked: Bool {
+        get {
+            guard let user = DB.currentUser.user else { return false }
+            return likedBy.contains(user.userId)
+        }
+    }
+
     var coordinate: CLLocationCoordinate2D? {
         get {
             return coord?.toCLLocation2D
@@ -64,6 +72,19 @@ class WorkoutModel: Identifiable, Codable, ReflectedStringConvertible {
         }
     }
     
+    func toggleLike() {
+        guard let user = DB.currentUser.user else { return }
+        DB.workout.toggleLiked(self)
+    
+        if likedBy.contains(user.userId) {
+            likedBy.remove(object: user.userId)
+        } else {
+            likedBy.append(user.userId)
+        }
+        
+        NotificationCenter.default.post(name: Notis.toggleRouteLikes.name, object: ["workoutId": workoutId, "likedBy": likedBy])
+    }
+    
 }
 
 extension WorkoutModel {
@@ -80,5 +101,6 @@ extension WorkoutModel {
         case gymAddress
         case gymName
         case gymCoord
+        case likedBy
     }
 }

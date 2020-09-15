@@ -34,7 +34,7 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
 
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
-        
+        configure()
     }
     
     required init?(coder: NSCoder) {

@@ -76,5 +76,14 @@ class WorkoutDatabase {
             completion(.success(workouts))
         }
     }
+    
+    func toggleLiked(_ workout: WorkoutModel) {
+        guard let userId = DB.currentUser.user?.userId else { return }
+        let likedByUser = workout.likedBy.contains(userId)
+        
+        FirestoreService.Ref.Workout.shared.specific(workoutId: workout.workoutId).updateData([
+            WorkoutModel.CodingKeys.likedBy.rawValue: likedByUser ? FieldValue.arrayRemove([userId]) : FieldValue.arrayUnion([userId])
+        ])
+    }
 
 }

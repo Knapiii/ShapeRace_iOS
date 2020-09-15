@@ -81,10 +81,8 @@ extension ProfileVC: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: ProfileHeaderView.identifier) as! ProfileHeaderView
-        view.configure()
         view.user = DB.currentUser.user
         view.workouts = workouts
-        view.backgroundColor = SRColor.background
         return view
     }
         

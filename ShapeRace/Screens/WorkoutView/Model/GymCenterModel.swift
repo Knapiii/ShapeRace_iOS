@@ -78,3 +78,83 @@ extension RangeReplaceableCollection where Element: Equatable {
         }
     }
 }
+
+extension Array where Element: Equatable {
+    
+    mutating func remove(object: Element) {
+        guard let index = firstIndex(of: object) else { return }
+        remove(at: index)
+    }
+    
+    mutating func replace(with object: Element) {
+        guard let index = firstIndex(of: object) else { return }
+        self[index] = object
+    }
+
+    mutating func removeDuplicates() {
+        var result = [Element]()
+        for value in self {
+            if !result.contains(value) {
+                result.append(value)
+            }
+        }
+        self = result
+    }
+    
+    func subtracting(_ array: Array<Element>) -> Array<Element> {
+        self.filter { !array.contains($0) }
+    }
+    
+}
+
+extension Dictionary {
+    subscript(i:Int) -> (key:Key,value:Value) {
+        get {
+            return self[index(startIndex, offsetBy: i)];
+        }
+    }
+}
+
+extension Array where Element == Double {
+    var median: Double? {
+        guard count > 0  else { return nil }
+        let sortedArray = sorted()
+        if count % 2 != 0 {
+            return Double(sortedArray[count / 2])
+        } else {
+            return Double(sortedArray[count / 2] + sortedArray[count / 2 - 1]) / 2.0
+        }
+    }
+}
+
+extension BidirectionalCollection where Iterator.Element: Equatable {
+    typealias Element = Self.Iterator.Element
+
+    func after(_ item: Element, loop: Bool = false) -> Element? {
+        if let itemIndex = self.firstIndex(of: item) {
+            let lastItem: Bool = (index(after:itemIndex) == endIndex)
+            if loop && lastItem {
+                return self.first
+            } else if lastItem {
+                return nil
+            } else {
+                return self[index(after:itemIndex)]
+            }
+        }
+        return nil
+    }
+
+    func before(_ item: Element, loop: Bool = false) -> Element? {
+        if let itemIndex = self.firstIndex(of: item) {
+            let firstItem: Bool = (itemIndex == startIndex)
+            if loop && firstItem {
+                return self.last
+            } else if firstItem {
+                return nil
+            } else {
+                return self[index(before:itemIndex)]
+            }
+        }
+        return nil
+    }
+}
