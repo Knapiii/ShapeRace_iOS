@@ -19,11 +19,11 @@ class WorkoutModel: Identifiable, Codable, ReflectedStringConvertible {
     var timestamp: Date!
     var checkInDate: Date?
     var checkOutDate: Date?
+    var descriptionText: String?
     private var coord: GeoPoint?
     var workoutTime: Int?
     var bodyParts: [MuscleParts] = []
     var likedBy: [String] = []
-    
     var gymAddress: String?
     var gymName: String?
     
@@ -95,6 +95,7 @@ extension WorkoutModel {
         case timestamp
         case checkInDate
         case checkOutDate
+        case descriptionText
         case coord
         case workoutTime
         case bodyParts

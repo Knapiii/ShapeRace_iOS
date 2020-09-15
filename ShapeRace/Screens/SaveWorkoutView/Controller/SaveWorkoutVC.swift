@@ -87,6 +87,28 @@ class SaveWorkoutVC: UIViewController {
         $0.translatesAutoresizingMaskIntoConstraints = false
         return $0
     }(UIView())
+    
+    let descriptionContainer: UIView = {
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        return $0
+    }(UIView())
+    
+    let descriptionPlaceholderText: UILabel = {
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.textColor = SRColor.label
+        $0.font = .systemFont(ofSize: 20, weight: .semibold)
+        $0.text = "Description"
+        return $0
+    }(UILabel())
+    let descriptionTextField: UITextView = {
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.layer.cornerRadius = 12
+        $0.font = .systemFont(ofSize: 17, weight: .regular)
+        $0.backgroundColor = SRColor.tertiaryLabel.withAlphaComponent(0.1)
+        $0.setShadow()
+        return $0
+    }(UITextView())
+    
     var chooseMusclePartsLeftView = ChooseMusclePartsView(side: .left)
     var chooseMusclePartsRightView = ChooseMusclePartsView(side: .right)
     let backButton = WorkoutButton(title: "Back", titleColor: SRColor.label, bgColor: .clear)
@@ -136,6 +158,7 @@ class SaveWorkoutVC: UIViewController {
         workout.gymAddress = gymAdress
         workout.gymName = gymName
         workout.gymCoordinate = gymCoordinate
+        workout.descriptionText = descriptionTextField.text
         
         ProgressHudService.shared.showSpinner()
         DB.workout.uploadWorkout(mapView: mapView, workout: workout) { (result) in
@@ -158,6 +181,12 @@ class SaveWorkoutVC: UIViewController {
     }
     
     
+}
+
+extension SaveWorkoutVC: UITextViewDelegate {
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        textView.contentInset = UIEdgeInsets.zero
+    }
 }
 
 extension SaveWorkoutVC: ChooseNearestGymLocationDelegate {

@@ -19,6 +19,7 @@ extension SaveWorkoutVC {
             mainStackView.addArrangedSubview(wrongGymContainer)
         }
         mainStackView.addArrangedSubview(bodyPartsContainer)
+        mainStackView.addArrangedSubview(descriptionContainer)
     }
     
     func configureUI() {
@@ -30,6 +31,7 @@ extension SaveWorkoutVC {
         configureGymLocationLabels()
         configureWrongPlaceButton()
         configureMusclePartsView()
+        configureDescription()
         addViewsToMainStackView()
     }
     
@@ -58,7 +60,6 @@ extension SaveWorkoutVC {
             mainStackView.rightAnchor.constraint(equalTo: contentView.rightAnchor),
         ])
     }
-    
     
     func configureBackButton() {
         backButton.contentHorizontalAlignment = .left
@@ -126,7 +127,7 @@ extension SaveWorkoutVC {
         let annotation = selectedGymPlace.convertToAnnotation
         mapView.addAnnotation(annotation)
         mapView.setCenter(annotation.coordinate, zoomLevel: 14, animated: false)
-
+        
     }
     
     func configureGymLocationLabels() {
@@ -163,8 +164,6 @@ extension SaveWorkoutVC {
             vc.delegate = self
             present(vc, animated: true, completion: nil)
         }
-        
-
     }
     
     func configureMusclePartsView() {
@@ -200,7 +199,27 @@ extension SaveWorkoutVC {
         chooseMusclePartsRightView.delegate = self
         stackView.addArrangedSubview(chooseMusclePartsLeftView)
         stackView.addArrangedSubview(chooseMusclePartsRightView)
-
+    }
+    
+    func configureDescription() {
+        descriptionTextField.clipsToBounds = true
+        descriptionTextField.delegate = self
+        descriptionContainer.addSubview(descriptionPlaceholderText)
+        NSLayoutConstraint.activate([
+            descriptionPlaceholderText.topAnchor.constraint(equalTo: descriptionContainer.topAnchor, constant: 16),
+            descriptionPlaceholderText.leftAnchor.constraint(equalTo: descriptionContainer.leftAnchor, constant: 16),
+            descriptionPlaceholderText.rightAnchor.constraint(equalTo: descriptionContainer.rightAnchor, constant: -16),
+            descriptionPlaceholderText.heightAnchor.constraint(equalToConstant: 22),
+        ])
+        
+        descriptionContainer.addSubview(descriptionTextField)
+        NSLayoutConstraint.activate([
+            descriptionTextField.topAnchor.constraint(equalTo: descriptionPlaceholderText.bottomAnchor, constant: 4),
+            descriptionTextField.leftAnchor.constraint(equalTo: descriptionContainer.leftAnchor, constant: 16),
+            descriptionTextField.rightAnchor.constraint(equalTo: descriptionContainer.rightAnchor, constant: -16),
+            descriptionTextField.heightAnchor.constraint(equalToConstant: 90),
+            descriptionTextField.bottomAnchor.constraint(equalTo: descriptionContainer.bottomAnchor),
+        ])
     }
     
     func configureSaveWorkoutButton() {
