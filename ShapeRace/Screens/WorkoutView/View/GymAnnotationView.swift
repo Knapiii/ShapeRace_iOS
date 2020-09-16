@@ -38,7 +38,7 @@ class GymAnnotationView: MGLAnnotationView {
         } else {
             imageView.image = UIImage(named: "Empty_POI_Light_Blue")
         }
-        centerOffset.dy = (-bounds.height / 2) + 5
+        centerOffset.dy = (-bounds.height / 2)
 
     }
 

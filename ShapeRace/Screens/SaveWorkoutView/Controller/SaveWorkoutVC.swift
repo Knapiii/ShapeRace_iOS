@@ -158,7 +158,7 @@ class SaveWorkoutVC: UIViewController {
         workout.gymAddress = gymAdress
         workout.gymName = gymName
         workout.gymCoordinate = gymCoordinate
-        workout.descriptionText = descriptionTextField.text
+        workout.about = descriptionTextField.text
         
         ProgressHudService.shared.showSpinner()
         DB.workout.uploadWorkout(mapView: mapView, workout: workout) { (result) in
@@ -209,9 +209,9 @@ extension SaveWorkoutVC: MGLMapViewDelegate {
     func mapView(_ mapView: MGLMapView, viewFor annotation: MGLAnnotation) -> MGLAnnotationView? {
         guard let annotation = annotation as? GymLocationAnnotation else { return nil }
         let identifier = "Annotation"
-        let annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
-        annotationView?.annotation = annotation
-        return annotationView
+        let view = GymAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+        
+        return view
     }
     
 }

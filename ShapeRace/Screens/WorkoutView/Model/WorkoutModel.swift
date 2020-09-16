@@ -19,7 +19,7 @@ class WorkoutModel: Identifiable, Codable, ReflectedStringConvertible {
     var timestamp: Date!
     var checkInDate: Date?
     var checkOutDate: Date?
-    var descriptionText: String?
+    var about: String?
     private var coord: GeoPoint?
     var workoutTime: Int?
     var bodyParts: [MuscleParts] = []
@@ -82,7 +82,7 @@ class WorkoutModel: Identifiable, Codable, ReflectedStringConvertible {
             likedBy.append(user.userId)
         }
         
-        NotificationCenter.default.post(name: Notis.toggleRouteLikes.name, object: ["workoutId": workoutId, "likedBy": likedBy])
+        NotificationCenter.default.post(name: Notis.toggleRouteLikes.name, object: [CodingKeys.workoutId.rawValue: workoutId as String, CodingKeys.likedBy.rawValue: likedBy])
     }
     
 }
@@ -95,7 +95,7 @@ extension WorkoutModel {
         case timestamp
         case checkInDate
         case checkOutDate
-        case descriptionText
+        case about
         case coord
         case workoutTime
         case bodyParts

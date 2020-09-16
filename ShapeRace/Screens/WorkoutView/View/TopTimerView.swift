@@ -7,6 +7,9 @@
 //
 
 import UIKit
+protocol TopTimerViewDelegate {
+    func cancelWorkout()
+}
 
 class TopTimerView: UIView {
 
@@ -15,6 +18,16 @@ class TopTimerView: UIView {
             timerLabel.text = timerSeconds.secondsToTimeWithDotsInBetween(includeSeconds: true)
         }
     }
+    let cancelWorkoutButton: UIButton = {
+        $0.backgroundColor = .clear
+        $0.setImage(UIImage(named: "X_Mark"), for: .normal)
+        $0.imageView?.contentMode = .scaleAspectFit
+        $0.imageEdgeInsets = UIEdgeInsets(top: 8, left: 8, bottom: -32, right: -32)
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.contentVerticalAlignment = .top
+        $0.contentHorizontalAlignment = .left
+        return $0
+    }(UIButton())
     
     private let timerLabel: UILabel = {
         $0.translatesAutoresizingMaskIntoConstraints = false
@@ -24,6 +37,8 @@ class TopTimerView: UIView {
         return $0
     }(UILabel())
     
+    
+    var delegate: TopTimerViewDelegate?
     init() {
         super.init(frame: .zero)
         config()
@@ -48,6 +63,17 @@ class TopTimerView: UIView {
             timerLabel.rightAnchor.constraint(equalTo: rightAnchor, constant: -16),
         ])
         
+        addSubview(cancelWorkoutButton)
+        NSLayoutConstraint.activate([
+            cancelWorkoutButton.topAnchor.constraint(equalTo: timerLabel.topAnchor),
+            cancelWorkoutButton.leftAnchor.constraint(equalTo: leftAnchor, constant: 16),
+            cancelWorkoutButton.heightAnchor.constraint(equalToConstant: 48),
+            cancelWorkoutButton.widthAnchor.constraint(equalToConstant: 48),
+        ])
+        
+        cancelWorkoutButton.addAction { [self] in
+            delegate?.cancelWorkout()
+        }
     }
     
 }

@@ -31,14 +31,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func applicationWillResignActive(_ application: UIApplication) {
-        if WorkoutTimerService.shared.timer != nil {
+        if WorkoutTimerService.shared.timer != nil && WorkoutTimerService.shared.isRunning {
+            WorkoutTimerService.shared.isPausedByInactivity = true
             WorkoutTimerService.shared.didBecomeInActiveDate = Date()
             WorkoutTimerService.shared.pauseTimer()
         }
     }
     
     func applicationDidBecomeActive(_ application: UIApplication) {
-        if WorkoutTimerService.shared.timer != nil {
+        if WorkoutTimerService.shared.timer != nil && WorkoutTimerService.shared.isPausedByInactivity {
             guard let inactiveDate = WorkoutTimerService.shared.didBecomeInActiveDate  else { return }
             let secondsSinceResignedActive = Int(Date().timeIntervalSince(inactiveDate))
             WorkoutTimerService.shared.seconds += secondsSinceResignedActive

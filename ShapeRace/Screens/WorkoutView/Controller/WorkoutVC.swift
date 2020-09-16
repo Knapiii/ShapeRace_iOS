@@ -16,11 +16,12 @@ class WorkoutVC: UIViewController {
     }
     let mapView = MGLMapView()
     let startWorkoutButton = WorkoutButton(title: "Start workout", titleColor: .white, bgColor: SRColor.adaptiveBlue)
-    let cancelWorkoutButton = WorkoutButton(title: "Cancel workout", titleColor: .white, bgColor: SRColor.adaptiveBlue)
+    let pauseWorkoutButton = WorkoutButton(title: "Pause workout", titleColor: .white, bgColor: SRColor.adaptiveBlue)
     var topTimerView = TopTimerView()
     let chooseMusclePartsLeftView = ChooseMusclePartsView(side: .left)
     let chooseMusclePartsRightView = ChooseMusclePartsView(side: .right)
     var draggingRefreshTimer: Timer?
+    
 
     let showCurrentLocationButton: UIButton = {
         $0.backgroundColor = .clear

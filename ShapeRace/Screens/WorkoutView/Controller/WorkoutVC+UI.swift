@@ -45,23 +45,24 @@ extension WorkoutVC {
             bottomButtonStackView.heightAnchor.constraint(equalToConstant: 48)
         ])
         
-        cancelWorkoutButton.isHidden = true
-        bottomButtonStackView.addArrangedSubview(cancelWorkoutButton)
+        pauseWorkoutButton.isHidden = true
+        bottomButtonStackView.addArrangedSubview(pauseWorkoutButton)
         bottomButtonStackView.addArrangedSubview(startWorkoutButton)
         
         startWorkoutButton.setShadow()
-        cancelWorkoutButton.setShadow()
+        pauseWorkoutButton.setShadow()
         
         startWorkoutButton.addAction {
             self.startWorkoutButtonPressed()
         }
         
-        cancelWorkoutButton.addAction {
+        pauseWorkoutButton.addAction {
             self.cancelWorkoutButtonPressed()
         }
     }
     
     func configTopTimerView() {
+        topTimerView.delegate = self
         view.addSubview(topTimerView)
         topTimerTopConstraint = topTimerView.topAnchor.constraint(equalTo: view.topAnchor, constant: -175)
         NSLayoutConstraint.activate([

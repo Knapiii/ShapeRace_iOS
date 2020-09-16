@@ -42,30 +42,34 @@ class MapImageService {
                     guard var ciImage = CIImage(image: snapshot.image) else { return }
                     ciImage = ciImage.oriented(.downMirrored)
                     let cgImage = ciContext.createCGImage(ciImage, from: ciImage.extent)
-                    
-                    let upperLeft = snapshot.coordinate(for: CGPoint(x: 0, y: 0))
-                    let bottomRight = snapshot.coordinate(for: CGPoint(x: WIDTH, y: HEIGHT))
-                    
+                
                     let center = CGPoint(x: WIDTH/2, y: HEIGHT/2)
                     
                     let image = renderer.image { context in
                         let cxt = context.cgContext
                         cxt.draw(cgImage!, in: CGRect(x: 0, y: 0, width: WIDTH, height: HEIGHT))
                         
-                        let markerIconSize = 48
+                        let markerIconSizeHeight = 71
+                        let markerIconSizeWidth = 48
                         let startMarkerX = center.x
-                        let startMarkerY = center.y
-                        var startMarkerciImage = CIImage(image: UIImage(named: "Dumbbell_Selected")!)!
+                        let startMarkerY = center.y - 10
+                        var startMarkerciImage = CIImage(image: UIImage(named: "Empty_POI_Blue")!)!
+                        switch key {
+                        case .light:
+                            startMarkerciImage = CIImage(image: UIImage(named: "Empty_POI_Blue")!)!
+                        case .dark:
+                            startMarkerciImage = CIImage(image: UIImage(named: "Empty_POI_Dark_Blue")!)!
+
+                        }
                         startMarkerciImage = startMarkerciImage.oriented(.downMirrored)
                         let startMarkerciContext = CIContext(options: nil)
                         let startMarkercgImage = startMarkerciContext.createCGImage(startMarkerciImage, from: startMarkerciImage.extent)
-                        cxt.draw(startMarkercgImage!, in: CGRect(x: Int(startMarkerX) - Int(markerIconSize/2), y: Int(startMarkerY) - Int(markerIconSize), width: markerIconSize, height: markerIconSize))
+                        cxt.draw(startMarkercgImage!, in: CGRect(x: Int(startMarkerX) - Int(markerIconSizeHeight/2), y: Int(startMarkerY) - Int(markerIconSizeWidth), width: markerIconSizeWidth, height: markerIconSizeHeight))
                         
                     }
                     
                     StorageAPI.workout.setMapPreview(userId: workout.userId, workoutId: workout.workoutId, mapStyle: key, image: image) { (_) in
                         if dispatchGroup.debugDescription.components(separatedBy: ",").filter({$0.contains("count")}).first!.components(separatedBy: CharacterSet.decimalDigits.inverted).filter({Int($0) != nil}).first! != "0" {
-                            
                             dispatchGroup.leave()
                         }
                     }

@@ -100,7 +100,7 @@ class WorkoutButton: UIButton {
         self.layer.cornerRadius = 12
         self.titleLabel?.font = .systemFont(ofSize: 17, weight: .bold)
     }
-    
+        
     func setupUI(title: String?, titleColor: UIColor? = nil, bgColor: UIColor? = nil, borderColor: UIColor? = nil) {
         if let title = title {
             self.setTitle(title, for: .normal)

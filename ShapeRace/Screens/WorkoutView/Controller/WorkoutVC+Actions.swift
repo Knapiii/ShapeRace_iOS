@@ -79,9 +79,23 @@ extension WorkoutVC {
     
     func cancelWorkoutButtonPressed() {
         Vibration.medium.vibrate()
+        if WorkoutTimerService.shared.isRunning {
+            WorkoutTimerService.shared.pauseTimer()
+            pauseWorkoutButton.setupUI(title: "Resume workout")
+        } else {
+            WorkoutTimerService.shared.resumeTimer()
+            pauseWorkoutButton.setupUI(title: "Pause workout")
+        }
+        
+    }
+    
+    func askToCancelWorkout() {
+        WorkoutTimerService.shared.pauseTimer()
         AlertService.shared.showAlert(title: "You are about to cancel your workout", text: "Are you sure you want to continue?", hideAuto: false,amountOfButtonsMax2: 2, button1Text: "Yes", button2Text: "No", button1Completion: {
             self.endWorkout()
-        })
+        }) {
+            WorkoutTimerService.shared.resumeTimer()
+        }
     }
     
     func startWorkout() {

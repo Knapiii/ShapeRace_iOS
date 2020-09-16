@@ -26,14 +26,6 @@ extension WorkoutVC: MGLMapViewDelegate {
         mapView.setCenter(annotation.coordinate, animated: true)
     }
     
-//    func mapView(_ mapView: MGLMapView, didSelect annotationView: MGLAnnotationView) {
-//        if let annotation = annotationView.annotation?.coordinate {
-//            mapView.setCenter(annotation, animated: true)
-//            
-//        }
-//        print(annotationView.annotation)
-//    }
-            
     func mapView(_ mapView: MGLMapView, viewFor annotation: MGLAnnotation) -> MGLAnnotationView? {
         guard let annotation = annotation as? GymLocationAnnotation else { return nil }
         let identifier = "Annotation"
@@ -69,4 +61,10 @@ extension WorkoutVC: MGLMapViewDelegate {
         //draggingRefreshTimer?.invalidate()
         //draggingRefreshTimer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(reloadResultInMapBounds), userInfo: nil, repeats: false)
     }
+}
+
+extension WorkoutVC : TopTimerViewDelegate {
+    func cancelWorkout() {
+        askToCancelWorkout()
+    }    
 }

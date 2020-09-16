@@ -12,7 +12,7 @@ extension WorkoutVC {
     
     func startWorkoutAnimate(completion: @escaping Completion) {
         self.startWorkoutButton.isEnabled = false
-        self.cancelWorkoutButton.isEnabled = false
+        self.pauseWorkoutButton.isEnabled = false
         startWorkoutButton.setTitle("End workout", for: .normal)
         topTimerTopConstraint?.constant = -12
         locationButtonTopConstraint?.constant = 16
@@ -21,12 +21,12 @@ extension WorkoutVC {
             self.tabBarController?.tabBar.alpha = 0
         }
         
-        self.cancelWorkoutButton.isHidden = false
+        self.pauseWorkoutButton.isHidden = false
         UIView.animate(withDuration: 0.5) {
             self.scrollView.alpha = 1
             self.view.layoutIfNeeded()
         } completion: { (succes) in
-            self.cancelWorkoutButton.isEnabled = true
+            self.pauseWorkoutButton.isEnabled = true
             self.startWorkoutButton.isEnabled = true
             completion()
         }
@@ -38,7 +38,7 @@ extension WorkoutVC {
         topTimerTopConstraint?.constant = -175
         locationButtonTopConstraint?.constant = 62
         startWorkoutBottomConstraint?.constant = -26
-        cancelWorkoutButton.isHidden = true
+        pauseWorkoutButton.isHidden = true
         UIView.animate(withDuration: 0.2) {
             self.scrollView.alpha = 0
         } completion: { _ in
@@ -49,7 +49,7 @@ extension WorkoutVC {
             self.tabBarController?.tabBar.alpha = 1
         } completion: { (succes) in
             self.startWorkoutButton.isEnabled = true
-            self.cancelWorkoutButton.isEnabled = true
+            self.pauseWorkoutButton.isEnabled = true
             completion()
             
         }
