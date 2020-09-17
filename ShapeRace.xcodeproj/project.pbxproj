@@ -484,8 +484,8 @@
 			isa = PBXGroup;
 			children = (
 				D2FAE593250CF9A800110A9E /* Mapbox */,
-				D2570C5824FB22BD00BD3D24 /* Controllers */,
 				D2F1B01E24F5A86B004AA160 /* Services */,
+				D2570C5824FB22BD00BD3D24 /* Controllers */,
 				D2F0CC1C24F2CA3C0053E8BD /* Model */,
 				D22C0D5124F26FAF005776C3 /* Completions */,
 				D286F04E24F0923D007D887F /* Style */,

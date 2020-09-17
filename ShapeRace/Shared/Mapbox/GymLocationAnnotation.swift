@@ -8,6 +8,7 @@
 
 import Foundation
 import Mapbox
+import MapKit
 
 class GymLocationAnnotation: MGLPointAnnotation {
     var gymLocation: GymPlaceModel

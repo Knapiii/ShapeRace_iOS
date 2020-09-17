@@ -11,13 +11,14 @@ import UIKit
 import Mapbox
 import MapboxGeocoder
 import MapboxSearch
+import Cluster
 
 class MapBoxService {
     static let shared = MapBoxService()
     let accessTooken = Bundle.infoPlistValue(forKey: "MGLMapboxAccessToken")
     private let token = "pk.eyJ1Ijoia25hcGlpaSIsImEiOiJja2VnNGNqd2kxaHc3MnNydm0wNXRhZmg1In0.GoLBxzSXHOpodB2HCaLc2Q"
     let searchEngine = CategorySearchEngine()
-    
+
     private let geocoder = Geocoder.shared
     
     enum MapStyle: String {

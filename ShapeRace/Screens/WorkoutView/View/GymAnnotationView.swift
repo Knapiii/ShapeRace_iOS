@@ -8,6 +8,7 @@
 
 import Foundation
 import Mapbox
+import Cluster
 
 class GymAnnotationView: MGLAnnotationView {
     var image = UIImage()

@@ -21,7 +21,7 @@ class WorkoutVC: UIViewController {
     let chooseMusclePartsLeftView = ChooseMusclePartsView(side: .left)
     let chooseMusclePartsRightView = ChooseMusclePartsView(side: .right)
     var draggingRefreshTimer: Timer?
-    
+
 
     let showCurrentLocationButton: UIButton = {
         $0.backgroundColor = .clear

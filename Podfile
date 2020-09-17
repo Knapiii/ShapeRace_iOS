@@ -33,7 +33,8 @@ target 'ShapeRace' do
   # Mapbox
   pod 'MapboxGeocoder.swift'
   pod 'MapboxSearch', ">= 1.0.0-beta.1", "< 2.0"
-  
+  pod "Cluster"
+
   pod 'Fabric'
   pod 'Crashlytics'
 

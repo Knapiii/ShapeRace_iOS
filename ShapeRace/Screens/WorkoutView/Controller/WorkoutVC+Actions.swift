@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Mapbox
 
 extension WorkoutVC {
     
@@ -134,9 +135,7 @@ extension WorkoutVC {
         MapBoxService.shared.forwardGeoCodingGymCategory { (gymCenters) in
             for gymCenter in gymCenters {
                 self.gymCenters.appendIfNotContains(gymCenter)
-                DispatchQueue.main.async {
-                    self.mapView.addAnnotation(gymCenter.convertToAnnotation)
-                }
+                self.mapView.addAnnotation(gymCenter.convertToAnnotation)
             }
         }
     }
