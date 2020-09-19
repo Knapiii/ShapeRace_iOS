@@ -10,7 +10,7 @@ import UIKit
 
 class WorkoutTVC: UITableViewCell {
     static let identifier = "WorkoutTVC"
-    
+    var isInFeedView = false
     let cellContentView: UIView = {
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.clipsToBounds = true
@@ -138,11 +138,6 @@ class WorkoutTVC: UITableViewCell {
         } else if traitCollection.userInterfaceStyle == .light {
             mapImage.setWorkoutMapImage(userId: workout.userId, workoutId: workout.workoutId, style: .light)
         }
-        
-        likeButton.addAction {
-            self.likeButtonTapped()
-        }
-    
     }
     
     @objc func toggleRouteLikes(_ notification: Notification) {
@@ -280,7 +275,9 @@ class WorkoutTVC: UITableViewCell {
             amountOfBoosts.centerYAnchor.constraint(equalTo: likeButton.centerYAnchor),
             amountOfBoosts.rightAnchor.constraint(equalTo: cellContentView.rightAnchor, constant: -8),
         ])
-        
+        likeButton.addAction {
+            self.likeButtonTapped()
+        }
     }
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {

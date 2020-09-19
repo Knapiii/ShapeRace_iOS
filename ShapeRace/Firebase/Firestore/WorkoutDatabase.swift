@@ -46,6 +46,24 @@ class WorkoutDatabase {
         }
     }
     
+    func fetchAllWorkouts(completion: @escaping WorkoutsCompletion) {
+        FirestoreService.Ref.Workout.shared.workouts.order(by: "timestamp", descending: true).getDocuments { (snapshot, error) in
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
+            guard let documents = snapshot?.documents else {
+                completion(.failure(SRError("Something went wrong")))
+                return
+            }
+        
+            let workouts: [WorkoutModel] = documents.compactMap { (doc) -> WorkoutModel? in
+                return try? doc.data(as: WorkoutModel.self)
+            }
+            completion(.success(workouts))
+        }
+    }
+    
     func fetchMyWorkouts(completion: @escaping WorkoutsCompletion) {
         guard let uid = Auth.auth().currentUser?.uid else { return }
         fetchWorkoutsFrom(userId: uid) { (result) in

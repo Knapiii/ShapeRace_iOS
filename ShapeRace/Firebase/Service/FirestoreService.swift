@@ -51,10 +51,25 @@ struct FirestoreService {
             func specific(userId: String) -> Query {
                 return workouts.whereField("userId", isEqualTo: userId)
             }
+        }
+        
+        struct Friends {
+            static let shared = Friends()
+            private let REF_FRIENDS = "firends"
+            var friends: CollectionReference{
+                return Firestore.firestore().collection(REF_FRIENDS)
+            }
+            
+            func specific(friendsId id: String) -> DocumentReference {
+                return friends.document(id)
+            }
             
         }
+        
+        //TODO: Can be removed. use the coding key rawvalue instead
+        
+        
     }
-    
     struct DBStrings {
         struct User {
             static let userId = "userId"
@@ -65,11 +80,8 @@ struct FirestoreService {
             static let city = "city"
             static let isPrivate = "isPrivate"
             static let hasFinishedWalkthrough = "hasFinishedWalkthrough"
-
-
         }
     }
-    
 }
 
 extension GeoPoint {

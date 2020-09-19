@@ -22,7 +22,7 @@ class FeedNavigationVC: SRNavigationController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationController?.navigationBar.isTranslucent = true
+        feedVC.navigationController?.navigationBar.isTranslucent = true
         feedVC.view.backgroundColor = SRColor.background
         pushViewController(feedVC, animated: false)
     }

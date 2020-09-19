@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		682B26255E7DB268D94D0469 /* Pods_ShapeRace.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 348B76E9B1CBB25D0AC45786 /* Pods_ShapeRace.framework */; };
-		D229E57F24F45217009AB681 /* WorkoutNavigationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D229E57E24F45217009AB681 /* WorkoutNavigationVC.swift */; };
-		D229E58124F45246009AB681 /* WorkoutVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D229E58024F45246009AB681 /* WorkoutVC.swift */; };
 		D229E58324F4533E009AB681 /* SRTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D229E58224F4533E009AB681 /* SRTabBarController.swift */; };
 		D229E58524F45817009AB681 /* ProgressHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = D229E58424F45817009AB681 /* ProgressHUD.swift */; };
 		D229E59324F4644A009AB681 /* FeedNavigationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D229E58F24F46101009AB681 /* FeedNavigationVC.swift */; };
@@ -69,6 +67,13 @@
 		D299F87225041DA7009DA507 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D299F87125041DA7009DA507 /* Storage.swift */; };
 		D299F87425041DCA009DA507 /* UserStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D299F87325041DCA009DA507 /* UserStorage.swift */; };
 		D299F87625041F31009DA507 /* CacheService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D299F87525041F31009DA507 /* CacheService.swift */; };
+		D2B146C72514EF2300DDFCED /* FriendDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B146C62514EF2300DDFCED /* FriendDatabase.swift */; };
+		D2B1471A2514FCF000DDFCED /* WorkoutVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B147192514FCF000DDFCED /* WorkoutVC.swift */; };
+		D2B1471C2514FCFC00DDFCED /* WorkoutNavigationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B1471B2514FCFC00DDFCED /* WorkoutNavigationVC.swift */; };
+		D2B147212514FD8300DDFCED /* SocialVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B147202514FD8300DDFCED /* SocialVC.swift */; };
+		D2B147232514FD8C00DDFCED /* SocialNavigationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B147222514FD8C00DDFCED /* SocialNavigationVC.swift */; };
+		D2B147282514FE2100DDFCED /* SomethingNavigationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B147272514FE2100DDFCED /* SomethingNavigationVC.swift */; };
+		D2B1472A2514FE3200DDFCED /* SomethingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B147292514FE3200DDFCED /* SomethingVC.swift */; };
 		D2B3DDA624FEB2D800936014 /* WorkoutVC+Delegates.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B3DDA524FEB2D800936014 /* WorkoutVC+Delegates.swift */; };
 		D2B3DDA824FEB45F00936014 /* WorkoutService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B3DDA724FEB45F00936014 /* WorkoutService.swift */; };
 		D2B3DDAA24FEEE3700936014 /* WorkoutVC+Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2B3DDA924FEEE3700936014 /* WorkoutVC+Animations.swift */; };
@@ -121,8 +126,6 @@
 /* Begin PBXFileReference section */
 		348B76E9B1CBB25D0AC45786 /* Pods_ShapeRace.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ShapeRace.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F803DFBD33D58B311BCAA0E /* Pods-ShapeRace.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShapeRace.release.xcconfig"; path = "Target Support Files/Pods-ShapeRace/Pods-ShapeRace.release.xcconfig"; sourceTree = "<group>"; };
-		D229E57E24F45217009AB681 /* WorkoutNavigationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutNavigationVC.swift; sourceTree = "<group>"; };
-		D229E58024F45246009AB681 /* WorkoutVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutVC.swift; sourceTree = "<group>"; };
 		D229E58224F4533E009AB681 /* SRTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SRTabBarController.swift; sourceTree = "<group>"; };
 		D229E58424F45817009AB681 /* ProgressHUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressHUD.swift; sourceTree = "<group>"; };
 		D229E58E24F46101009AB681 /* FeedVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedVC.swift; sourceTree = "<group>"; };
@@ -180,6 +183,13 @@
 		D299F87125041DA7009DA507 /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
 		D299F87325041DCA009DA507 /* UserStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStorage.swift; sourceTree = "<group>"; };
 		D299F87525041F31009DA507 /* CacheService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheService.swift; sourceTree = "<group>"; };
+		D2B146C62514EF2300DDFCED /* FriendDatabase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendDatabase.swift; sourceTree = "<group>"; };
+		D2B147192514FCF000DDFCED /* WorkoutVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkoutVC.swift; sourceTree = "<group>"; };
+		D2B1471B2514FCFC00DDFCED /* WorkoutNavigationVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorkoutNavigationVC.swift; sourceTree = "<group>"; };
+		D2B147202514FD8300DDFCED /* SocialVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialVC.swift; sourceTree = "<group>"; };
+		D2B147222514FD8C00DDFCED /* SocialNavigationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialNavigationVC.swift; sourceTree = "<group>"; };
+		D2B147272514FE2100DDFCED /* SomethingNavigationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SomethingNavigationVC.swift; sourceTree = "<group>"; };
+		D2B147292514FE3200DDFCED /* SomethingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SomethingVC.swift; sourceTree = "<group>"; };
 		D2B3DDA524FEB2D800936014 /* WorkoutVC+Delegates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WorkoutVC+Delegates.swift"; sourceTree = "<group>"; };
 		D2B3DDA724FEB45F00936014 /* WorkoutService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutService.swift; sourceTree = "<group>"; };
 		D2B3DDA924FEEE3700936014 /* WorkoutVC+Animations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WorkoutVC+Animations.swift"; sourceTree = "<group>"; };
@@ -271,12 +281,12 @@
 		D229E57B24F45202009AB681 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				D229E58024F45246009AB681 /* WorkoutVC.swift */,
+				D2B147192514FCF000DDFCED /* WorkoutVC.swift */,
 				D2570C6B24FBFB9A00BD3D24 /* WorkoutVC+UI.swift */,
 				D2570C6D24FBFBA500BD3D24 /* WorkoutVC+Actions.swift */,
 				D2B3DDA924FEEE3700936014 /* WorkoutVC+Animations.swift */,
 				D2B3DDA524FEB2D800936014 /* WorkoutVC+Delegates.swift */,
-				D229E57E24F45217009AB681 /* WorkoutNavigationVC.swift */,
+				D2B1471B2514FCFC00DDFCED /* WorkoutNavigationVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -389,6 +399,7 @@
 				D2D732B924F2F213000B30A6 /* DB.swift */,
 				D2D732BB24F2F226000B30A6 /* CurrentUserDatabase.swift */,
 				D2D7C2722502F47700A8FDE5 /* WorkoutDatabase.swift */,
+				D2B146C62514EF2300DDFCED /* FriendDatabase.swift */,
 			);
 			path = Firestore;
 			sourceTree = "<group>";
@@ -613,6 +624,72 @@
 			path = Storage;
 			sourceTree = "<group>";
 		};
+		D2B146F82514FBFB00DDFCED /* SocialView */ = {
+			isa = PBXGroup;
+			children = (
+				D2B1471F2514FD6400DDFCED /* Model */,
+				D2B1471E2514FD5C00DDFCED /* View */,
+				D2B1471D2514FD5500DDFCED /* Controller */,
+			);
+			path = SocialView;
+			sourceTree = "<group>";
+		};
+		D2B1470A2514FCBD00DDFCED /* SOMETHINGView */ = {
+			isa = PBXGroup;
+			children = (
+				D2B147262514FE1200DDFCED /* Model */,
+				D2B147252514FE0F00DDFCED /* View */,
+				D2B147242514FDDF00DDFCED /* Controller */,
+			);
+			path = SOMETHINGView;
+			sourceTree = "<group>";
+		};
+		D2B1471D2514FD5500DDFCED /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				D2B147202514FD8300DDFCED /* SocialVC.swift */,
+				D2B147222514FD8C00DDFCED /* SocialNavigationVC.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		D2B1471E2514FD5C00DDFCED /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		D2B1471F2514FD6400DDFCED /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		D2B147242514FDDF00DDFCED /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				D2B147272514FE2100DDFCED /* SomethingNavigationVC.swift */,
+				D2B147292514FE3200DDFCED /* SomethingVC.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		D2B147252514FE0F00DDFCED /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		D2B147262514FE1200DDFCED /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		D2CE469B24F06ED400376C81 = {
 			isa = PBXGroup;
 			children = (
@@ -661,9 +738,11 @@
 			isa = PBXGroup;
 			children = (
 				D2CE46BF24F07F2400376C81 /* Authentications */,
-				D229E58724F460D8009AB681 /* FeedView */,
 				D24A336025066AED005E4348 /* SaveWorkoutView */,
+				D229E58724F460D8009AB681 /* FeedView */,
+				D2B1470A2514FCBD00DDFCED /* SOMETHINGView */,
 				D229E57A24F451DB009AB681 /* WorkoutView */,
+				D2B146F82514FBFB00DDFCED /* SocialView */,
 				D229E58624F460C2009AB681 /* ProfileView */,
 			);
 			path = Screens;
@@ -918,15 +997,17 @@
 				D291DFF724FDB27100882F39 /* Int+DatesAndTime.swift in Sources */,
 				D286F05024F09245007D887F /* SRColors.swift in Sources */,
 				D2FAE592250BC3A400110A9E /* ChooseNearestTVC.swift in Sources */,
+				D2B1472A2514FE3200DDFCED /* SomethingVC.swift in Sources */,
 				D299F86925039AB2009DA507 /* AppDelegate+Singeltons.swift in Sources */,
 				D22C0D5524F26FFD005776C3 /* FBAuthenticationService.swift in Sources */,
 				D2570C5A24FB22F000BD3D24 /* NotificationCenter+Name.swift in Sources */,
-				D229E57F24F45217009AB681 /* WorkoutNavigationVC.swift in Sources */,
 				D255801D250980B100FFCC0D /* GymCenterModel.swift in Sources */,
+				D2B147282514FE2100DDFCED /* SomethingNavigationVC.swift in Sources */,
 				D229E58524F45817009AB681 /* ProgressHUD.swift in Sources */,
 				D286B017250BA9F800B08157 /* ChooseNearestGymLocationVC.swift in Sources */,
 				D2782D0225110B8E0056763B /* SaveWorkout+UI.swift in Sources */,
 				D286F05224F125F5007D887F /* AddAction.swift in Sources */,
+				D2B147212514FD8300DDFCED /* SocialVC.swift in Sources */,
 				D286F03A24F088F3007D887F /* FloatingPanelSetup.swift in Sources */,
 				D286F06D24F1385F007D887F /* SignInAndUpVC.swift in Sources */,
 				D2CE46C424F080D500376C81 /* AuthenticationNavigationVC.swift in Sources */,
@@ -951,6 +1032,7 @@
 				D2FAE590250BB4FB00110A9E /* ChooseNearestGym+Tableview.swift in Sources */,
 				D286F03C24F08992007D887F /* LoginFloatingPanelVC.swift in Sources */,
 				D2D7C2752502F4DA00A8FDE5 /* WorkoutModel.swift in Sources */,
+				D2B1471C2514FCFC00DDFCED /* WorkoutNavigationVC.swift in Sources */,
 				D286F03E24F089A1007D887F /* SignUpFloatingPanelVC.swift in Sources */,
 				D2FAE595250CF9C700110A9E /* GymLocationAnnotation.swift in Sources */,
 				D229E58324F4533E009AB681 /* SRTabBarController.swift in Sources */,
@@ -985,19 +1067,21 @@
 				D2570C6724FBBCAF00BD3D24 /* AuthNotificationHandlers.swift in Sources */,
 				D286B01A250BAF7600B08157 /* ChooseNearestGym+MapDelegate.swift in Sources */,
 				D2CE46A824F06ED400376C81 /* AppDelegate.swift in Sources */,
+				D2B147232514FD8C00DDFCED /* SocialNavigationVC.swift in Sources */,
 				D2570C6924FBD1F400BD3D24 /* ViewControllerSwitcher.swift in Sources */,
 				D2CE46C924F0816000376C81 /* SRNavigationController.swift in Sources */,
 				D2D7C2732502F47700A8FDE5 /* WorkoutDatabase.swift in Sources */,
 				D2570C6C24FBFB9A00BD3D24 /* WorkoutVC+UI.swift in Sources */,
 				D2CE46BC24F0708D00376C81 /* SceneDelegate.swift in Sources */,
 				D2782D04251110280056763B /* GymAnnotationView.swift in Sources */,
+				D2B146C72514EF2300DDFCED /* FriendDatabase.swift in Sources */,
 				D286F04B24F0920C007D887F /* SRTextFieldWithFloat.swift in Sources */,
 				D2B3DDAA24FEEE3700936014 /* WorkoutVC+Animations.swift in Sources */,
 				D2B3DDA824FEB45F00936014 /* WorkoutService.swift in Sources */,
-				D229E58124F45246009AB681 /* WorkoutVC.swift in Sources */,
 				D2D732BC24F2F226000B30A6 /* CurrentUserDatabase.swift in Sources */,
 				D2BBF56F24FE5BAF0027C5B4 /* MapBoxService.swift in Sources */,
 				D2570C4D24FADDFC00BD3D24 /* TabbarService.swift in Sources */,
+				D2B1471A2514FCF000DDFCED /* WorkoutVC.swift in Sources */,
 				D2FAE599250E3CB300110A9E /* WorkoutTVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

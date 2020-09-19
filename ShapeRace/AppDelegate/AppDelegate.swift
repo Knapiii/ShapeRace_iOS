@@ -17,7 +17,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
     var rootViewController: UIViewController?
-    
+    var authListener: AuthStateDidChangeListenerHandle?
+
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         window = UIWindow(frame: UIScreen.main.bounds)
@@ -25,8 +26,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FirebaseApp.configure()
         
         
-        configureInitialVC()
         //navigate(to: nil)
+        if authListener != nil { return true }
+        
+        let dispatchGroup = DispatchGroup()
+        authListener = Auth.auth().addStateDidChangeListener { (auth, user) in
+            dispatchGroup.enter()
+            if user != nil {
+                DB.friends.startObservingFriends()
+                //DB.workout.fetchMyWorkouts { (_) in }
+                
+                if !DB.currentUser.isCreatingUser {
+                    dispatchGroup.leave()
+                }
+            } else {
+                DB.friends.stopObservingFriends()
+                dispatchGroup.leave()
+            }
+        }
+        
+        dispatchGroup.notify(queue: DispatchQueue.main) {
+            self.configureInitialVC()
+        }
         return true
     }
     

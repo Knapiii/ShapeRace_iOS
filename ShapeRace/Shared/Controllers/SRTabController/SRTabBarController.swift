@@ -10,8 +10,10 @@ import UIKit
 
 enum ViewTag: Int {
     case feedTabBarItem = 400
-    case workoutTabBarItem = 401
-    case profileTabBarItem = 402
+    case somethingTabBarItem = 401
+    case workoutTabBarItem = 402
+    case socialTabBarItem = 403
+    case profileTabBarItem = 404
 
 }
 
@@ -20,7 +22,9 @@ class SRTabBarController: UITabBarController {
     let customizedTabBar = TabBarCustomizator()
 
     var feed: FeedNavigationVC = FeedNavigationVC()
+    var something: SomethingNavigationVC = SomethingNavigationVC()
     var workout: WorkoutNavigationVC = WorkoutNavigationVC()
+    var social: SocialNavigationVC = SocialNavigationVC()
     var profile: ProfileNavigationVC = ProfileNavigationVC()
     
     init() {
@@ -34,12 +38,12 @@ class SRTabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tabBar.backgroundColor = .clear
-        viewControllers = [feed, workout, profile]
+        viewControllers = [feed, something, workout, social, profile]
         setTabbarImage()
         customizedTabBar.tabBar = tabBar
         customizedTabBar.customize()
         tabBar.backgroundColor = .clear
-        selectedIndex = 1
+        selectedIndex = 2
         UITabBar.appearance().tintColor = SRColor.adaptiveBlue
         UITabBar.appearance().backgroundImage = UIImage()
         UITabBar.appearance().shadowImage = UIImage()
@@ -47,8 +51,10 @@ class SRTabBarController: UITabBarController {
     
     func setTabbarImage() {
         setItemIcons(item: 0, selected: "Feed_Selected", unSelected: "Feed_Unselected")
-        setItemIcons(item: 1, selected: "Dumbbell_Selected", unSelected: "Dumbbell_Unselected")
-        setItemIcons(item: 2, selected: "Profile_Selected", unSelected: "Profile")
+        setItemIcons(item: 1, selected: "Feed_Selected", unSelected: "Feed_Unselected")
+        setItemIcons(item: 2, selected: "Dumbbell_Selected", unSelected: "Dumbbell_Unselected")
+        setItemIcons(item: 3, selected: "Feed_Selected", unSelected: "Feed_Unselected")
+        setItemIcons(item: 4, selected: "Profile_Selected", unSelected: "Profile")
     }
     
     fileprivate func setItemIcons(item: Int, selected: String, unSelected: String) {
@@ -63,9 +69,15 @@ class SRTabBarController: UITabBarController {
             let inset = UIEdgeInsets(top: 5, left: 0, bottom: -5, right: 0)
             self.tabBar.items?[item].imageInsets = inset
         case 1:
-            let inset = UIEdgeInsets(top: -15, left: 0, bottom: 5, right: 0)
+            let inset = UIEdgeInsets(top: 5, left: 0, bottom: -5, right: 0)
             self.tabBar.items?[item].imageInsets = inset
         case 2:
+            let inset = UIEdgeInsets(top: -15, left: 0, bottom: 5, right: 0)
+            self.tabBar.items?[item].imageInsets = inset
+        case 3:
+            let inset = UIEdgeInsets(top: 5, left: 0, bottom: -5, right: 0)
+            self.tabBar.items?[item].imageInsets = inset
+        case 4:
             let inset = UIEdgeInsets(top: 5, left: 0, bottom: -5, right: 0)
             self.tabBar.items?[item].imageInsets = inset
         default:
@@ -74,6 +86,8 @@ class SRTabBarController: UITabBarController {
         }
     
     }
+    
+
     
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
         guard let barButtonView = item.value(forKey: "view") as? UIView else { return }
