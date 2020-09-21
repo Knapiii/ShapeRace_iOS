@@ -25,20 +25,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FirebaseConfiguration.shared.setLoggerLevel(.min)
         FirebaseApp.configure()
         
-        
         //navigate(to: nil)
-        if authListener != nil { return true }
-        
+        if authListener != nil {
+            return true
+        }
         let dispatchGroup = DispatchGroup()
+        dispatchGroup.enter()
         authListener = Auth.auth().addStateDidChangeListener { (auth, user) in
-            dispatchGroup.enter()
             if user != nil {
                 DB.friends.startObservingFriends()
                 //DB.workout.fetchMyWorkouts { (_) in }
-                
-                if !DB.currentUser.isCreatingUser {
-                    dispatchGroup.leave()
-                }
+                dispatchGroup.leave()
             } else {
                 DB.friends.stopObservingFriends()
                 dispatchGroup.leave()
@@ -46,6 +43,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         dispatchGroup.notify(queue: DispatchQueue.main) {
+            print("hej")
             self.configureInitialVC()
         }
         return true
@@ -86,6 +84,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             DB.currentUser.getCurrentUserData { (result) in
                 switch result {
                 case .success(let user):
+                    print(user.description)
+                    print(user.description)
                     switch user.hasFinishedWalkthrough {
                     case true:
                         self.fetchAllSingeltons()
@@ -96,8 +96,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                         if let completion = continueToOnboarding {
                             completion()
                         } else {
-                            self.rootViewController = HomeNavigationViewController()
-                            self.navigate(to: self.rootViewController)
+                            let root = HomeNavigationViewController()
+                            self.rootViewController = root
+                            self.navigate(to: root)
                         }
                        
                     }

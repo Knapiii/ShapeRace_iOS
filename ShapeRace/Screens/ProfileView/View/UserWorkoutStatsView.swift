@@ -54,7 +54,7 @@ class UserWorkoutStatsView: UIView {
             stackView.leftAnchor.constraint(equalTo: leftAnchor),
             stackView.bottomAnchor.constraint(equalTo: bottomAnchor),
             stackView.rightAnchor.constraint(equalTo: rightAnchor),
-            stackView.heightAnchor.constraint(equalToConstant: 48)
+            stackView.heightAnchor.constraint(equalToConstant: 38)
         ])
         
     }

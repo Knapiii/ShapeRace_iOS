@@ -35,6 +35,10 @@ class UserProfileImageView: UIImageView {
         backgroundColor = SRColor.systemGray6
     }
     
+    func clearImage() {
+        image = nil
+    }
+    
     func setImage(with userId: String) {
         setProfileImage(userId: userId)
     }

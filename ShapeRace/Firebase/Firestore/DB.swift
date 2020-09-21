@@ -19,6 +19,7 @@ extension Timestamp: TimestampType {}
 struct DB {
     static let auth = FBAuthenticationService.shared
     static let currentUser = CurrentUserDatabase.shared
+    static let user = UserDatatabase.shared
     static let workout = WorkoutDatabase.shared
     static let friends = FriendsDatabase.shared
 

@@ -60,12 +60,13 @@ class RequestModel: Codable, ReflectedStringConvertible {
     }
 }
 
+enum FriendState {
+    case addFriend, acceptRequest, cancelRequest, removeFriend
+}
 
 class FriendsDatabase {
     static let shared = FriendsDatabase()
-    enum friendState {
-        case addFriend, acceptRequest, cancelRequest, removeFriend
-    }
+
     
     var friendsListener: ListenerRegistration?
     var myFriends: [FriendModel] = []
@@ -157,7 +158,6 @@ class FriendsDatabase {
         ]
         FirestoreService.Ref.Friends.shared.friends.addDocument(data: friendData) { (error) in
             if let error = error {
-                //Try again here?
                 print(error.localizedDescription)
             }
             //Event.setEventFor.friends.friendRequestSent()
@@ -166,7 +166,7 @@ class FriendsDatabase {
         
     }
     
-    func acceptFriendRequest(withFriendsId friendsId: String, fromUserId: String? = nil) {
+    func acceptFriendRequest(withFriendsId friendsId: String, fromUserId: String? = nil, completion: @escaping VoidCompletion) {
         let lastMes: [String: Any] = [
             "text" : "\("Start chatting")!",
             "read" : false,
@@ -175,53 +175,56 @@ class FriendsDatabase {
         
         FirestoreService.Ref.Friends.shared.specific(friendsId: friendsId).updateData(["isFriends": true, "lastMessage.read": lastMes]) { (error) in
             if let error = error {
-                //Try again here?
                 print(error.localizedDescription)
+                completion(.failure(error))
             }
-            if let fromUserId = fromUserId {
-                //Event.setEventFor.friends.friendRequestSent()
-                //NotificationHandlerService.shared.sendRequestAs(.acceptFriendRequest, notificationId: fromUserId, to: fromUserId, badgeAmount: 1)
-            }
+            completion(.success(()))
+//            if let fromUserId = fromUserId {
+//                //Event.setEventFor.friends.friendRequestSent()
+//                //NotificationHandlerService.shared.sendRequestAs(.acceptFriendRequest, notificationId: fromUserId, to: fromUserId, badgeAmount: 1)
+//            }
         }
     }
     
-    func deleteFriendCollection(withFriendsId friendsId: String) {
+    func deleteFriendCollection(withFriendsId friendsId: String, completion: @escaping VoidCompletion) {
         FirestoreService.Ref.Friends.shared.specific(friendsId: friendsId).delete { (error) in
             if let error = error {
                 //Try again here?
                 print(error.localizedDescription)
+                completion(.failure(error))
             }
+            completion(.success(()))
         }
     }
     
-    func acceptFriendRequest(fromUser friend: UserModel) {
+    func acceptFriendRequest(fromUser friend: UserModel, completion: @escaping VoidCompletion) {
         let specificFriendArray = receivedRequests.filter{ $0.userId == friend.userId }
         guard let specificFriend = specificFriendArray.first else { return }
-        acceptFriendRequest(withFriendsId: specificFriend.friendsId, fromUserId: friend.userId)
+        acceptFriendRequest(withFriendsId: specificFriend.friendsId, fromUserId: friend.userId, completion: completion)
     }
     
-    func cancelFriendRequest(toUser friend: UserModel) {
+    func cancelFriendRequest(toUser friend: UserModel, completion: @escaping VoidCompletion) {
         let specificRequestArray = sentRequests.filter{ $0.userId == friend.userId }
         guard let specificRequest = specificRequestArray.first else { return }
         //Event.setEventFor.friends.friendRequestCanceled()
-        deleteFriendCollection(withFriendsId: specificRequest.friendsId)
+        deleteFriendCollection(withFriendsId: specificRequest.friendsId, completion: completion)
     }
     
-    func declineFriendRequest(fromUser friend: UserModel) {
+    func declineFriendRequest(fromUser friend: UserModel, completion: @escaping VoidCompletion) {
         let specificRequestArray = receivedRequests.filter{ $0.userId == friend.userId }
         guard let specificRequest = specificRequestArray.first else { return }
         //Event.setEventFor.friends.friendRequestDecline()
-        deleteFriendCollection(withFriendsId: specificRequest.friendsId)
+        deleteFriendCollection(withFriendsId: specificRequest.friendsId, completion: completion)
     }
     
-    func deleteFriendCollection(withUser friend: UserModel) {
+    func deleteFriendCollection(withUser friend: UserModel, completion: @escaping VoidCompletion) {
         let specificFriendArray = myFriends.filter{ $0.userId == friend.userId }
         guard let specificFriend = specificFriendArray.first else { return }
         //Event.setEventFor.friends.friendRemoved()
-        deleteFriendCollection(withFriendsId: specificFriend.friendsId)
+        deleteFriendCollection(withFriendsId: specificFriend.friendsId, completion: completion)
     }
     
-    func checkFriendState(forUserId userId: String) -> friendState {
+    func checkFriendState(forUserId userId: String) -> FriendState {
         if myFriends.contains(where: { $0.userId == userId }) {
             //Friends
             return .removeFriend

@@ -8,8 +8,14 @@
 
 import UIKit
 
-class WorkoutTVC: UITableViewCell {
+protocol WorkoutTVCDelegate {
+    func goToUser(id: String)
+    func goToWorkout(id: String)
+}
+
+class WorkoutTableViewCell: UITableViewCell {
     static let identifier = "WorkoutTVC"
+    var delegate: WorkoutTVCDelegate?
     var isInFeedView = false
     let cellContentView: UIView = {
         $0.translatesAutoresizingMaskIntoConstraints = false
@@ -125,7 +131,6 @@ class WorkoutTVC: UITableViewCell {
     }
     
     func setLabels() {
-        //= workout?.workoutTime?.secondsToTimeWithDotsInBetween(includeSeconds: true)
         guard let workout = workout else { return }
         userImageView.setImage(with: workout.userId)
         nameLabel.text = workout.userName
@@ -164,16 +169,13 @@ class WorkoutTVC: UITableViewCell {
         guard let workout = workout else { return }
         Vibration.selection.vibrate()
         
-        UIView.animate(withDuration: 0.1,
-                       animations: {
-                        self.likeButton.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
-                       },
-                       completion: { _ in
-                        UIView.animate(withDuration: 0.1) {
-                            self.likeButton.transform = CGAffineTransform.identity
-                        }
-                       })
-        
+        UIView.animate(withDuration: 0.1, animations: {
+            self.likeButton.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
+        }, completion: { _ in
+            UIView.animate(withDuration: 0.1) {
+                self.likeButton.transform = CGAffineTransform.identity
+            }
+        })
         workout.toggleLike()
     }
     
@@ -277,6 +279,10 @@ class WorkoutTVC: UITableViewCell {
         ])
         likeButton.addAction {
             self.likeButtonTapped()
+        }
+        userImageView.addTapGestureRecognizer { [self] in
+            guard let workoutId = workout?.userId else { return }
+            delegate?.goToUser(id: workoutId)
         }
     }
     

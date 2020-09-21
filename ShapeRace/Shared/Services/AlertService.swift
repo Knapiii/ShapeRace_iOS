@@ -14,7 +14,10 @@ class AlertService {
     
     func showLoader() {
         ProgressHudService.shared.showSpinner()
-        
+    }
+    
+    func dismissLoader() {
+        ProgressHudService.shared.dismiss()
     }
     
     func showAlert(title: String,

@@ -8,16 +8,28 @@
 
 import UIKit
 
+protocol ProfileHeaderViewDelegate {
+    func friendRequestAction()
+}
+
 class ProfileHeaderView: UITableViewHeaderFooterView {
     static let identifier = "ProfileHeaderView"
-    
+    var delegate: ProfileHeaderViewDelegate?
     var profileImageView = UserProfileImageView()
     let nameLabel: UILabel = {
         $0.translatesAutoresizingMaskIntoConstraints = false
-        $0.font = .systemFont(ofSize: 24, weight: .bold)
+        $0.font = .systemFont(ofSize: 20, weight: .bold)
         $0.textColor = SRColor.label
         return $0
     }(UILabel())
+    
+    let friendRequestButton: UIButton = {
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.setImage(UIImage(named: "Friend_Request"), for: .normal)
+        $0.imageView?.contentMode = .scaleAspectFit
+        return $0
+    }(UIButton())
+    
     let statsView = UserWorkoutStatsView()
     
     var user: UserModel? {
@@ -41,14 +53,14 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configure() {
+    private func configure() {
         contentView.backgroundColor = SRColor.background
         backgroundColor = SRColor.background
 
         addSubview(profileImageView)
         NSLayoutConstraint.activate([
             profileImageView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 16),
-            profileImageView.centerXAnchor.constraint(equalTo: centerXAnchor),
+            profileImageView.leftAnchor.constraint(equalTo: leftAnchor, constant: 16),
             profileImageView.heightAnchor.constraint(equalToConstant: 100)
         ])
         profileImageView.ratioOneToOne()
@@ -56,18 +68,30 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
             profileImageView.setImage(with: uid)
         }
 
-//        addSubview(nameLabel)
-//        NSLayoutConstraint.activate([
-//            nameLabel.leftAnchor.constraint(equalTo: profileImageView.rightAnchor, constant: 16),
-//            nameLabel.bottomAnchor.constraint(equalTo: profileImageView.centerYAnchor),
-//            nameLabel.rightAnchor.constraint(equalTo: rightAnchor),
-//        ])
+        addSubview(nameLabel)
+        NSLayoutConstraint.activate([
+            nameLabel.leftAnchor.constraint(equalTo: profileImageView.leftAnchor),
+            nameLabel.topAnchor.constraint(equalTo: profileImageView.bottomAnchor, constant: 8),
+            nameLabel.rightAnchor.constraint(equalTo: rightAnchor),
+            nameLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8)
+        ])
+        
+        addSubview(friendRequestButton)
+        NSLayoutConstraint.activate([
+            friendRequestButton.rightAnchor.constraint(equalTo: rightAnchor, constant: -16),
+            friendRequestButton.bottomAnchor.constraint(equalTo: nameLabel.bottomAnchor),
+            friendRequestButton.heightAnchor.constraint(equalToConstant: 24),
+            friendRequestButton.widthAnchor.constraint(equalToConstant: 24),
+        ])
+        
+        friendRequestButton.addAction {
+            self.delegate?.friendRequestAction()
+        }
 
         addSubview(statsView)
         NSLayoutConstraint.activate([
-            statsView.topAnchor.constraint(equalTo: profileImageView.bottomAnchor, constant: 16),
-            statsView.leftAnchor.constraint(equalTo: leftAnchor, constant: 16),
-            statsView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -16),
+            statsView.leftAnchor.constraint(equalTo: profileImageView.rightAnchor, constant: 16),
+            statsView.centerYAnchor.constraint(equalTo: profileImageView.centerYAnchor),
             statsView.rightAnchor.constraint(equalTo: rightAnchor, constant: -16),
         ])
     }

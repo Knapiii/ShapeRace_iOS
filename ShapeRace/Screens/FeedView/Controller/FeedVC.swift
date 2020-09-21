@@ -49,12 +49,11 @@ class FeedVC: UIViewController {
     }
     
     func configureTableView() {
-        tableView.contentInsetAdjustmentBehavior = .never
         refreshController.addTarget(self, action: #selector(refreshTableView), for: .valueChanged)
         tableView.refreshControl = refreshController
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.register(WorkoutTVC.self, forCellReuseIdentifier: WorkoutTVC.identifier)
+        tableView.register(WorkoutTableViewCell.self, forCellReuseIdentifier: WorkoutTableViewCell.identifier)
         view.addSubview(tableView)
         NSLayoutConstraint.activate([
             tableView.widthAnchor.constraint(equalTo: view.widthAnchor),
@@ -80,11 +79,11 @@ extension FeedVC: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: WorkoutTVC.identifier, for: indexPath) as! WorkoutTVC
+        let cell = tableView.dequeueReusableCell(withIdentifier: WorkoutTableViewCell.identifier, for: indexPath) as! WorkoutTableViewCell
         guard let workouts = workouts else {
             return cell
         }
-    
+        cell.delegate = self
         cell.workout = workouts[indexPath.row]
         
         return cell
@@ -94,4 +93,28 @@ extension FeedVC: UITableViewDataSource, UITableViewDelegate {
         return UITableView.automaticDimension
     }
                      
+}
+
+extension FeedVC: WorkoutTVCDelegate {
+    func goToUser(id: String) {
+        guard id != DB.currentUser.userId else { return }
+        Vibration.medium.vibrate()
+        AlertService.shared.showLoader()
+        DB.user.getUser(with: id) { (result) in
+            switch result {
+            case .success(let user):
+                let vc = UserVC(user: user)
+                self.navigationController?.pushViewController(vc, animated: true)
+                AlertService.shared.dismissLoader()
+            case .failure(let error):
+                print(error.localizedDescription)
+                AlertService.shared.dismissLoader()
+            }
+        }
+    }
+    
+    func goToWorkout(id: String) {
+        Vibration.medium.vibrate()
+        print(id)
+    }
 }

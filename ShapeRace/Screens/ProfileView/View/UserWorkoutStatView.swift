@@ -24,7 +24,7 @@ class UserWorkoutStatView: UIView {
     
     let unitTitleLabel: UILabel = {
         $0.translatesAutoresizingMaskIntoConstraints = false
-        $0.font = .systemFont(ofSize: 17, weight: .regular)
+        $0.font = .systemFont(ofSize: 14, weight: .regular)
         $0.textColor = SRColor.label
         $0.textAlignment = .center
         return $0
@@ -32,7 +32,7 @@ class UserWorkoutStatView: UIView {
     
     let unitLabel: UILabel = {
         $0.translatesAutoresizingMaskIntoConstraints = false
-        $0.font = .systemFont(ofSize: 24, weight: .bold)
+        $0.font = .systemFont(ofSize: 20, weight: .bold)
         $0.textColor = SRColor.label
         $0.textAlignment = .center
         return $0
@@ -69,10 +69,10 @@ class UserWorkoutStatView: UIView {
     func setTexts() {
         switch unitState {
         case .amountOfWorkouts:
-            unitTitleLabel.text = "Amount of workouts"
+            unitTitleLabel.text = "Workouts"
             unitLabel.text = "\(unit)"
         case .totalWorkoutTime:
-            unitTitleLabel.text = "Total workout time"
+            unitTitleLabel.text = "Workout time"
             unitLabel.text = unit.returnSinutesSecondsThenHours(showSecondsWithHours: true)
         }
     }

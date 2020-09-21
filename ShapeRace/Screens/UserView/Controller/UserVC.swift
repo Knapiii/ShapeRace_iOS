@@ -1,5 +1,5 @@
 //
-//  WorkoutVC.swift
+//  UserVC.swift
 //  ShapeRace
 //
 //  Created by Kristoffer Knape on 2020-08-24.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ProfileVC: UIViewController {
+class UserVC: UIViewController {
     
     let tableView: UITableView = {
         $0.translatesAutoresizingMaskIntoConstraints = false
@@ -19,39 +19,57 @@ class ProfileVC: UIViewController {
     
     var tableViewHeader = ProfileHeaderView()
     
-    var workouts: [WorkoutModel] = [] {
-        didSet {
-            tableView.reloadData()
-        }
+    var user: UserModel
+    var workouts: [WorkoutModel] = []
+    init(user: UserModel) {
+        self.user = user
+        super.init(nibName: nil, bundle: nil)
     }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = SRColor.background
         configureNavigation()
         configureTableView()
-        fetchWorkouts()
-        title = DB.currentUser.user?.displayNameAndLastNameIfAvailable
+        fetchWorkoutsFrom(user: user)
+        title = user.displayNameAndLastNameIfAvailable
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.navigationController?.setNavigationBarHidden(true, animated: false)
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        self.navigationController?.setNavigationBarHidden(true, animated: false)
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
         self.tabBarController?.tabBar.isHidden = false
     }
     
     func configureNavigation() {
-        navigationController?.setNavigationBarHidden(true, animated: false)
+        navigationController?.setNavigationBarHidden(false, animated: false)
+    }
+    
+    private func fetchWorkoutsFrom(user: UserModel) {
+        DB.workout.fetchWorkoutsFrom(userId: user.userId) { (result) in
+            switch result {
+            case .success(let workouts):
+                self.workouts = workouts
+                self.tableView.reloadData()
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
     }
     
     func configureTableView() {
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.register(ProfileHeaderView.self, forHeaderFooterViewReuseIdentifier: ProfileHeaderView.identifier)
+        tableView.register(UserHeaderView.self, forHeaderFooterViewReuseIdentifier: UserHeaderView.identifier)
         tableView.register(WorkoutTableViewCell.self, forCellReuseIdentifier: WorkoutTableViewCell.identifier)
         view.addSubview(tableView)
         NSLayoutConstraint.activate([
@@ -68,14 +86,23 @@ class ProfileVC: UIViewController {
     }
     
 }
-extension ProfileVC: ProfileHeaderViewDelegate {
-    func friendRequestAction() {
-        let vc = FriendRequestsVC()
-        self.navigationController?.pushViewController(vc, animated: true)
+
+extension UserVC: UserHeaderDelegate {
+    func setFriendState(user: UserModel, state: FriendState) {
+        switch state {
+        case .addFriend:
+            DB.friends.sendFriendRequest(toUser: user)
+        case .acceptRequest:
+            DB.friends.acceptFriendRequest(fromUser: user, completion: {_ in })
+        case .cancelRequest:
+            DB.friends.cancelFriendRequest(toUser: user, completion: {_ in })
+        case .removeFriend:
+            DB.friends.deleteFriendCollection(withUser: user, completion: {_ in })
+        }
     }
 }
 
-extension ProfileVC: UITableViewDataSource, UITableViewDelegate {
+extension UserVC: UITableViewDataSource, UITableViewDelegate {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -96,9 +123,9 @@ extension ProfileVC: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: ProfileHeaderView.identifier) as! ProfileHeaderView
+        let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: UserHeaderView.identifier) as! UserHeaderView
+        view.user = user
         view.delegate = self
-        view.user = DB.currentUser.user
         view.workouts = workouts
         return view
     }
