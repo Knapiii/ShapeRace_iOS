@@ -69,7 +69,11 @@ class FriendsDatabase {
 
     
     var friendsListener: ListenerRegistration?
-    var myFriends: [FriendModel] = []
+    var myFriends: [FriendModel] = [] {
+        didSet {
+        
+        }
+    }
     var sentRequests: [RequestModel] = []
     var receivedRequests: [RequestModel] = []
     var notifications = 0
@@ -94,14 +98,16 @@ class FriendsDatabase {
                     var updatedSentRequests: [RequestModel] = []
                     var updatedReceivedRequests: [RequestModel] = []
                     var updatedNotifications = 0
-                    
+                    print("11111")
                     documents.forEach({ document in
                         let dictionary = document.data() as [String : Any]
                         guard let isFriends = dictionary["isFriends"] as? Bool else { return }
-                        
+                        print(isFriends)
                         if isFriends {
                             if let friend = self.createFriendModel(dict: dictionary, currentUser: currentUser, friendsId: document.documentID) {
+                                print("hej")
                                 updatedFriends.append(friend)
+                                print(updatedFriends)
                                 if !friend.isRead {
                                     if self.chattingWithUserId == friend.userId {
                                         self.markAsRead(friendsId: friend.friendsId)
@@ -111,6 +117,7 @@ class FriendsDatabase {
                                 }
                             }
                         } else {
+                            print("då")
                             let requestTuple = self.createRequestModel(dict: dictionary, currentUser: currentUser, friendsId: document.documentID)
                             
                             if let sent = requestTuple.sentRequest {
@@ -143,23 +150,24 @@ class FriendsDatabase {
         }
     }
     
-    func sendFriendRequest(toUser friendUser: UserModel) {
+    func sendFriendRequest(toUser friendUser: UserModel, completion: @escaping VoidCompletion) {
         guard let user = DB.currentUser.user else { return }
         
         let userName = (user.firstName ?? "") + " " + (user.lastName ?? "")
         let friendName = (friendUser.firstName ?? "") + " " + (friendUser.lastName ?? "")
                 
         let friendData: [String: Any] = [
-            "isFriends": false,
-            "names": [user.userId: userName, friendUser.userId: friendName],
-            "updated": Timestamp(date: Date()),
-            "users": [user.userId, friendUser.userId],
+            DBStrings.Friends.isFriends: false,
+            DBStrings.Friends.names: [user.userId: userName, friendUser.userId: friendName],
+            DBStrings.Friends.updated: Timestamp(date: Date()),
+            DBStrings.Friends.users: [user.userId, friendUser.userId],
             "version": 1
         ]
         FirestoreService.Ref.Friends.shared.friends.addDocument(data: friendData) { (error) in
             if let error = error {
                 print(error.localizedDescription)
             }
+            completion(.success(()))
             //Event.setEventFor.friends.friendRequestSent()
             //NotificationHandlerService.shared.sendRequestAs(.sendFriendRequest, notificationId: user.userId, to: friendUser.userId, badgeAmount: 1)
         }
@@ -168,21 +176,20 @@ class FriendsDatabase {
     
     func acceptFriendRequest(withFriendsId friendsId: String, fromUserId: String? = nil, completion: @escaping VoidCompletion) {
         let lastMes: [String: Any] = [
-            "text" : "\("Start chatting")!",
-            "read" : false,
-            "sender" : "Shape Race"
+            DBStrings.Friends.text : "\("Start chatting")!",
+            DBStrings.Friends.read : false,
+            DBStrings.Friends.sender : "Detecht"
         ]
-        
-        FirestoreService.Ref.Friends.shared.specific(friendsId: friendsId).updateData(["isFriends": true, "lastMessage.read": lastMes]) { (error) in
+        FirestoreService.Ref.Friends.shared.specific(friendsId: friendsId).updateData([DBStrings.Friends.isFriends: true, DBStrings.Friends.lastMessage: lastMes]) { (error) in
             if let error = error {
+                //Try again here?
                 print(error.localizedDescription)
-                completion(.failure(error))
             }
             completion(.success(()))
-//            if let fromUserId = fromUserId {
-//                //Event.setEventFor.friends.friendRequestSent()
-//                //NotificationHandlerService.shared.sendRequestAs(.acceptFriendRequest, notificationId: fromUserId, to: fromUserId, badgeAmount: 1)
-//            }
+            if let fromUserId = fromUserId {
+                //Event.setEventFor.friends.friendRequestSent()
+                //NotificationHandlerService.shared.sendRequestAs(.acceptFriendRequest, notificationId: fromUserId, to: fromUserId, badgeAmount: 1)
+            }
         }
     }
     
@@ -241,25 +248,25 @@ class FriendsDatabase {
     }
     
     func markAsRead(friendsId: String) {
-        FirestoreService.Ref.Friends.shared.specific(friendsId: friendsId).updateData(["lastMessage.read" : true])
+        FirestoreService.Ref.Friends.shared.specific(friendsId: friendsId).updateData([DBStrings.Friends.lastMessageRead : true])
     }
     
     private func createFriendModel(dict: [String : Any], currentUser: User, friendsId: String) -> FriendModel? {
-        guard let users = dict["users"] as? [String],
-            let names = dict["names"] as? [String : String],
-            let lastMes = dict["lastMessage"] as? [String : Any],
-            let updated = dict["updated"] as? Timestamp else { return nil }
+        guard let users = dict[DBStrings.Friends.users] as? [String],
+            let names = dict[DBStrings.Friends.names] as? [String : String],
+            let lastMes = dict[DBStrings.Friends.lastMessage] as? [String : Any],
+            let updated = dict[DBStrings.Friends.updated] as? Timestamp else { return nil }
         
         // Get the other persons userId
         let friendUserId = users.filter { !$0.contains(currentUser.uid) }[0]
         
         // Get the correct name from names for the friendId
         guard let friendName = names[friendUserId] else { return nil }
-
+        
         // Get last message
-        guard let senderId = lastMes["sender"] as? String,
-            let lastText = lastMes["text"] as? String,
-            let lastRead = lastMes["read"] as? Bool
+        guard let senderId = lastMes[DBStrings.Friends.sender] as? String,
+            let lastText = lastMes[DBStrings.Friends.text] as? String,
+            let lastRead = lastMes[DBStrings.Friends.read] as? Bool
             else { return nil }
         
         var senderName = ""
@@ -278,9 +285,9 @@ class FriendsDatabase {
     }
     
     private func createRequestModel(dict: [String : Any], currentUser: User, friendsId: String) -> (sentRequest: RequestModel?, receivedRequest: RequestModel?) {
-        guard let users = dict["users"] as? [String],
-            let names = dict["names"] as? [String : String],
-            let updated = dict["updated"] as? Timestamp
+        guard let users = dict[DBStrings.Friends.users] as? [String],
+            let names = dict[DBStrings.Friends.names] as? [String : String],
+            let updated = dict[DBStrings.Friends.updated] as? Timestamp
         else { return (nil, nil) }
                         
         if users[0] == currentUser.uid {
@@ -299,4 +306,36 @@ class FriendsDatabase {
 }
 
 
+struct DBStrings {
+    
+    static let timestamp = "timestamp"
+
+    struct AuthDataResult {
+        static let uid = "uid"
+        static let username = "username"
+        static let email = "email"
+        static let profileImageUrl = "profileImageUrl"
+    }
+
+    struct Friends {
+        static let isFriends = "isFriends"
+        static let lastMessage = "lastMessage"
+        static let read = "read"
+        static let sender = "sender"
+        static let text = "text"
+        static let names = "names"
+        static let updated = "updated"
+        static let users = "users"
+        static let messages = "messages"
+        static let lastMessageRead = "lastMessage.read"
+        static let currentlySafetyTracking = "currentlySafetyTracking"
+    }
+    
+    struct Chat {
+        static let created = "created"
+        static let read = "read"
+        static let text = "text"
+        static let userId = "userId"
+    }
+}
 

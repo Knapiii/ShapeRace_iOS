@@ -69,7 +69,6 @@ class UserHeaderView: UITableViewHeaderFooterView {
         case .acceptRequest:
             currentFriendState = .acceptRequest
             friendStateButton.setupUI(title: "Accept request", titleColor: SRColor.adaptiveBlue, bgColor: .white, borderColor: SRColor.adaptiveBlue)
-            friendStateButton.backgroundColor = .orange
             //friendStateButton.setImage(UIImage(named: "Add_Friend"), for: .normal)
             friendStateButton.addTarget(self, action: #selector(friendsButtonTapped(_:)), for: .touchUpInside)
         case .cancelRequest:
@@ -92,26 +91,6 @@ class UserHeaderView: UITableViewHeaderFooterView {
         guard let user = user else { return }
         Vibration.medium.vibrate()
         delegate?.setFriendState(user: user, state: currentFriendState)
-    }
-    
-    @objc private func addFriendButtonTapped(_ sender: UIButton){
-        sender.isEnabled = false
-        DB.friends.sendFriendRequest(toUser: self.user!)
-    }
-    
-    @objc private func acceptFriendButtonTapped(_ sender: UIButton){
-        sender.isEnabled = false
-        DB.friends.acceptFriendRequest(fromUser: self.user!, completion: {_ in })
-    }
-    
-    @objc private func cancelRequestButtonTapped(_ sender: UIButton){
-        sender.isEnabled = false
-        DB.friends.cancelFriendRequest(toUser: self.user!, completion: {_ in })
-    }
-    
-    @objc private func removeFriendButtonTapped(_ sender: UIButton){
-        sender.isEnabled = false
-        DB.friends.deleteFriendCollection(withUser: self.user!, completion: {_ in })
     }
     
     private func configure() {
@@ -148,7 +127,7 @@ class UserHeaderView: UITableViewHeaderFooterView {
         NSLayoutConstraint.activate([
             nameLabel.leftAnchor.constraint(equalTo: profileImageView.leftAnchor),
             nameLabel.rightAnchor.constraint(equalTo: friendStateButton.leftAnchor, constant: -8),
-            nameLabel.centerYAnchor.constraint(equalTo: friendStateButton.centerYAnchor)
+            nameLabel.bottomAnchor.constraint(equalTo: friendStateButton.bottomAnchor)
         ])
 
     }

@@ -91,7 +91,7 @@ extension UserVC: UserHeaderDelegate {
     func setFriendState(user: UserModel, state: FriendState) {
         switch state {
         case .addFriend:
-            DB.friends.sendFriendRequest(toUser: user)
+            DB.friends.sendFriendRequest(toUser: user, completion: {_ in })
         case .acceptRequest:
             DB.friends.acceptFriendRequest(fromUser: user, completion: {_ in })
         case .cancelRequest:

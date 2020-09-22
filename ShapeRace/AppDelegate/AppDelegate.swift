@@ -43,7 +43,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         dispatchGroup.notify(queue: DispatchQueue.main) {
-            print("hej")
             self.configureInitialVC()
         }
         return true

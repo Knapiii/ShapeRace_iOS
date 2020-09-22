@@ -55,7 +55,7 @@ struct FirestoreService {
         
         struct Friends {
             static let shared = Friends()
-            private let REF_FRIENDS = "firends"
+            private let REF_FRIENDS = "friends"
             var friends: CollectionReference{
                 return Firestore.firestore().collection(REF_FRIENDS)
             }
